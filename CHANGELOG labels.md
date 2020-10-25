@@ -6,7 +6,7 @@
 
 ## v0.4.7 -
 
-- 
+- Added openvpnconnectv3
 
 
 ## v0.4.6 - 2020-10-25
