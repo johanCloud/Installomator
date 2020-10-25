@@ -2,6 +2,7 @@
 
 - 
 
+## v0.4.7 -
 
 ## v0.4.6 - 2020-10-25
 
@@ -10,7 +11,7 @@
 - xpath function added to handle differences with xpath between Catalina and Big Sur
 
 
-## 0.4.5 - 2020-09-02
+## v0.4.5 - 2020-09-02
 
 - Changed GitHub download so that returned file has to end with filetype.
 - Logging using label as tag, and also with logger command (label as tag so that concurrent runnings of Installomator can be separated
