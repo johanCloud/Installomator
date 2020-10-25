@@ -1,14 +1,11 @@
 #!/bin/bash
-# Global Log
-LOG_FILE="/var/tmp/scriptlog.txt"
-exec > >(tee -a ${LOG_FILE} )
-exec 2> >(tee -a ${LOG_FILE} >&2)
-echo " "
-echo "[$(DATE)][LOG-START]"
-
-
 # Installation using Installomator
 what="microsoftteams microsoftyammer firefox_da googlechrome cyberduck vlc signal" # enter the software to install separated with spaces
+
+# To be used as a script sent out from a MDM.
+# Fill the variable "what" above with labels separated by space " ".
+# Script will loop through these labels.
+######################################################################
 
 # Verify that Installomator has been installed
 destFile="/usr/local/bin/Installomator"
