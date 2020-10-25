@@ -1,14 +1,12 @@
 #!/bin/bash
-# Global Log
-LOG_FILE="/var/tmp/scriptlog.txt"
-exec > >(tee -a ${LOG_FILE} )
-exec 2> >(tee -a ${LOG_FILE} >&2)
-echo " "
-echo "[$(DATE)][LOG-START]"
-
-
 # Installation using Installomator
 what="googledrivefilestream" # enter the software to install
+
+# To be used as a script sent out from a MDM.
+# Fill the variable "what" above with a label.
+# Script will run this label.
+###############################################
+
 
 # Verify that Installomator has been installed
 destFile="/usr/local/bin/Installomator"
