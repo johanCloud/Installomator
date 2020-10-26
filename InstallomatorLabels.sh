@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.6"
+labelsVERSION="0.4.7"
 
 # MARK: labels in case statement
 caseLabel () {
