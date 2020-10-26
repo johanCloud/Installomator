@@ -9,7 +9,7 @@ what="googledrivefilestream" # enter the software to install
 
 
 # Verify that Installomator has been installed
-destFile="/usr/local/bin/Installomator"
+destFile="/usr/local/bin/Installomator.sh"
 if [ ! -e "${destFile}" ]; then
     echo "Installomator not found here:"
     echo "${destFile}"
