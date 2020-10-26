@@ -14,7 +14,9 @@ Purpose is to add a version check before download, and/or before installation, s
 
 See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software.
 
-I recommend to install the two scripts in /usr/local/bin, that folder is included in PATH, so the script can be called without path. The two scripts with “app” in the name is the script, that should be inside Mosyle Manager.
+I have included a .pkgproj-file that will open in the app [Packages](http://s.sudre.free.fr/Software/Packages/about.html). So now you can build you own installer and deploy that to your machines. The package will install the two scripts as well as a link file named "Installomator" that will link to Installomator.sh.
+
+The two scripts with “app” in the name is the script, that should be inside Mosyle Manager.
 
 ## Also, for this version
 Your production and deployment environment will be different, please test thoroughly before rolling it out to your production.
