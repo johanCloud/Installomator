@@ -12,7 +12,7 @@ This version is for MDMs, that can sent scripts, maybe at specific times. It has
 
 Purpose is to add a version check before download, and/or before installation, so only if an update exist, will it install the software. A new variable for the label has been introduced so if the version can be obtained from the web site or similar place, the script can evaluate very quickly if it needs an update.
 
-See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software.
+See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software and README.
 
 I will try to add new labels when they are submittet to scriptingosx, and maybe I will see if I can create the appNewVersion content.
 
