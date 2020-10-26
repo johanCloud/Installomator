@@ -4,6 +4,10 @@
 
 ## v0.4.7 -
 
+- No changes to Installomator.sh file
+- Changes to the scripts to be used in the MDM, so that it will call Installomator.sh
+- included .pkgproj-file so that an installer package, taht install scripts to /usr/local/bin, can be built.
+
 ## v0.4.6 - 2020-10-25
 
 - Alligned with version 0.4 from official Installomator
