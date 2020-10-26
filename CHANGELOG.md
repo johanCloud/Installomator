@@ -2,7 +2,12 @@
 
 - 
 
-## v0.4.7 -
+## v0.4.7 - 2020
+
+- Labels: improved 8x8
+
+
+## v0.4.7 - 2020-10-26
 
 - No changes to Installomator.sh file
 - Changes to the scripts to be used in the MDM, so that it will call Installomator.sh
