@@ -14,6 +14,8 @@ Purpose is to add a version check before download, and/or before installation, s
 
 See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software.
 
+I will try to add new labels when they are submittet to scriptingosx, and maybe I will see if I can create the appNewVersion content.
+
 I have included a .pkgproj-file that will open in the app [Packages](http://s.sudre.free.fr/Software/Packages/about.html). So now you can build you own installer and deploy that to your machines. The package will install the two scripts in /usr/local/bin that is part of the PATH, which means that in Terminal ap you can use Installomator.sh as a command.
 
 The two scripts with “app” in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward.
