@@ -824,7 +824,7 @@
 			<key>USE_HFS+_COMPRESSION</key>
 			<false/>
 			<key>VERSION</key>
-			<string>0.4.7</string>
+			<string>0.4.8</string>
 		</dict>
 		<key>PROJECT_COMMENTS</key>
 		<dict>
@@ -1010,7 +1010,7 @@
 				</dict>
 			</array>
 			<key>NAME</key>
-			<string>Installomator_ST_0.4.7</string>
+			<string>Installomator_ST_0.4.8</string>
 			<key>PAYLOAD_ONLY</key>
 			<false/>
 		</dict>

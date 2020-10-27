@@ -234,7 +234,7 @@ versionFromGit() {
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
         
-    appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9.]//g')
+    appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g')
     if [ -z "$appNewVersion" ]; then
         printlog "could not retrieve version number for $gitusername/$gitreponame"
         exit 9
@@ -610,12 +610,6 @@ currentUser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print
 
 # MARK: labels moved to function caseLabel in InstallomatorLabels.sh
 caseLabel
-# These next lines are only used if I want to move the exit from labels file to this file
-#if [[ $label = "" ]]; then 
-#    printlog "$(grep -E '^ *[a-z]+\)$' "${labelFile}" | sed -E 's/^ *([a-z]+)[)]$/\1/g')"
-#    exit 99
-#fi
-
 
 # MARK: application download and installation starts here
 
@@ -710,7 +704,6 @@ else
 fi
 
 # MARK: download the archive
-
 if [ -f "$archiveName" ] && [ "$DEBUG" -ne 0 ]; then
     printlog "$archiveName exists and DEBUG enabled, skipping download"
 else
@@ -723,7 +716,6 @@ else
 fi
 
 # MARK: when user is logged in, and app is running, prompt user to quit app
-
 if [[ $BLOCKING_PROCESS_ACTION == "ignore" ]]; then
     printlog "ignoring blocking processes"
 else
