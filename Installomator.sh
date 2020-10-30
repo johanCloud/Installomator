@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.7' # This version branched by Søren Theilgaard
-VERSIONDATE='2020-10-26'
+VERSION='0.4.8' # This version branched by Søren Theilgaard
+VERSIONDATE='2020-10-28'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -48,9 +48,20 @@ BLOCKING_PROCESS_ACTION=prompt_user
 #   - silent_fail  exit script without prompt or installation
 #   - prompt_user  show a user dialog for each blocking process found
 #                  abort after three attempts to quit
+#                  (only if user accepts to quit the apps, otherwise
+#                  the update is cancelled).
 #   - prompt_user_then_kill
 #                  show a user dialog for each blocking process found,
 #                  attempt to quit two times, kill the process finally
+#   - prompt_user_loop
+#                  Like prompt-user, but clicking "Not Now", will just wait an hour,
+#                  and then it will ask again.
+#   - tell_user    User will be showed a notification about the important update,
+#                  but user is only allowed to quit and continue, and then we
+#                  ask the app to quit.
+#   - tell_user_then_kill
+#                  Show dialog 2 times, and if the quitting fails, the
+#                  blocking processes will be killed.
 #   - kill         kill process without prompting or giving the user a chance to save
 
 
@@ -169,6 +180,12 @@ displaydialog() { # $1: message $2: title
     message=${1:-"Message"}
     title=${2:-"Installomator"}
     runAsUser osascript -e "button returned of (display dialog \"$message\" with title \"$title\" buttons {\"Not Now\", \"Quit and Update\"} default button \"Quit and Update\")"
+}
+
+displaydialogContinue() { # $1: message $2: title
+    message=${1:-"Message"}
+    title=${2:-"Installomator"}
+    runAsUser osascript -e "button returned of (display dialog \"$message\" with title \"$title\" buttons {\"Quit and Update\"} default button \"Quit and Update\")"
 }
 
 displaynotification() { # $1: message $2: title
@@ -291,7 +308,7 @@ checkRunningProcesses() {
     fi
 
     # try at most 3 times
-    for i in {1..3}; do
+    for i in {1..4}; do
         countedProcesses=0
         for x in ${blockingProcesses}; do
             if pgrep -xq "$x"; then
@@ -301,19 +318,53 @@ checkRunningProcesses() {
                     kill)
                       printlog "killing process $x"
                       pkill $x
+                      sleep 5
                       ;;
                     prompt_user|prompt_user_then_kill)
                       button=$(displaydialog "Quit “$x” to continue updating? (Leave this dialogue if you want to activate this update later)." "The application “$x” needs to be updated.")
                       if [[ $button = "Not Now" ]]; then
                         cleanupAndExit 10 "user aborted update"
                       else
-                        if [[ $i = 3 && $BLOCKING_PROCESS_ACTION = "prompt_user_then_kill" ]]; then
-                          printlog "killing process $x"
-                          pkill $x
+                        if [[ $i > 2 && $BLOCKING_PROCESS_ACTION = "prompt_user_then_kill" ]]; then
+                          printlog "Changing BLOCKING_PROCESS_ACTION to kill"
+                          BLOCKING_PROCESS_ACTION=kill
                         else
                           printlog "telling app $x to quit"
                           runAsUser osascript -e "tell app \"$x\" to quit"
+                          # give the user a bit of time to quit apps
+                          printlog "waiting 30 seconds for processes to quit"
+                          sleep 30
                         fi
+                      fi
+                      ;;
+                    prompt_user_loop)
+                      button=$(displaydialog "Quit “$x” to continue updating? (Click “Not Now” to be asked in an hour, or leave this open until you are ready)." "The application “$x” needs to be updated.")
+                      if [[ $button = "Not Now" ]]; then
+                        if [[ $i < 2 ]]; then
+                          printlog "user wants to wait an hour"
+                          sleep 3600 # 3600 seconds is an hour
+                        else
+                          printlog "change of BLOCKING_PROCESS_ACTION to tell_user_then_kill"
+                          BLOCKING_PROCESS_ACTION=tell_user
+                        fi
+                      else
+                        printlog "telling app $x to quit"
+                        runAsUser osascript -e "tell app \"$x\" to quit"
+                        # give the user a bit of time to quit apps
+                        printlog "waiting 30 seconds for processes to quit"
+                        sleep 30
+                      fi
+                      ;;
+                    tell_user|tell_user_then_kill)
+                      button=$(displaydialogContinue "Quit “$x” to continue updating? (This is an important update). Wait for notification of update before launching app again." "The application “$x” needs to be updated.")
+                      printlog "telling app $x to quit"
+                      runAsUser osascript -e "tell app \"$x\" to quit"
+                      # give the user a bit of time to quit apps
+                      printlog "waiting 30 seconds for processes to quit"
+                      sleep 30
+                      if [[ $i > 1 && $BLOCKING_PROCESS_ACTION = tell_user_then_kill ]]; then
+                          printlog "Changing BLOCKING_PROCESS_ACTION to kill"
+                          BLOCKING_PROCESS_ACTION=kill
                       fi
                       ;;
                     silent_fail)
@@ -325,14 +376,6 @@ checkRunningProcesses() {
             fi
         done
 
-        if [[ $countedProcesses -eq 0 ]]; then
-            # no blocking processes, exit the loop early
-            break
-        else
-            # give the user a bit of time to quit apps
-            printlog "waiting 30 seconds for processes to quit"
-            sleep 30
-        fi
     done
 
     if [[ $countedProcesses -ne 0 ]]; then
@@ -602,7 +645,8 @@ done
 # lowercase the label
 label=${label:l}
 
-printlog "################## Start Installomator v. $VERSION from $VERSIONDATE, branch $VERSIONBRANCH, Labels file version $labelsVERSION"
+printlog "################## Start Installomator v. $VERSION from $VERSIONDATE, branch $VERSIONBRANCH"
+printlog "Labels file: ${labelFile}, version $labelsVERSION"
 printlog "################## $label"
 
 # get current user
