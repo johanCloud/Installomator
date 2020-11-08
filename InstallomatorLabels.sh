@@ -126,6 +126,7 @@ malwarebytes)
     name="Malwarebytes"
     type="pkg"
     downloadURL="https://downloads.malwarebytes.com/file/mb3-mac"
+    appNewVersion=$(curl -Ifs https://downloads.malwarebytes.com/file/mb3-mac | grep "location" | sed -E 's/.*-Mac-([0-9\.]*)\.pkg/\1/g')
     expectedTeamID="GVZRY6KDKR"
     ;;
 suspiciouspackage)
@@ -133,6 +134,7 @@ suspiciouspackage)
     name="Suspicious Package"
     type="dmg"
     downloadURL="https://mothersruin.com/software/downloads/SuspiciousPackage.dmg"
+    addNewVersion=$(curl -fs https://mothersruin.com/software/SuspiciousPackage/get.html | grep 'class="version"' | sed -E 's/.*>([0-9\.]*) \(.*/\1/g')
     expectedTeamID="936EB786NH"
     ;;
 atom)
@@ -198,6 +200,7 @@ sourcetree)
     downloadURL=$(curl -fs https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcastAlpha.xml \
         | xpath '//rss/channel/item[last()]/enclosure/@url' 2>/dev/null \
         | cut -d '"' -f 2 )
+    appNewVersion=$(curl -fs https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcastAlpha.xml | xpath '//rss/channel/item[last()]/title' 2>/dev/null | sed -n -e 's/^.*Version //p' | sed 's/\<\/title\>//' | sed $'s/[^[:print:]\t]//g')
     expectedTeamID="UPXU4CQZ5P"
     ;;
 boxdrive)
@@ -334,6 +337,7 @@ sublimetext)
     type="dmg"
     downloadURL="https://download.sublimetext.com/latest/stable/osx"
     appNewVersion=$(curl -fs https://www.sublimetext.com/3 | grep 'class="latest"' | cut -d '>' -f 4 | sed -E 's/ (.*[0-9]*)<.*/\1/g')
+    #appNewVersion=$(curl -Is https://download.sublimetext.com/latest/stable/osx | grep "Location:" | sed -n -e 's/^.*Sublime Text //p' | sed 's/.dmg//g' | sed $'s/[^[:print:]\t]//g') # Alternative from @Oh4sh0
     expectedTeamID="Z6D26JE4Y4"
     ;;
 githubdesktop)
@@ -407,6 +411,7 @@ iterm2)
     name="iTerm"
     type="zip"
     downloadURL="https://iterm2.com/downloads/stable/latest"
+    appNewVersion=$(curl -is https://iterm2.com/downloads/stable/latest | grep location: | grep -o "iTerm2.*zip" | cut -d "-" -f 2 | cut -d '.' -f1 | sed 's/_/./g')
     expectedTeamID="H7V7XYVQ7D"
     blockingProcesses=( iTerm2 )
     ;;
@@ -437,6 +442,7 @@ postman)
     name="Postman"
     type="zip"
     downloadURL="https://dl.pstmn.io/download/latest/osx"
+    appNewVersion=$(curl -Ifs https://dl.pstmn.io/download/latest/osx | grep "content-disposition:" | sed -n -e 's/^.*Postman-osx-//p' | sed 's/\.zip//' | sed $'s/[^[:print:]\t]//g' )
     expectedTeamID="H7H8Q7M5CK"
     ;;
 jamfpppcutility)
@@ -493,6 +499,7 @@ docker)
     name="Docker"
     type="dmg"
     downloadURL="https://download.docker.com/mac/stable/Docker.dmg"
+    appNewVersion=$(curl -ifs https://docs.docker.com/docker-for-mac/release-notes/ | grep ">Docker Desktop Community" | head -1 | sed -n -e 's/^.*Community //p' | cut -d '<' -f1)
     expectedTeamID="9BNSXJN65R"
     ;;
 brave)
@@ -1008,6 +1015,7 @@ visualstudiocode)
     name="Visual Studio Code"
     type="zip"
     downloadURL="https://go.microsoft.com/fwlink/?LinkID=620882"
+    appNewVersion=$(curl -fsL "https://code.visualstudio.com/Updates" | grep "/darwin" | grep -oiE ".com/([^>]+)([^<]+)/darwin" | cut -d "/" -f 2 | sed $'s/[^[:print:]\t]//g')
     expectedTeamID="UBF8T346G9"
     appName="Visual Studio Code.app"
     blockingProcesses=( Electron )

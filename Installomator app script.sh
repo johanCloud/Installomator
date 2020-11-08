@@ -19,6 +19,7 @@ fi
 
 ${destFile} ${what} #BLOCKING_PROCESS_ACTION=tell_user_then_kill
 if [ $? != 0 ]; then
+# This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
     echo "Error installing ${what}. Exit code $?"
     exit $?
 fi

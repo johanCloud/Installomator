@@ -20,6 +20,7 @@ for item in $what; do
     #echo $item
     ${destFile} ${item} #BLOCKING_PROCESS_ACTION=tell_user_then_kill
     if [ $? != 0 ]; then
+    # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
         echo "[$(DATE)] Error installing ${item}. Exit code $?"
         # exit $?
     fi
