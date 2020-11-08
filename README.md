@@ -20,10 +20,9 @@ I have included a .pkgproj-file that will open in the app [Packages](http://s.su
 
 The two scripts with “app” in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward. Note: Mosyle does not currently handle exit codes from scripts. Please request support for this from Mosyle!
 
-Changed the process in the script when blocking processes are found, and added new options
-Default is
-BLOCKING_PROCESS_ACTION=prompt_user
-options:
+Changed the process in the script when blocking processes are found, and added new options. Default is “BLOCKING_PROCESS_ACTION=prompt_user”
+
+Options:
 - ignore: continue even when blocking processes are found
 - silent_fail: exit script without prompt or installation
 - prompt_user: show a user dialog for each blocking process found abort after three attempts to quit (only if user accepts to quit the apps, otherwise the update is cancelled).
