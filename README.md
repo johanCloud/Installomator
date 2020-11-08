@@ -23,14 +23,14 @@ The two scripts with “app” in the name is the script, that should be inside 
 Changed the process in the script when blocking processes are found, and added new options. Default is “BLOCKING_PROCESS_ACTION=prompt_user”
 
 Options:
-- ignore: continue even when blocking processes are found
-- silent_fail: exit script without prompt or installation
+- ignore: continue even when blocking processes are found.
+- silent_fail: exit script without prompt or installation.
 - prompt_user: show a user dialog for each blocking process found abort after three attempts to quit (only if user accepts to quit the apps, otherwise the update is cancelled).
-- prompt_user_then_kill: show a user dialog for each blocking process found, attempt to quit two times, kill the process finally
+- prompt_user_then_kill: show a user dialog for each blocking process found, attempt to quit two times, kill the process finally.
 - prompt_user_loop: Like prompt-user, but clicking "Not Now", will just wait an hour, and then it will ask again.
 - tell_user: User will be showed a notification about the important update, but user is only allowed to quit and continue, and then we ask the app to quit.
 - tell_user_then_kill: Show dialog 2 times, and if the quitting fails, the blocking processes will be killed.
-- kill: kill process without prompting or giving the user a chance to save
+- kill: kill process without prompting or giving the user a chance to save.
 
 ## Also, for this version
 Your production and deployment environment will be different, please test thoroughly before rolling it out to your production.
