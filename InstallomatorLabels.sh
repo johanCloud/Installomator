@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.8"
+labelsVERSION="0.4.9"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -801,6 +801,14 @@ skype)
     expectedTeamID="AL798K98FX"
     Company="Microsoft"
     PatchSkip="YES"
+    ;;
+keka)
+    # credit: Adrian Bühler (@midni9ht)
+    name="Keka"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit aonez Keka)
+    appNewVersion=$(versionFromGit aonez Keka)
+    expectedTeamID="4FG648TM2A"
     ;;
 
 # MARK: labels by Søren Theilgaard (@theilgaard)

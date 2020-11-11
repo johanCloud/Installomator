@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.8' # This version branched by Søren Theilgaard
-VERSIONDATE='2020-11-08'
+VERSION='0.4.9' # This version branched by Søren Theilgaard
+VERSIONDATE='2020-11-11'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -240,7 +240,7 @@ downloadURLFromGit() { # $1 git user name, $2 git repo name
         printlog "could not retrieve download URL for $gitusername/$gitreponame"
         exit 9
     else
-        printlog "$downloadURL"
+        echo "$downloadURL"
         return 0
     fi
 }
@@ -256,7 +256,7 @@ versionFromGit() {
         printlog "could not retrieve version number for $gitusername/$gitreponame"
         exit 9
     else
-        printlog "$appNewVersion"
+        echo "$appNewVersion"
         return 0
     fi
 }
