@@ -42,7 +42,7 @@ NOTIFY=success
 
 
 # behavior when blocking processes are found
-BLOCKING_PROCESS_ACTION=prompt_user
+BLOCKING_PROCESS_ACTION=prompt_user_loop
 # options:
 #   - ignore       continue even when blocking processes are found
 #   - silent_fail  exit script without prompt or installation
@@ -338,7 +338,7 @@ checkRunningProcesses() {
                       fi
                       ;;
                     prompt_user_loop)
-                      button=$(displaydialog "Quit “$x” to continue updating? (Click “Not Now” to be asked in an hour, or leave this open until you are ready)." "The application “$x” needs to be updated.")
+                      button=$(displaydialog "Quit “$x” to continue updating? (Click “Not Now” to be asked in 1 hour, or leave this open until you are ready)." "The application “$x” needs to be updated.")
                       if [[ $button = "Not Now" ]]; then
                         if [[ $i < 2 ]]; then
                           printlog "user wants to wait an hour"
@@ -657,6 +657,7 @@ caseLabel
 
 # MARK: application download and installation starts here
 
+printlog "BLOCKING_PROCESS_ACTION=${BLOCKING_PROCESS_ACTION}"
 
 # MARK: extract info from data
 if [ -z "$archiveName" ]; then

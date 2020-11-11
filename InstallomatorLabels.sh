@@ -16,7 +16,11 @@ version)
     ;;
 longversion)
     # print the script version
-    printlog "Installomater: version $VERSION ($VERSIONDATE), branch $VERSIONBRANCH, Labels file version $labelsVERSION"
+    printlog "Installomator location:"
+    printlog "${SELFLOCATION}/${SELF}"
+    printlog "Labels file:"
+    printlog "$labelFile"
+    printlog "Version $VERSION ($VERSIONDATE), branch $VERSIONBRANCH, Labels file version $labelsVERSION"
     exit 0
     ;;
 
@@ -841,14 +845,6 @@ xink)
     downloadURL="https://downloads.xink.io/macos/client"
     #appNewVersion=$() # Cannot find version history or release notes on home page
     expectedTeamID="F287823HVS"
-    ;;
-cdef)
-    # credit: Søren Theilgaard (@theilgaard)
-    name="cdef"
-    type="pkg"
-    downloadURL=$(downloadURLFromGit Shufflepuck cdef)
-    appNewVersion=$(versionFromGit Shufflepuck cdef)
-    #expectedTeamID="EM3ER8T33A"
     ;;
 
 # MARK: add new labels above here

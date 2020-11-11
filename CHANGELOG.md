@@ -3,8 +3,12 @@
 - 
 
 ## v0.4.9 - 2020-11-11
+
+- Testet with macOS 11 Big Sur
+- Default BLOCKING_PROCESS_ACTION=prompt_user_loop
 - FIxed a bug preventing labels using github from working
 - Labels added: keka
+- Removed Label cdef, as it does not contain signing.
 
 ## v0.4.8 - 2020-11-08
 

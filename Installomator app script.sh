@@ -67,6 +67,7 @@ exit 0
 # textmate
 
 # cyberduck
+# keka
 
 # vlc
 # handbrake
@@ -103,119 +104,133 @@ exit 0
 ########################
 # ALL available
 ########################
-#1password7
-#8x8
-#adobereaderdc
-#adobereaderdc-install
-#adobereaderdc-update
-#airserver
-#alfred
-#appcleaner
-#aquaskk
-#atom
-#autodmg
-#autopkgr
-#autopkgr
-#aviatrix
-#bbedit
-#bettertouchtool
-#boxdrive
-#brave
-#cdef
-#citrixworkspace
-#code42
-#coderunner
-#cyberduck
-#depnotify
-#desktoppr
-#detectxswift
-#discord
-#docker
-#dropbox
-#egnyte
-#eraseinstall
-#firefox
-#firefoxesrpkg
-#firefoxpkg
-#githubdesktop
-#googlechrome
-#googlechromepkg
-#googledrivefilestream
-#googlejapaneseinput
-#grandperspective
-#handbrake
-#icons
-#inkscape
-#istatmenus
-#iterm2
-#jamfmigrator
-#jamfpppcutility
-#jamfreenroller
-#karabinerelements
-#keepassxc
-#krisp
-#malwarebytes
-#microsoftautoupdate
-#microsoftcompanyportal
-#microsoftdefenderatp
-#microsoftedgeconsumerstable
-#microsoftedgeenterprisestable
-#microsoftexcel
-#microsoftoffice365
-#microsoftofficebusinesspro
-#microsoftonedrive
-#microsoftonenote
-#microsoftoutlook
-#microsoftpowerpoint
-#microsoftremotedesktop
-#microsoftsharepointplugin
-#microsoftskypeforbusiness
-#microsoftteams
-#microsoftword
-#microsoftyammer
-#netnewswire
-#nomad
-#omnifocus3
-#omnigraffle7
-#openvpnconnect
-#pacifist
-#plisteditpro
-#postman
-#privileges
-#r
-#resiliosynchome
-#ringcentralapp
-#ringcentralmeetings
-#royaltsx
-#santa
-#sfsymbols
-#signal
-#sizeup
-#sketch
-#slack
-#sonos
-#sonoss1
-#sonoss2
-#sourcetree
-#spotify
-#sublimetext
-#suspiciouspackage
-#swiftruntimeforcommandlinetools
-#teamviewer
-#teamviewerqs
-#textmate
-#things
-#torbrowser
-#tunnelbear
-#umbrellaroamingclient
-#virtualbox
-#visualstudiocode
-#vlc
-#vscodium
-#webexmeetings
-#webexteams
-#whatsapp
-#wordmat
-#wwdcformac
-#xink
-#zoom
+# 1password7
+# 8x8
+# adobereaderdc
+# adobereaderdc-install
+# adobereaderdc-update
+# airserver
+# alfred
+# amazonworkspaces
+# apparency
+# appcleaner
+# aquaskk
+# atom
+# autodmg
+# autopkgr
+# aviatrix
+# bbedit
+# bettertouchtool
+# bluejeans
+# boxdrive
+# brave
+# camtasia
+# cdef
+# citrixworkspace
+# code42
+# coderunner
+# cyberduck
+# depnotify
+# desktoppr
+# detectxswift
+# dialpad
+# discord
+# docker
+# dropbox
+# egnyte
+# eraseinstall
+# firefox
+# firefoxesrpkg
+# firefoxpkg
+# githubdesktop
+# googlechrome
+# googlechromepkg
+# googledrivefilestream
+# googlejapaneseinput
+# grandperspective
+# handbrake
+# icons
+# inkscape
+# istatmenus
+# iterm2
+# jamfmigrator
+# jamfpppcutility
+# jamfreenroller
+# karabinerelements
+# keepassxc
+# keka
+# krisp
+# malwarebytes
+# netnewswire
+# nomad
+# omnifocus3
+# omnigraffle7
+# openvpnconnect
+# openvpnconnectv3
+# pacifist
+# plisteditpro
+# postman
+# privileges
+# r
+# resiliosynchome
+# ringcentralapp
+# ringcentralmeetings
+# royaltsx
+# santa
+# sfsymbols
+# signal
+# sizeup
+# sketch
+# skitch
+# skype
+# slack
+# snagit2020
+# sonos
+# sonoss1
+# sonoss2
+# sourcetree
+# spotify
+# sublimetext
+# suspiciouspackage
+# swiftruntimeforcommandlinetools
+# teamviewer
+# teamviewerqs
+# textmate
+# things
+# torbrowser
+# tunnelbear
+# tunnelblick
+# umbrellaroamingclient
+# virtualbox
+# visualstudiocode
+# vlc
+# vscodium
+# webexmeetings
+# webexteams
+# whatsapp
+# wwdcformac
+# xink
+# yubikeymanagerqt
+# zoom
+
+########################
+# Microsoft
+########################
+# microsoftautoupdate
+# microsoftcompanyportal
+# microsoftdefenderatp
+# microsoftedgeconsumerstable
+# microsoftedgeenterprisestable
+# microsoftexcel
+# microsoftoffice365
+# microsoftofficebusinesspro
+# microsoftonedrive
+# microsoftonenote
+# microsoftoutlook
+# microsoftpowerpoint
+# microsoftremotedesktop
+# microsoftsharepointplugin
+# microsoftskypeforbusiness
+# microsoftteams
+# microsoftword
+# microsoftyammer
