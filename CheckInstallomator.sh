@@ -39,36 +39,11 @@ printlog(){
 downloadURLFromGit() { # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
-    
-    # check if API-calls to Git has been exceeded, only 60 per hour
-    if [[ $(curl -si https://api.github.com/users/octocat | grep X-Ratelimit-Remaining | awk '{print $2}') == 0 ]]; then
-        echo "API rate limit exceeded to github"
-        return 0
-    fi
-    
-    if [[ $type == "pkgInDmg" ]]; then
-        filetype="dmg"
-    elif [[ $type == "pkgInZip" ]]; then
-        filetype="zip"
-    else
-        filetype=$type
-    fi
         
-    if [ -n "$archiveName" ]; then
-    downloadURL=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" \
-    | awk -F '"' "/browser_download_url/ && /$archiveName/ { print \$4 }")
-    else
-    downloadURL=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" \
-    | awk -F '"' "/browser_download_url/ && /$filetype\"/ { print \$4 }")
-    fi
+    downloadURL="https://github.com/$gitusername/$gitreponame/releases/latest"
+    echo "$downloadURL"
+    return 0
     
-    if [ -z "$downloadURL" ]; then
-        printlog "could not retrieve download URL for $gitusername/$gitreponame: $downloadURL"
-        exit 9
-    else
-        echo "$downloadURL"
-        return 0
-    fi
 }
 
 versionFromGit() {
@@ -76,14 +51,9 @@ versionFromGit() {
     # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
-        
-    # check if API-calls to Git has been exceeded, only 60 per hour
-    if [[ $(curl -si https://api.github.com/users/octocat | grep X-Ratelimit-Remaining | awk '{print $2}') == 0 ]]; then
-        echo "API rate limit exceeded to github"
-        return 0
-    fi
-
-    appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g')
+    
+    #appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g')
+    appNewVersion=$(curl --silent --fail "https://github.com/$gitusername/$gitreponame/releases/latest" | sed -E 's/.*tag\/(.*)\">.*/\1/g' )
     if [ -z "$appNewVersion" ]; then
         printlog "could not retrieve version number for $gitusername/$gitreponame: $appNewVersion"
         exit 9

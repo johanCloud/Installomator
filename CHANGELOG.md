@@ -1,6 +1,11 @@
 ## v0.5 - 2020-
 
 - 
+## v0.4.11 - 2020-??-??
+
+- CheckInstallomator.sh: Does not use github APIs for checking URL or version. So not entirely accurate, but it will confirm if it's working.
+
+
 ## v0.4.10 - 2020-12-12
 
 - Labels added: vmwarehorizonclient, adobeconnect, wireshark, nomadlogin, microsoftedge (same as microsoftedgeconsumerstable), onlyofficedesktop, gpgsuite, gpgsync, dangerzone, dbeaverce, androidfiletransfer, libreoffice, toggltrack, balenaetcher, fsmonitor, ramboxce, adobebrackets, debookee, ferdi, hyper, menumeters, webexteams
