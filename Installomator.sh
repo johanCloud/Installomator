@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.9' # This version branched by Søren Theilgaard
-VERSIONDATE='2020-11-11'
+VERSION='0.4.10' # This version branched by Søren Theilgaard
+VERSIONDATE='2020-12-12'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -140,7 +140,7 @@ BLOCKING_PROCESS_ACTION=prompt_user_loop
 #
 
 
-# load the labels
+# MARK: Load the labels
 SELF=$(basename $0)
 SELFLOCATION=$(dirname $0)
 labelFile="${SELFLOCATION}/InstallomatorLabels.sh"
@@ -625,7 +625,7 @@ elif [[ $1 == "/" ]]; then
     # jamf uses sends '/' as the first argument
     printlog "shifting arguments for Jamf"
     shift 3
-    # This script not compatible with Jamf as labels are in a seperate file
+    printlog "This version of Installomator is not compatible with Jamf"
     exit 1
 fi
 

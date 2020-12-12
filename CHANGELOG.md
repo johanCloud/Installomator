@@ -1,6 +1,14 @@
 ## v0.5 - 2020-
 
 - 
+## v0.4.10 - 2020-12-12
+
+- Labels added: vmwarehorizonclient, adobeconnect, wireshark, nomadlogin, microsoftedge (same as microsoftedgeconsumerstable), onlyofficedesktop, gpgsuite, gpgsync, dangerzone, dbeaverce, androidfiletransfer, libreoffice, toggltrack, balenaetcher, fsmonitor, ramboxce, adobebrackets, debookee, ferdi, hyper, menumeters, webexteams
+- Labels fixed: sketch
+- Versioncheck fixed on labels: bettertouchtool
+- Versioncheck add to labels: Spotify, nomad, microsoftautoupdate, microsoftedge, microsoftword, microsoftexcel, microsoftpowerpoint, microsoftoutlook, microsoftonenote, microsoftonedrive, microsoftskypeforbusiness, microsoftcompanyportal
+- Labels with errors, not fixed: omnifocus3, vscodium, yubikeymanagerqt
+- Versioncheck removed from labels: Spotify
 
 ## v0.4.9 - 2020-11-11
 

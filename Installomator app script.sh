@@ -30,7 +30,7 @@ exit 0
 
 # behavior when blocking processes are found
 # Default is
-# BLOCKING_PROCESS_ACTION=prompt_user
+# BLOCKING_PROCESS_ACTION=prompt_user_loop
 # options:
 #   - ignore       continue even when blocking processes are found
 #   - silent_fail  exit script without prompt or installation
