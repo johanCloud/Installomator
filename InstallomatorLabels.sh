@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.10"
+labelsVERSION="0.4.12"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -167,7 +167,10 @@ omnifocus3)
     name="OmniFocus"
     type="dmg"
     downloadURL=$(curl -fs https://update.omnigroup.com/appcast/com.omnigroup.OmniFocus3 \
-        | xpath '//rss/channel/item/enclosure[1]/@url' 2>/dev/null | cut -d '"' -f 2)
+        | xpath '//rss/channel/item/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
+    appNewVersion=$(curl -fs https://update.omnigroup.com/appcast/com.omnigroup.OmniFocus3 \
+        | xpath '//rss/channel/item/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2 \
+        | cut -d '"' -f 2 | sed -E 's/.*-([0-9\.]*)\..*/\1/g')
     expectedTeamID="34YW5XSRB7"
     ;;
 vlc)
@@ -621,7 +624,7 @@ nomad)
     type="pkg"
     downloadURL="https://files.nomad.menu/NoMAD.pkg"
     appNewVersion=$(curl -fs https://nomad.menu/support/ | grep "NoMAD Downloads" | sed -E 's/.*Current Version ([0-9\.]*)<.*/\1/g')
-    expectedTeamID="AAPZK3CB24"
+    expectedTeamID="VRPY9KHGX6"
     ;;
 nomadlogin)
     # credit: Søren Theilgaard (@theilgaard)
@@ -790,6 +793,7 @@ amazonworkspaces)
     name="Workspaces"
     type="pkg"
     downloadURL="https://d2td7dqidlhjx7.cloudfront.net/prod/global/osx/WorkSpaces.pkg"
+    appNewVersion=$(curl -fs https://d2td7dqidlhjx7.cloudfront.net/prod/iad/osx/WorkSpacesAppCast_macOS_20171023.xml | grep -o "Version*.*<" | head -1 | cut -d " " -f2 | cut -d "<" -f1)
     expectedTeamID="94KV3E626L"
     ;;
 apparency)
@@ -1012,6 +1016,75 @@ webexteams)
     downloadURL="https://binaries.webex.com/WebexTeamsDesktop-MACOS-Gold/WebexTeams.dmg"
     #appNewVersion=$() # Cannot find version history or release notes on home page
     expectedTeamID="DE8Y96K9QP"
+    ;;
+mattermost)
+    name="Mattermost"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit mattermost desktop)
+    appNewVersion=$(versionFromGit mattermost desktop )
+    expectedTeamID="UQ8HT4Q2XM"
+    ;;
+bitwarden)
+    name="Bitwarden"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit bitwarden desktop )
+    appNewVersion=$(versionFromGit bitwarden desktop )
+    expectedTeamID="LTZ2PFU5D6"
+    ;;
+thunderbird)
+    name="Thunderbird"
+    type="dmg"
+    downloadURL="https://download.mozilla.org/?product=thunderbird-latest&os=osx&lang=en-US"
+    expectedTeamID="43AQ936H96"
+    blockingProcesses=( thunderbird )
+    ;;
+tigervnc)
+    name="TigerVNC Viewer"
+    type="dmg"
+    downloadURL=https://dl.bintray.com/tigervnc/stable/$(curl -s -l https://dl.bintray.com/tigervnc/stable/ | grep .dmg | sed 's/<pre><a onclick="navi(event)" href="://' | sed 's/".*//' | sort -V | tail -1)
+    expectedTeamID="S5LX88A9BW"
+    ;;
+pitch)
+    name="Pitch"
+    type="dmg"
+    downloadURL="https://desktop.pitch.com/mac/Pitch.dmg"
+    expectedTeamID="KUCN8NUU6Z"
+    ;;
+sidekick)
+    name="Sidekick"
+    type="dmg"
+    downloadURL="https://api.meetsidekick.com/downloads/df/mac"
+    expectedTeamID="N975558CUS"
+    ;;
+plantronicshub)
+    name="Plantronics Hub"
+    type="dmg"
+    downloadURL="https://www.poly.com/content/dam/www/software/PlantronicsHubInstaller.dmg"
+    expectedTeamID="SKWK2Q7JJV"
+    appNewVersion=$(curl -fs "https://www.poly.com/in/en/support/knowledge-base/kb-article-page?lang=en_US&urlName=Hub-Release-Notes&type=Product_Information__kav" | grep -o "(*.*<span>)" | head -1 | cut -d "(" -f2 | sed 's/\<\/span\>//g' | cut -d "<" -f1)
+    ;;
+jabradirect)
+    name="Jabra Direct"
+    type="dmg"
+    downloadURL="https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/JabraDirectSetup.dmg"
+    expectedTeamID="55LV32M29R"
+    appNewVersion=$(curl -fs https://www.jabra.com/Support/release-notes/release-note-jabra-direct | grep -o "Jabra Direct macOS:*.*<" | head -1 | cut -d ":" -f2 | cut -d " " -f2 | cut -d "<" -f1)
+    ;;
+vagrant)
+    # credit: AP Orlebeke (@apizz)
+    name="Vagrant"
+    type="pkgInDmg"
+    pkgName="vagrant.pkg"
+    downloadURL=$(curl -fs https://www.vagrantup.com/downloads.html \
+        | tr '><' '\n' | awk -F'"' '/x86_64.dmg/ {print $6}' | head -1)
+    expectedTeamID="D38WU7D763"
+    ;;
+aircall)
+    # credit: @kris-anderson
+    name="Aircall"
+    type="dmg"
+    downloadURL="https://electron.aircall.io/download/osx"
+    expectedTeamID="3ML357Q795"
     ;;
 
 # MARK: add new labels above here

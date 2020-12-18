@@ -32,7 +32,11 @@ Options:
 - tell_user_then_kill: Show dialog 2 times, and if the quitting fails, the blocking processes will be killed.
 - kill: kill process without prompting or giving the user a chance to save.
 
-## Also, for this version
+Also added a NOTIFY option "all", so notifications can be shown to the user even if no upgrade is available, or if there is a failure in download. This is usable if the user click install in Self Service, then we want them to know, when we are done, no matter what happened. "success" is still default so "NOTIFY=all" needs to be added to the command to get all the notifications.
+
+I have signed at notarized the pkg.
+
+## Like the original Installomator, this text apply for this brach version:
 Your production and deployment environment will be different, please test thoroughly before rolling it out to your production.
 
 I have put a lot of work into making it stable and safe, but I cannot - of course - make _any_ promises that it won't break in some not yet encountered edge case.

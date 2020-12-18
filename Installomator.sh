@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.10' # This version branched by Søren Theilgaard
-VERSIONDATE='2020-12-12'
+VERSION='0.4.12' # This version branched by Søren Theilgaard
+VERSIONDATE='2020-12-18'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -39,6 +39,7 @@ NOTIFY=success
 # options:
 #   - success      notify the user on success
 #   - silent       no notifications
+#   - all          all notifications (great for Self Service installation)
 
 
 # behavior when blocking processes are found
@@ -411,6 +412,11 @@ installAppWithPath() { # $1: path to app to install in $targetDir
     appNewVersion=$(defaults read $appPath/Contents/Info.plist CFBundleShortVersionString)
     if [[ $appversion == $appNewVersion ]]; then
         printlog "Downloaded version of $name is $appNewVersion, same as installed. Exiting."
+        message="$name, version $appNewVersion, is  the latest version."
+        if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+            printlog "notifying"
+            displaynotification "$message" "No update for $name!"
+        fi
         cleanupAndExit 0
     else
         printlog "Downloaded version of $name is $appNewVersion (replacing version $appversion)."
@@ -658,6 +664,7 @@ caseLabel
 # MARK: application download and installation starts here
 
 printlog "BLOCKING_PROCESS_ACTION=${BLOCKING_PROCESS_ACTION}"
+printlog "NOTIFY=${NOTIFY}"
 
 # MARK: extract info from data
 if [ -z "$archiveName" ]; then
@@ -739,6 +746,11 @@ if [[ -n $appNewVersion ]]; then
 	if [[ $appversion == $appNewVersion ]]; then
 	    if [[ $DEBUG -eq 0 ]]; then
 			printlog "There is no newer version available. Exiting."
+            message="$name, version $appNewVersion, is  the latest version."
+            if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+                printlog "notifying"
+                displaynotification "$message" "No update for $name!"
+            fi
 			cleanupAndExit 0
 	    else
 	        printlog "DEBUG mode enabled, not exiting, but there is no new version of app."
@@ -756,6 +768,11 @@ else
     printlog "Downloading $downloadURL to $archiveName"
     if ! curl --location --fail --silent "$downloadURL" -o "$archiveName"; then
         printlog "error downloading $downloadURL"
+        message="$name update/installation failed. This will be logged, so IT can follow up."
+        if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+            printlog "notifying"
+            displaynotification "$message" "Error installing/updating $name"
+        fi
         cleanupAndExit 2
     fi
 fi
@@ -812,7 +829,7 @@ fi
 
 printlog "$message"
 
-if [[ $currentUser != "loginwindow" && $NOTIFY == "success" ]]; then
+if [[ $currentUser != "loginwindow" && ( $NOTIFY == "success" || $NOTIFY == "all" ) ]]; then
     printlog "notifying"
     displaynotification "$message" "$name update/installation complete!"
 fi

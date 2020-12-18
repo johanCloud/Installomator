@@ -1,10 +1,14 @@
 ## v0.5 - 2020-
 
 - 
-## v0.4.11 - 2020-??-??
+## v0.4.12 - 2020-12-18
 
+- Added notification to no update available and to failed download.
+- Package signed and notarized
 - CheckInstallomator.sh: Does not use github APIs for checking URL or version. So not entirely accurate, but it will confirm if it's working.
-
+- Labels added: mattermost, bitwarden, thunderbird, tigervnc, pitch, sidekick, plantronicshub, jabradirect, amazonworkspaces, vagrant, aircall
+- Labels fixed: nomad (changed TeamID), omnifocus3
+- Labels with errors, not fixed:  wwdcformac (looks like it is gone))
 
 ## v0.4.10 - 2020-12-12
 

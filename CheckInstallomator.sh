@@ -76,12 +76,11 @@ xpath() {
 
 # MARK: Script
 
-set -o shwordsplit
-
 if [[ $# -eq 0 ]]; then
     allLabels=$(grep -E '^[a-z0-9\-]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | tr '\n' ' ')
+    allLabels=( ${=allLabels} ) #to separate white space
 else
-    allLabels=$@
+    allLabels=( ${=@} )
 fi
 
 

@@ -18,7 +18,7 @@ fi
 
 for item in $what; do
     #echo $item
-    ${destFile} ${item} #BLOCKING_PROCESS_ACTION=tell_user_then_kill
+    ${destFile} ${item} #BLOCKING_PROCESS_ACTION=tell_user_then_kill #NOTIFY=all
     if [ $? != 0 ]; then
     # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
         echo "[$(DATE)] Error installing ${item}. Exit code $?"
@@ -29,6 +29,14 @@ done
 echo "[$(DATE)][LOG-END]"
 
 exit 0
+
+# notify behavior
+# Default is
+# NOTIFY=success
+# options:
+#   - success      notify the user on success
+#   - silent       no notifications
+#   - all          all notifications (great for Self Service installation)
 
 # behavior when blocking processes are found
 # Default is
