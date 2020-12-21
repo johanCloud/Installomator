@@ -1,14 +1,22 @@
 ## v0.5 - 2020-
 
 - 
+## v0.4.13 - 2020-12-18
+
+- `CheckInstallomator.sh` improved so that type is checked with the extension from the URL
+- Labels added: installomator_st (now you can update Installomator from itself), etrecheck, microsoftlicenseremovaltool
+- Labels fixed: dbeaverce
+- Labels removed appNewVersion: yubikeymanagerqt
+- Labels with errors, commented out:  wwdcformac (looks like software/site is gone)
+
 ## v0.4.12 - 2020-12-18
 
 - Added notification to no update available and to failed download.
 - Package signed and notarized
-- CheckInstallomator.sh: Does not use github APIs for checking URL or version. So not entirely accurate, but it will confirm if it's working.
+- `CheckInstallomator.sh`: Does not use github APIs for checking URL or version. So not entirely accurate, but it will confirm if it's working.
 - Labels added: mattermost, bitwarden, thunderbird, tigervnc, pitch, sidekick, plantronicshub, jabradirect, amazonworkspaces, vagrant, aircall
 - Labels fixed: nomad (changed TeamID), omnifocus3
-- Labels with errors, not fixed:  wwdcformac (looks like it is gone))
+- Labels with errors, not fixed:  wwdcformac (looks like it is gone)
 
 ## v0.4.10 - 2020-12-12
 

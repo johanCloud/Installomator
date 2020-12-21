@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.12"
+labelsVERSION="0.4.13"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -553,12 +553,12 @@ umbrellaroamingclient)
 #     expectedTeamID="UBF8T346G9"
 #     ;;
 
-wwdcformac)
-    name="WWDC"
-    type="zip"
-    downloadURL="https://cdn.wwdc.io/WWDC_latest.zip"
-    expectedTeamID="8C7439RJLG"
-    ;;
+#wwdcformac) # this label looks like software/site is gone
+#    name="WWDC"
+#    type="zip"
+#    downloadURL="https://cdn.wwdc.io/WWDC_latest.zip"
+#    expectedTeamID="8C7439RJLG"
+#    ;;
 ringcentralmeetings)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Ring Central Meetings"
@@ -770,7 +770,7 @@ yubikeymanagerqt)
     name="YubiKey Manager GUI"
     type="pkg"
     downloadURL="https://developers.yubico.com/yubikey-manager-qt/Releases/$(curl -sfL https://api.github.com/repos/Yubico/yubikey-manager-qt/releases/latest | awk -F '"' '/"tag_name"/ { print $4 }')-mac.pkg"
-    appNewVersion=$(curl -fs https://developers.yubico.com/yubikey-manager-qt/Releases/ | grep mac.pkg | head -1 | sed -E "s/.*-([0-9.]*)-mac.*/\1/")
+    #appNewVersion=$(curl -fs https://developers.yubico.com/yubikey-manager-qt/Releases/ | grep mac.pkg | head -1 | sed -E "s/.*-([0-9.]*)-mac.*/\1/") # does not work
     expectedTeamID="LQA3CS5MM7"
     ;;
 skitch)
@@ -920,8 +920,8 @@ dangerzone)
 dbeaverce)
     # credit: Adrian Bühler (@midni9ht)
     name="DBeaver"
-    type="pkg"
-    downloadURL="https://dbeaver.io/files/dbeaver-ce-latest-installer.pkg"
+    type="dmg"
+    downloadURL="https://dbeaver.io/files/dbeaver-ce-latest-macos.dmg"
     expectedTeamID="42B6MDKMW8"
     blockingProcesses=( dbeaver )
     ;;
@@ -1085,6 +1085,21 @@ aircall)
     type="dmg"
     downloadURL="https://electron.aircall.io/download/osx"
     expectedTeamID="3ML357Q795"
+    ;;
+installomator_st)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Installomator"
+    type="pkg"
+    downloadURL=$(downloadURLFromGit theile Installomator )
+    appNewVersion=$(versionFromGit theile Installomator )
+    expectedTeamID="3ML357Q795"
+    ;;
+etrecheck)
+    # credit: @dvsjr macadmins slack
+    name="EtreCheckPro"
+    type="zip"
+    downloadURL="https://cdn.etrecheck.com/EtreCheckPro.zip"
+    expectedTeamID="U87NE528LC"
     ;;
 
 # MARK: add new labels above here
@@ -1279,6 +1294,16 @@ microsoftdefenderatp)
     expectedTeamID="UBF8T346G9"
     updateTool="/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/msupdate"
     updateToolArguments=( --install --apps WDAV00 )
+    ;;
+microsoftlicenseremovaltool)
+    # credit: Isaac Ordonez (@isaac) macadmins slack
+    name="Microsoft License Removal Tool"
+    type="pkg"
+    downloadURL="https://go.microsoft.com/fwlink/?linkid=849815"
+    expectedTeamID="QGS93ZLCU7"
+    appNewVersion=$(curl -is "$downloadURL" | grep ocation: | grep -o "Microsoft_.*pkg" | cut -d "_" -f 5 | cut -d "." -f1-2)
+    Company="Microsoft"
+    PatchSkip="YES"
     ;;
 
 # this description is so you can provide all variables as arguments

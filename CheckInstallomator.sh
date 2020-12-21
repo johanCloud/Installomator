@@ -8,6 +8,9 @@
 # If none are provided, it will test all labels.
 # https://github.com/theile/Installomator
 
+# To check this script use these labels:
+# dbeaverce brave microsoftteams whatsapp citrixworkspace aircall
+
 # MARK: Load the labels
 SELF=$(basename $0)
 SELFLOCATION=$(dirname $0)
@@ -39,20 +42,16 @@ printlog(){
 downloadURLFromGit() { # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
-        
+    
     downloadURL="https://github.com/$gitusername/$gitreponame/releases/latest"
     echo "$downloadURL"
     return 0
-    
 }
 
-versionFromGit() {
-    # credit: Søren Theilgaard (@theilgaard)
-    # $1 git user name, $2 git repo name
+versionFromGit() { # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
     
-    #appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g')
     appNewVersion=$(curl --silent --fail "https://github.com/$gitusername/$gitreponame/releases/latest" | sed -E 's/.*tag\/(.*)\">.*/\1/g' )
     if [ -z "$appNewVersion" ]; then
         printlog "could not retrieve version number for $gitusername/$gitreponame: $appNewVersion"
@@ -83,32 +82,31 @@ else
     allLabels=( ${=@} )
 fi
 
-
+countError=0
 for label in $allLabels; do
     echo "########## $label"
-    labelerror=0;name="";type="";downloadURL="";appNewVersion="";expectedTeamID="";blockingProcesses="";updateTool="";updateToolArguments="";archiveName=""
+    labelerror=0; expectedExtension=""; URLextension=""
+    name=""; type=""; downloadURL=""; appNewVersion=""; expectedTeamID=""; blockingProcesses=""; updateTool=""; updateToolArguments=""; archiveName=""
+    
     caseLabel
-    if [ -z "$archiveName" ]; then
-    case $type in
-        dmg|pkg|zip|tbz)
-            archiveName="${name}.$type"
-            ;;
-        pkgInDmg)
-            archiveName="${name}.dmg"
-            ;;
-        pkgInZip)
-            archiveName="${name}.zip"
-            ;;
-        *)
-            printlog "Cannot handle type $type"
-            cleanupAndExit 99
-            ;;
-    esac
-    fi
 
     echo "Name: $name"
     echo "Download URL: $downloadURL"
     echo "Type: $type"
+    case $type in
+        dmg|pkg|zip|tbz)
+            expectedExtension="$type"
+            ;;
+        pkgInDmg)
+            expectedExtension="dmg"
+            ;;
+        pkgInZip)
+            expectedExtension="zip"
+            ;;
+        *)
+            echo "Cannot handle type $type"
+            ;;
+    esac
     if [[ "$appNewVersion" == "" ]] ; then
         echo "No appNewVersion!"
     else
@@ -119,20 +117,51 @@ for label in $allLabels; do
             echo "Version: $appNewVersion" ;
         fi
     fi
-    typeLength=${#type}
-    #URLlocation=$(curl --location --silent --include "$downloadURL" | grep "^location" ) # --fail
-    #curl --location --output /dev/null --silent --fail -r 0-0 "$downloadURL"
-    #if [[ "$URLlocation" == "Binary file (standard input) matches" || "$URLlocation" == "" ]]; then
-    if curl --location --output /dev/null --silent --fail -r 0-0 "$downloadURL" ; then
-        echo "downloadURL OK"
+    if curl --location --output /dev/null --silent --fail -r 0-24 "$downloadURL" ; then
+        echo "OK: downloadURL works OK"
+        if [[ $(echo "$downloadURL" | sed -E 's/.*\.([a-zA-Z]*)\s*/\1/g' ) == "${expectedExtension}" ]]; then
+            echo "OK: download extension MATCH on ${expectedExtension}"
+        else
+            if [[ $(echo "$downloadURL" | grep -io "github.com") != "github.com" ]]; then
+                URLheader=$( curl -fsIL "$downloadURL" )
+                if [[ "${URLheader}" != "" ]]; then
+                    URLlocation=$( echo "${URLheader}" | grep -i "^location" )
+                    URLfilename=$( echo "${URLheader}" | grep -i "filename=" )
+                    if [[ "${URLlocation}" != "" ]]; then
+                        URLextension=$( echo "${URLlocation}" | tail -1 | sed -E 's/.*\.([a-zA-Z]*)\s*/\1/g' | tr -d '\r\n' )
+                    else
+                        URLextension=$( echo "${URLfilename}" | tail -1 | sed -E 's/.*\.([a-zA-Z]*)\s*/\1/g' | tr -d '\r\n' )
+                    fi
+                    URLextension=${URLextension:l}
+                    if [[ "${URLextension}" == "${expectedExtension}" ]]; then
+                        echo "OK: download extension MATCH on ${URLextension}"
+                    else
+                        echo "-> !! ERROR in download extension, expected ${expectedExtension}, but got ${URLextension}."
+                        labelerror=1
+                    fi
+                else
+                    echo "no header provided from server."
+                fi
+            else
+                echo "github.com not type checked."
+            fi
+        fi
     else
         echo "-> !! ERROR in downloadURL"
         labelerror=1
     fi
-    if [[ $labelerror != 0 ]]; then; echo "##### ERROR in label: $label"; fi
+    if [[ $labelerror != 0 ]]; then; echo "########## ERROR in label: $label"; ((countError++)); fi
 
     echo ""
 done
 
 ${SELFLOCATION}/Installomator.sh version
+echo ""
+
+if [[ countError > 0 ]]; then
+    echo "ERRORS counted: $countError"
+else
+    echo "No errors detected!"
+fi
+
 echo "Done!"
