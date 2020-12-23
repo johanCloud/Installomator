@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.13"
+labelsVERSION="0.4.14"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -673,9 +673,8 @@ camtasia)
     downloadURL=https://download.techsmith.com/camtasiamac/releases/Camtasia.dmg
     expectedTeamID="7TQL462TU8"
     ;;
-snagit2020)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
-    name="Snagit 2020"
+snagit|snagit2021|snagit2020)
+    name="Snagit 2021"
     type="dmg"
     downloadURL="https://download.techsmith.com/snagitmac/releases/Snagit.dmg"
     expectedTeamID="7TQL462TU8"
@@ -1092,7 +1091,7 @@ installomator_st)
     type="pkg"
     downloadURL=$(downloadURLFromGit theile Installomator )
     appNewVersion=$(versionFromGit theile Installomator )
-    expectedTeamID="3ML357Q795"
+    expectedTeamID="L8W73B6AH3"
     ;;
 etrecheck)
     # credit: @dvsjr macadmins slack
@@ -1100,6 +1099,30 @@ etrecheck)
     type="zip"
     downloadURL="https://cdn.etrecheck.com/EtreCheckPro.zip"
     expectedTeamID="U87NE528LC"
+    ;;
+hazel)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Hazel"
+    type="dmg"
+    downloadURL=$(curl -fsI https://www.noodlesoft.com/Products/Hazel/download | grep -i "^location" | awk '{print $2}' | tr -d '\r\n')
+    appNewVersion=$(curl -fsI https://www.noodlesoft.com/Products/Hazel/download | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g')
+    expectedTeamID="86Z3GCJ4MF"
+    ;;
+cormorant)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Cormorant"
+    type="zip"
+    downloadURL=$(curl -fs https://eclecticlight.co/downloads/ | grep -i $name | grep zip | sed -E 's/.*href=\"(https.*)\">.*/\1/g')
+    appNewVersion=$(curl -fs https://eclecticlight.co/downloads/ | grep zip | grep -o -E "$name [0-9.]*" | awk '{print $2}')
+    expectedTeamID="QWY4LRW926"
+    ;;
+silnite)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="silnite"
+    type="pkgInZip"
+    downloadURL=$(curl -fs https://eclecticlight.co/downloads/ | grep -i $name | grep zip | sed -E 's/.*href=\"(https.*)\">.*/\1/g')
+    appNewVersion=$(curl -fs https://eclecticlight.co/downloads/ | grep zip | grep -o -E "silnite [0-9.]*" | awk '{print $2}')
+    expectedTeamID="QWY4LRW926"
     ;;
 
 # MARK: add new labels above here

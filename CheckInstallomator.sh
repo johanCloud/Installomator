@@ -110,14 +110,14 @@ for label in $allLabels; do
     if [[ "$appNewVersion" == "" ]] ; then
         echo "No appNewVersion!"
     else
-        if [[ $( echo "$appNewVersion" | sed -E 's/^.?([0-9\.]*).?/\1/g' ) == "" || "$appNewVersion" == "" ]]; then
+        if [[ $( echo "$appNewVersion" | sed -E 's/([0-9.]*)/\1/g' ) == "" ]]; then
             echo "-> !! ERROR in appNewVersion"
             labelerror=1
         else
             echo "Version: $appNewVersion" ;
         fi
     fi
-    if curl --location --output /dev/null --silent --fail -r 0-24 "$downloadURL" ; then
+    if curl -sfL --output /dev/null -r 0-0 "$downloadURL" ; then
         echo "OK: downloadURL works OK"
         if [[ $(echo "$downloadURL" | sed -E 's/.*\.([a-zA-Z]*)\s*/\1/g' ) == "${expectedExtension}" ]]; then
             echo "OK: download extension MATCH on ${expectedExtension}"

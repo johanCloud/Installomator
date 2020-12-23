@@ -1,7 +1,14 @@
 ## v0.5 - 2020-
 
-- 
-## v0.4.13 - 2020-12-18
+
+## v0.4.14 - 2020-12-23
+
+- I messed up my own Team ID in my own label.
+- `CheckInstallomator.sh` improved/simplified in version number check
+- Labels changed: snagit (snagit2021, snagit2020 is the same)
+- Labels added: hazel, cormorant, silnite, 
+
+## v0.4.13 - 2020-12-21
 
 - `CheckInstallomator.sh` improved so that type is checked with the extension from the URL
 - Labels added: installomator_st (now you can update Installomator from itself), etrecheck, microsoftlicenseremovaltool
