@@ -1,6 +1,16 @@
 ## v0.5 - 2020-
 
 
+## v0.4.15 - 2021-01-06
+
+- New type handler for appInDmgInZip. Needed for DEVONthink.
+- Added notification before download and before installation, if NOTIFY=all
+- Function installPkgInZip changed to find files 2 levels deep if zip contains a folder.
+- `CheckInstallomator.sh` has added suggestion for checking labels
+- Labels changed: brave (now downloads universal version on Apple Silicon)
+- Labels added: devonthink
+
+
 ## v0.4.14 - 2020-12-23
 
 - I messed up my own Team ID in my own label.

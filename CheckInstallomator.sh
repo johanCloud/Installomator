@@ -9,7 +9,7 @@
 # https://github.com/theile/Installomator
 
 # To check this script use these labels:
-# dbeaverce brave microsoftteams whatsapp citrixworkspace aircall
+# dbeaverce brave microsoftteams whatsapp citrixworkspace aircall devonthink
 
 # MARK: Load the labels
 SELF=$(basename $0)
@@ -100,7 +100,7 @@ for label in $allLabels; do
         pkgInDmg)
             expectedExtension="dmg"
             ;;
-        pkgInZip)
+        *InZip)
             expectedExtension="zip"
             ;;
         *)

@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.14' # This version branched by Søren Theilgaard
-VERSIONDATE='2020-12-23'
+VERSION='0.4.15' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-01-06'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -123,8 +123,8 @@ BLOCKING_PROCESS_ACTION=prompt_user_loop
 #   When a workflow has no blocking processes, use
 #     blockingProcesses=( NONE )
 #
-# - pkgName: (optional, only used for dmgInPkg and dmgInZip)
-#   File name of the pkg file _inside_ the dmg or zip
+# - pkgName: (optional, only used for pkgInDmg, dmgInZip, and appInDmgInZip)
+#   File name of the pkg/dmg file _inside_ the dmg or zip
 #   When not given the pkgName is derived from the $name
 #
 # - updateTool:
@@ -576,8 +576,8 @@ installPkgInZip() {
 
     # locate pkg in zip
     if [[ -z $pkgName ]]; then
-        # find first file starting with $name and ending with 'pkg'
-        findfiles=$(find "$tmpDir" -iname "*.pkg" -maxdepth 1  )
+        # find first file ending with 'pkg'
+        findfiles=$(find "$tmpDir" -iname "*.pkg" -maxdepth 2  )
         filearray=( ${(f)findfiles} )
         if [[ ${#filearray} -eq 0 ]]; then
             cleanupAndExit 20 "couldn't find pkg in zip $archiveName"
@@ -592,6 +592,31 @@ installPkgInZip() {
 
     # installFromPkgs
     installFromPKG
+}
+
+installAppInDmgInZip() {
+    # unzip the archive
+    printlog "Unzipping $archiveName"
+    tar -xf "$archiveName"
+
+    # locate dmg in zip
+    if [[ -z $pkgName ]]; then
+        # find first file ending with 'dmg'
+        findfiles=$(find "$tmpDir" -iname "*.dmg" -maxdepth 2  )
+        filearray=( ${(f)findfiles} )
+        if [[ ${#filearray} -eq 0 ]]; then
+            cleanupAndExit 20 "couldn't find dmg in zip $archiveName"
+        fi
+        archiveName="$(basename ${filearray[1]})"
+        # it is now safe to overwrite archiveName for installFromDMG
+        printlog "found dmg: $tmpDir/$archiveName"
+    else
+        # it is now safe to overwrite archiveName for installFromDMG
+        archiveName="$pkgName"
+    fi
+
+    # installFromDMG, DMG expected to include an app (will not work with pkg)
+    installFromDMG
 }
 
 runUpdateTool() {
@@ -675,7 +700,7 @@ if [ -z "$archiveName" ]; then
         pkgInDmg)
             archiveName="${name}.dmg"
             ;;
-        pkgInZip)
+        *InZip)
             archiveName="${name}.zip"
             ;;
         *)
@@ -692,7 +717,7 @@ fi
 
 if [ -z "$targetDir" ]; then
     case $type in
-        dmg|zip|tbz)
+        dmg|zip|tbz|app*)
             targetDir="/Applications"
             ;;
         pkg*)
@@ -766,6 +791,10 @@ if [ -f "$archiveName" ] && [ "$DEBUG" -ne 0 ]; then
 else
     # download the dmg
     printlog "Downloading $downloadURL to $archiveName"
+    if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+        printlog "notifying"
+        displaynotification "Downloading $name update" "Download in progress …"
+    fi
     if ! curl --location --fail --silent "$downloadURL" -o "$archiveName"; then
         printlog "error downloading $downloadURL"
         message="$name update/installation failed. This will be logged, so IT can follow up."
@@ -791,6 +820,11 @@ else
 fi
 
 # MARK: install the download
+printlog "Installing $name"
+if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+    printlog "notifying"
+    displaynotification "Installing $name" "Installation in progress …"
+fi
 
 case $type in
     dmg)
@@ -810,6 +844,9 @@ case $type in
         ;;
     pkgInZip)
         installPkgInZip
+        ;;
+    appInDmgInZip)
+        installAppInDmgInZip
         ;;
     *)
         printlog "Cannot handle type $type"
