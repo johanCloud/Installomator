@@ -69,6 +69,8 @@ BLOCKING_PROCESS_ACTION=prompt_user_loop
 # install behavior
 INSTALL=""
 # options:
+#  -               When not set, software will only be installed
+#                  if it is newer/different in version
 #  - force         Install even if it’s the same version
 
 

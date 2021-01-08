@@ -17,7 +17,7 @@ if [ ! -e "${destFile}" ]; then
     exit 99
 fi
 
-${destFile} ${what} #BLOCKING_PROCESS_ACTION=tell_user_then_kill #NOTIFY=all
+${destFile} ${what} #NOTIFY=all #BLOCKING_PROCESS_ACTION=tell_user_then_kill #INSTALL=force
 if [ $? != 0 ]; then
 # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
     echo "Error installing ${what}. Exit code $?"
@@ -59,6 +59,14 @@ exit 0
 #                  Show dialog 2 times, and if the quitting fails, the
 #                  blocking processes will be killed.
 #   - kill         kill process without prompting or giving the user a chance to save
+
+# install behavior
+# Default is
+# INSTALL=""
+# options:
+#  -               When not set, software will only be installed
+#                  if it is newer/different in version
+#  - force         Install even if it’s the same version
 
 ########################
 # Often used labels:
