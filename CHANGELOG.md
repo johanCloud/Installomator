@@ -1,5 +1,7 @@
 ## v0.5 - 2020-
 
+## 0.4.16 - 2021-01-??
+- Labels changed: googlechrome (universal for Apple Silicon), brave (changed a bit in architecture test)
 
 ## v0.4.15 - 2021-01-06
 
