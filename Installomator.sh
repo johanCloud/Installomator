@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.15' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-01-06'
+VERSION='0.4.16' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-01-08'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -64,6 +64,12 @@ BLOCKING_PROCESS_ACTION=prompt_user_loop
 #                  Show dialog 2 times, and if the quitting fails, the
 #                  blocking processes will be killed.
 #   - kill         kill process without prompting or giving the user a chance to save
+
+
+# install behavior
+INSTALL=""
+# options:
+#  - force         Install even if it’s the same version
 
 
 # NOTE: How labels work
@@ -255,7 +261,7 @@ versionFromGit() {
     appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g')
     if [ -z "$appNewVersion" ]; then
         printlog "could not retrieve version number for $gitusername/$gitreponame"
-        exit 9
+        appNewVersion=""
     else
         echo "$appNewVersion"
         return 0
@@ -411,13 +417,15 @@ installAppWithPath() { # $1: path to app to install in $targetDir
     # credit: Søren Theilgaard (@theilgaard)
     appNewVersion=$(defaults read $appPath/Contents/Info.plist CFBundleShortVersionString)
     if [[ $appversion == $appNewVersion ]]; then
-        printlog "Downloaded version of $name is $appNewVersion, same as installed. Exiting."
-        message="$name, version $appNewVersion, is  the latest version."
-        if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
-            printlog "notifying"
-            displaynotification "$message" "No update for $name!"
+        printlog "Downloaded version of $name is $appNewVersion, same as installed."
+        if [[ $INSTALL != "force" ]]; then
+            message="$name, version $appNewVersion, is  the latest version."
+            if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+                printlog "notifying"
+                displaynotification "$message" "No update for $name!"
+            fi
+            cleanupAndExit 0 "No new version to install"
         fi
-        cleanupAndExit 0
     else
         printlog "Downloaded version of $name is $appNewVersion (replacing version $appversion)."
     fi
@@ -770,13 +778,15 @@ if [[ -n $appNewVersion ]]; then
 	printlog "Latest version of $name is $appNewVersion"
 	if [[ $appversion == $appNewVersion ]]; then
 	    if [[ $DEBUG -eq 0 ]]; then
-			printlog "There is no newer version available. Exiting."
-            message="$name, version $appNewVersion, is  the latest version."
-            if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
-                printlog "notifying"
-                displaynotification "$message" "No update for $name!"
+			printlog "There is no newer version available."
+            if [[ $INSTALL != "force" ]]; then
+                message="$name, version $appNewVersion, is  the latest version."
+                if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+                    printlog "notifying"
+                    displaynotification "$message" "No update for $name!"
+                fi
+                cleanupAndExit 0 "No newer version."
             fi
-			cleanupAndExit 0
 	    else
 	        printlog "DEBUG mode enabled, not exiting, but there is no new version of app."
 	    fi

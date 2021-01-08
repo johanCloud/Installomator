@@ -30,7 +30,9 @@ __Options:__
 - `tell_user_then_kill`: Show dialog 2 times, and if the quitting fails, the blocking processes will be killed.
 - `kill`: kill process without prompting or giving the user a chance to save.
 
-Also added a `NOTIFY` option `all`, so notifications can be shown to the user even if no upgrade is available, or if there is a failure in download. This is usable if the user click install in Self Service, then we want them to know, when we are done, no matter what happened. `success` is still default so `NOTIFY=all` needs to be added to the command to get all the notifications.
+Added a `NOTIFY` option `all`, so notifications can be shown to the user even if no upgrade is available, or if there is a failure in download. This is usable if the user click install in Self Service, then we want them to know, when we are done, no matter what happened. `success` is still default so `NOTIFY=all` needs to be added to the command to get all the notifications.
+
+Also added an `INSTALL` variable to be set to `force`if you want the software to be installed even though it is already install in the latest version. Can at least be used to install the latest universal version, even if the Intel-only built is installed, if a label is improved for this. And I simply wanted to force installation, if that was needed.
 
 I have signed at notarized the pkg. And now you can update Installomator_ST from within Installomator itself.
 `/usr/local/bin/Installomator.sh installomator_st`

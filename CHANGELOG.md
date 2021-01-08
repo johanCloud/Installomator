@@ -1,6 +1,7 @@
 ## v0.5 - 2020-
 
-## 0.4.16 - 2021-01-??
+## 0.4.16 - 2021-01-08
+- Added variable `INSTALL` that can be set to `force` if software needs to be installed even though latest version is already installed (it will be a reinstall). Usefull if you need to install the universal build of the same software, if the latest was already installed, and the label just improved to handle the universal version. Brave Browser and Google Chrome ready for this.
 - Labels changed: googlechrome (universal for Apple Silicon), brave (changed a bit in architecture test)
 
 ## v0.4.15 - 2021-01-06
