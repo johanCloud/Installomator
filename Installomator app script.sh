@@ -90,9 +90,12 @@ exit 0
 
 # inkscape
 
-# whatsapp
 # signal
 # telegram
+# whatsapp
+
+# hazel
+# devonthink
 
 # teamviewerqs
 # zoom
@@ -120,133 +123,166 @@ exit 0
 ########################
 # ALL available
 ########################
-# 1password7
-# 8x8
-# adobereaderdc
-# adobereaderdc-install
-# adobereaderdc-update
-# airserver
-# alfred
-# amazonworkspaces
-# apparency
-# appcleaner
-# aquaskk
-# atom
-# autodmg
-# autopkgr
-# aviatrix
-# bbedit
-# bettertouchtool
-# bluejeans
-# boxdrive
-# brave
-# camtasia
-# cdef
-# citrixworkspace
-# code42
-# coderunner
-# cyberduck
-# depnotify
-# desktoppr
-# detectxswift
-# dialpad
-# discord
-# docker
-# dropbox
-# egnyte
-# eraseinstall
-# firefox
-# firefoxesrpkg
-# firefoxpkg
-# githubdesktop
-# googlechrome
-# googlechromepkg
-# googledrivefilestream
-# googlejapaneseinput
-# grandperspective
-# handbrake
-# icons
-# inkscape
-# istatmenus
-# iterm2
-# jamfmigrator
-# jamfpppcutility
-# jamfreenroller
-# karabinerelements
-# keepassxc
-# keka
-# krisp
-# malwarebytes
-# netnewswire
-# nomad
-# omnifocus3
-# omnigraffle7
-# openvpnconnect
-# openvpnconnectv3
-# pacifist
-# plisteditpro
-# postman
-# privileges
-# r
-# resiliosynchome
-# ringcentralapp
-# ringcentralmeetings
-# royaltsx
-# santa
-# sfsymbols
-# signal
-# sizeup
-# sketch
-# skitch
-# skype
-# slack
-# snagit2020
-# sonos
-# sonoss1
-# sonoss2
-# sourcetree
-# spotify
-# sublimetext
-# suspiciouspackage
-# swiftruntimeforcommandlinetools
-# teamviewer
-# teamviewerqs
-# textmate
-# things
-# torbrowser
-# tunnelbear
-# tunnelblick
-# umbrellaroamingclient
-# virtualbox
-# visualstudiocode
-# vlc
-# vscodium
-# webexmeetings
-# webexteams
-# whatsapp
-# wwdcformac
-# xink
-# yubikeymanagerqt
-# zoom
+#1password7
+#8x8
+#adobebrackets
+#adobeconnect
+#adobereaderdc
+#adobereaderdc-install
+#adobereaderdc-update
+#aircall
+#airserver
+#alfred
+#amazonworkspaces
+#androidfiletransfer
+#apparency
+#appcleaner
+#aquaskk
+#atom
+#autodmg
+#autopkgr
+#aviatrix
+#balenaetcher
+#bbedit
+#bettertouchtool
+#bitwarden
+#bluejeans
+#boxdrive
+#brave
+#camtasia
+#citrixworkspace
+#code42
+#coderunner
+#cormorant
+#cyberduck
+#dangerzone
+#dbeaverce
+#debookee
+#depnotify
+#desktoppr
+#detectxswift
+#devonthink
+#dialpad
+#discord
+#docker
+#dropbox
+#egnyte
+#eraseinstall
+#etrecheck
+#ferdi
+#firefox
+#firefoxesrpkg
+#firefoxpkg
+#fsmonitor
+#githubdesktop
+#googlechrome
+#googlechromepkg
+#googledrivefilestream
+#googlejapaneseinput
+#gpgsuite
+#gpgsync
+#grandperspective
+#handbrake
+#hazel
+#hyper
+#icons
+#inkscape
+#istatmenus
+#iterm2
+#jabradirect
+#jamfmigrator
+#jamfpppcutility
+#jamfreenroller
+#karabinerelements
+#keepassxc
+#keka
+#krisp
+#libreoffice
+#malwarebytes
+#mattermost
+#menumeters
+#netnewswire
+#nomad
+#nomadlogin
+#omnifocus3
+#omnigraffle7
+#onlyofficedesktop
+#openvpnconnect
+#openvpnconnectv3
+#pacifist
+#pitch
+#plantronicshub
+#plisteditpro
+#postman
+#privileges
+#r
+#ramboxce
+#resiliosynchome
+#ringcentralapp
+#ringcentralmeetings
+#royaltsx
+#santa
+#sfsymbols
+#sidekick
+#signal
+#silnite
+#sizeup
+#sketch
+#skitch
+#skype
+#slack
+#sonos
+#sonoss1
+#sonoss2
+#sourcetree
+#spotify
+#sublimetext
+#suspiciouspackage
+#swiftruntimeforcommandlinetools
+#teamviewer
+#teamviewerqs
+#textmate
+#things
+#thunderbird
+#tigervnc
+#toggltrack
+#torbrowser
+#tunnelbear
+#tunnelblick
+#umbrellaroamingclient
+#vagrant
+#virtualbox
+#visualstudiocode
+#vlc
+#vmwarehorizonclient
+#vscodium
+#webexmeetings
+#webexteams
+#webexteams
+#whatsapp
+#wireshark
+#xink
+#yubikeymanagerqt
+#zoom
 
 ########################
 # Microsoft
 ########################
-# microsoftautoupdate
-# microsoftcompanyportal
-# microsoftdefenderatp
-# microsoftedgeconsumerstable
-# microsoftedgeenterprisestable
-# microsoftexcel
-# microsoftoffice365
-# microsoftofficebusinesspro
-# microsoftonedrive
-# microsoftonenote
-# microsoftoutlook
-# microsoftpowerpoint
-# microsoftremotedesktop
-# microsoftsharepointplugin
-# microsoftskypeforbusiness
-# microsoftteams
-# microsoftword
-# microsoftyammer
+#microsoftautoupdate
+#microsoftcompanyportal
+#microsoftdefenderatp
+#microsoftedgeenterprisestable
+#microsoftexcel
+#microsoftlicenseremovaltool
+#microsoftoffice365
+#microsoftofficebusinesspro
+#microsoftonedrive
+#microsoftonenote
+#microsoftoutlook
+#microsoftpowerpoint
+#microsoftremotedesktop
+#microsoftsharepointplugin
+#microsoftskypeforbusiness
+#microsoftteams
+#microsoftword
+#microsoftyammer

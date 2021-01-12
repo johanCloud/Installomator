@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.16"
+labelsVERSION="0.4.17"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -1145,6 +1145,13 @@ devonthink)
     downloadURL=$( curl -fs https://www.devontechnologies.com/apps/devonthink | grep -i "download.devon" | tr '"' '\n' | tr "'" '\n' | grep -e '^https://' )
     appNewVersion=$( echo ${downloadURL} | tr '/' '\n' | grep "[0-9]" | grep "[.]" | head -1 )
     expectedTeamID="679S2QUWR8"
+    ;;
+vanilla)
+    # credit: Adrian Bühler (@midni9ht)
+    name="Vanilla"
+    type="dmg"
+    downloadURL="https://macrelease.matthewpalmer.net/Vanilla.dmg"
+    expectedTeamID="Z4JV2M65MH"
     ;;
 
 # MARK: add new labels above here
