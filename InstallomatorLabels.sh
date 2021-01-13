@@ -1153,6 +1153,52 @@ vanilla)
     downloadURL="https://macrelease.matthewpalmer.net/Vanilla.dmg"
     expectedTeamID="Z4JV2M65MH"
     ;;
+taskpaper)
+    # credit: Drew Diver (@grumpydrew on MacAdmins Slack)
+    name="TaskPaper"
+    type="dmg"
+    downloadURL="https://www.taskpaper.com/assets/app/TaskPaper.dmg"
+    expectedTeamID="64A5CLJP5W"
+    ;;
+calibre)
+    # credit: Drew Diver (@grumpydrew on MacAdmins Slack)
+    name="calibre"
+    type="dmg"
+    downloadURL="https://calibre-ebook.com/dist/osx"
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="NTY7FVCEKP"
+    ;;
+redeye)
+    # credit: Drew Diver (@grumpydrew on MacAdmins Slack)
+    name="Red Eye"
+    type="zip"
+    downloadURL="https://www.hexedbits.com/downloads/redeye.zip"
+    appNewVersion=$( curl -fs "https://www.hexedbits.com/redeye/" | grep "Latest version" | sed -E 's/.*Latest version ([0-9.]*),.*/\1/g' )
+    expectedTeamID="5VRJU68BZ5"
+    ;;
+lucifer)
+    # credit: Drew Diver (@grumpydrew on MacAdmins Slack)
+    name="Lucifer"
+    type="zip"
+    downloadURL="https://www.hexedbits.com/downloads/lucifer.zip"
+    appNewVersion=$( curl -fs "https://www.hexedbits.com/lucifer/" | grep "Latest version" | sed -E 's/.*Latest version ([0-9.]*),.*/\1/g' )
+    expectedTeamID="5VRJU68BZ5"
+    ;;
+fantastical)
+    # credit: Drew Diver (@grumpydrew on MacAdmins Slack)
+    name="Fantastical"
+    type="zip"
+    downloadURL="https://flexibits.com/fantastical/download"
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z]*_([0-9.]*)\..*/\1/g' )
+    expectedTeamID="85C27NK92C"
+    ;;
+launchbar)
+    name="LaunchBar"
+    type="dmg"
+    downloadURL=$(curl -fs "https://obdev.at/products/launchbar/download.html" | xmllint --html --format - 2>/dev/null | grep -m 1 -o "https://.*.dmg")
+    appNewVersion=$( echo ${downloadURL} | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="MLZF7K7B5R"
+    ;;
 
 # MARK: add new labels above here
 
