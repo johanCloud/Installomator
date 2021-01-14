@@ -90,6 +90,7 @@ INSTALL=""
 #     - zip
 #     - pkgInDmg
 #     - pkgInZip (not yet tested)
+#     - appInDmgInZip
 #
 # - downloadURL: (required)
 #   URL to download the dmg.
