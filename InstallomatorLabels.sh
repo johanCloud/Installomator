@@ -1235,6 +1235,20 @@ easeusdatarecoverywizard)
     #appNewVersion=""
     expectedTeamID="DLLVW95FSM"
     ;;
+lastpass)
+    name="LastPass"
+    type="dmg"
+    downloadURL="https://download.cloud.lastpass.com/mac/LastPass.dmg"
+    expectedTeamID="N24REP3BMN"
+    Company="Marvasol, Inc DBA LastPass"
+    ;;
+front)
+    name="Front"
+    type="dmg"
+    downloadURL="https://dl.frontapp.com/macos/Front.dmg"
+    expectedTeamID="X549L7572J"
+    Company="FrontApp. Inc."
+    ;;
 
 # MARK: add new labels above here
 
