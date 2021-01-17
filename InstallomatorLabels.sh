@@ -1207,6 +1207,34 @@ klokki)
     downloadURL="https://storage.yandexcloud.net/klokki/Klokki.dmg"
     expectedTeamID="Q9SATZMHPG"
     ;;
+notion)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="notion"
+    type="dmg"
+    if [[ $(arch) == "arm64" ]]; then
+        downloadURL="https://www.notion.so/desktop/apple-silicon/download"
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL="https://www.notion.so/desktop/mac/download"
+    fi
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | tr -d '\r\n' | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="LBQJ96FQ8D"
+    ;;
+lexarrecoverytool)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Lexar Recovery Tool"
+    type="appInDmgInZip"
+    downloadURL="https://www.lexar.com$( curl -fs https://www.lexar.com/support/downloads/ | grep -i "mac" | grep -i "recovery" | head -1 | tr '"' '\n' | grep -i ".zip"  )"
+    #appNewVersion=""
+    expectedTeamID="Y8HM6WR2DV"
+    ;;
+easeusdatarecoverywizard)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="EaseUS Data Recovery Wizard"
+    type="dmg"
+    downloadURL=$( curl -fsIL https://down.easeus.com/product/mac_drw_free_setup | grep -i "^location" | awk '{print $2}' | tr -d '\r\n' )
+    #appNewVersion=""
+    expectedTeamID="DLLVW95FSM"
+    ;;
 
 # MARK: add new labels above here
 

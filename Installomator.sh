@@ -428,6 +428,8 @@ installAppWithPath() { # $1: path to app to install in $targetDir
                 displaynotification "$message" "No update for $name!"
             fi
             cleanupAndExit 0 "No new version to install"
+        else
+            printlog "Using force to install anyway."
         fi
     else
         printlog "Downloaded version of $name is $appNewVersion (replacing version $appversion)."
@@ -789,6 +791,8 @@ if [[ -n $appNewVersion ]]; then
                     displaynotification "$message" "No update for $name!"
                 fi
                 cleanupAndExit 0 "No newer version."
+            else
+                printlog "Using force to install anyway."
             fi
 	    else
 	        printlog "DEBUG mode enabled, not exiting, but there is no new version of app."
