@@ -16,9 +16,13 @@ See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) 
 
 I will try to add new labels when they are submittet to scriptingosx, and maybe I will see if I can create the `appNewVersion` content.
 
-The two scripts with “app” in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward. Note: Mosyle does not currently handle exit codes from scripts. Please request support for this from Mosyle!
+### Extra scripts
 
-Changed the process in the script when blocking processes are found, and added new actions. Default is `BLOCKING_PROCESS_ACTION=prompt_user`
+The two scripts with `app` in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward. Note: Mosyle does not currently handle exit codes from scripts. Please request support for this from Mosyle!
+
+### Handling of blocking processes
+
+Changed the process in the script when blocking processes are found, and added new actions. Default is `BLOCKING_PROCESS_ACTION=prompt_user_loop`.
 
 __Options:__
 - `ignore`: continue even when blocking processes are found.
@@ -30,11 +34,21 @@ __Options:__
 - `tell_user_then_kill`: Show dialog 2 times, and if the quitting fails, the blocking processes will be killed.
 - `kill`: kill process without prompting or giving the user a chance to save.
 
+### Notification
+
 Added a `NOTIFY` option `all`, so notifications can be shown to the user even if no upgrade is available, or if there is a failure in download. This is usable if the user click install in Self Service, then we want them to know, when we are done, no matter what happened. `success` is still default so `NOTIFY=all` needs to be added to the command to get all the notifications.
 
-Also added an `INSTALL` variable to be set to `force`if you want the software to be installed even though it is already install in the latest version. Can at least be used to install the latest universal version, even if the Intel-only built is installed, if a label is improved for this. And I simply wanted to force installation, if that was needed.
+### Force installation
 
-I have signed at notarized the pkg. And now you can update Installomator_ST from within Installomator itself.
+Also added an `INSTALL` variable to be set to `force` if you want the software to be installed even though it is already install in the latest version. Can at least be used to install the latest universal version, even if the Intel-only built is installed, if a label is improved for this. And I simply wanted to force installation, if that was needed.
+
+### Plans
+
+I would like an feature to open a given app if it was closed.
+
+## Installation
+
+I have signed and notarized the pkg. And now you can update Installomator_ST from within Installomator itself.
 `/usr/local/bin/Installomator.sh installomator_st`
 
 ## Like the original Installomator, this text apply for this brach version:

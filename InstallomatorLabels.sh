@@ -318,6 +318,7 @@ pacifist)
     name="1Password 7"
     type="pkg"
     downloadURL="https://app-updates.agilebits.com/download/OPM7"
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[0-9a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="2BUA8C4S2C"
     ;;
 webexmeetings)
@@ -1324,6 +1325,14 @@ exelbanstats)
     downloadURL=$(downloadURLFromGit exelban stats)
     appNewVersion=$(versionFromGit exelban stats)
     expectedTeamID="RP2S87B72W"
+    ;;
+onionshare)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="OnionShare"
+    type="pkg"
+    downloadURL="https://onionshare.org$(curl -fs https://onionshare.org | grep "button.*pkg" | tr '"' '\n' | grep ".pkg")"
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="N9B95FDWH4"
     ;;
 
 # MARK: add new labels above here
