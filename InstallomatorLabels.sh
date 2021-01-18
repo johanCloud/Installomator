@@ -162,21 +162,53 @@ eraseinstall)
     downloadURL=https://bitbucket.org$(curl -fs https://bitbucket.org/prowarehouse-nl/erase-install/downloads/ | grep pkg | cut -d'"' -f2 | head -n 1)
     expectedTeamID="R55HK5K86Y"
     ;;
+omnigraffle6)
+    name="OmniGraffle"
+    type="dmg"
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniGraffle6" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="34YW5XSRB7"
+    ;;
 omnigraffle7)
     name="OmniGraffle"
     type="dmg"
-    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniGraffle7" \
-        | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | cut -d '"' -f 2)
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniGraffle7" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="34YW5XSRB7"
     ;;
 omnifocus3)
     name="OmniFocus"
     type="dmg"
-    downloadURL=$(curl -fs https://update.omnigroup.com/appcast/com.omnigroup.OmniFocus3 \
-        | xpath '//rss/channel/item/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
-    appNewVersion=$(curl -fs https://update.omnigroup.com/appcast/com.omnigroup.OmniFocus3 \
-        | xpath '//rss/channel/item/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2 \
-        | cut -d '"' -f 2 | sed -E 's/.*-([0-9\.]*)\..*/\1/g')
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniFocus3" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="34YW5XSRB7"
+    ;;
+omnioutliner5)
+    name="OmniOutliner"
+    type="dmg"
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniOutliner5" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="34YW5XSRB7"
+    ;;
+omniplan3)
+    name="OmniPlan"
+    type="dmg"
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniPlan3" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="34YW5XSRB7"
+    ;;
+omnipresence)
+    name="OmniPresence"
+    type="dmg"
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniPresence" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="34YW5XSRB7"
+    ;;
+omnidisksweeper)
+    name="OmniDiskSweeper"
+    type="dmg"
+    downloadURL=$(curl -fs "https://update.omnigroup.com/appcast/com.omnigroup.OmniDiskSweeper" | xpath '//rss/channel/item[1]/enclosure[1]/@url' 2>/dev/null | head -1 | cut -d '"' -f 2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="34YW5XSRB7"
     ;;
 vlc)
@@ -322,7 +354,7 @@ icons)
     # credit: Mischa van der Bent (@mischavdbent)
     name="Icons"
     type="zip"
-    downloadURL=$(downloadURLFromGit sap macOS-icon-generator )
+    downloadURL=$(downloadURLFromGit sap macOS-icon-genera   )
     appNewVersion=$(versionFromGit sap macOS-icon-generator )
     expectedTeamID="7R5ZEU67FQ"
     ;;
@@ -751,7 +783,7 @@ alfred)
     name="Alfred"
     type="dmg"
     downloadURL=$(curl -fs https://www.alfredapp.com | awk -F '"' "/dmg/ {print \$2}" | head -1)
-    appNewVersion=$(curl -fs https://www.alfredapp.com | awk -F '"' "/dmg/ {print \$2}" | head -1 | sed -E 's/.*Alfred_([0-9.]*)_.*/\1/')
+    appNewVersion=$(echo "${downloadURL}" | sed -E 's/.*Alfred_([0-9.]*)_.*/\1/')
     appName="Alfred 4.app"
     expectedTeamID="XZZXE9SED4"
     ;;
@@ -1284,6 +1316,14 @@ wickrpro)
     downloadURL=$( curl -fs https://me-download.wickr.com/api/download/pro/download/mac | tr '"' '\n' | grep -e '^https://' )
     appNewVersion=$( echo ${downloadURL} | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="W8RC3R952A"
+    ;;
+exelbanstats)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Stats"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit exelban stats)
+    appNewVersion=$(versionFromGit exelban stats)
+    expectedTeamID="RP2S87B72W"
     ;;
 
 # MARK: add new labels above here
