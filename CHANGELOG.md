@@ -1,6 +1,7 @@
 ## v0.5 - 2020-
 
 ## 0.4.17 - 2021-01-??
+- If any blocking process was closed, Installomator will try to open the app again, after the update process is done
 - Added a bit extra logging, when using INSTALL=force
 - Labels with appNewVersion: 1password7
 - Labels changed for Apple Silicon: vlc
