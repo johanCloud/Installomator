@@ -1286,6 +1286,13 @@ front)
     expectedTeamID="X549L7572J"
     Company="FrontApp. Inc."
     ;;
+telegram)
+    name="Telegram"
+    type="dmg"
+    downloadURL="https://telegram.org/dl/macos"
+    appNewVersion=$( curl -fs https://macos.telegram.org | grep anchor | head -1 | sed -E 's/.*a>([0-9.]*) .*/\1/g' )
+    expectedTeamID="6N38VWS5BX"
+    ;;
 obsidian)
     # credit: Søren Theilgaard (@theilgaard)
     name="Obsidian"
@@ -1298,13 +1305,6 @@ obsidian)
     printlog $downloadURL
     appNewVersion=$(versionFromGit obsidianmd obsidian-releases)
     expectedTeamID="6JSW4SJWN9"
-    ;;
-telegram)
-    name="Telegram"
-    type="dmg"
-    downloadURL="https://telegram.org/dl/macos"
-    appNewVersion=$( curl -fs https://macos.telegram.org | grep anchor | head -1 | sed -E 's/.*a>([0-9.]*) .*/\1/g' )
-    expectedTeamID="6N38VWS5BX"
     ;;
 wickrme)
     # credit: Søren Theilgaard (@theilgaard)

@@ -5,7 +5,7 @@
 - Added a bit extra logging, when using INSTALL=force
 - Labels with appNewVersion: 1password7
 - Labels changed for Apple Silicon: vlc
-- Labels added: vanilla, taskpaper, calibre, redeye, lucifer, fantastical, launchbar, klokki, notion, lexarrecoverytool, easeusdatarecoverywizard, lastpass, front, obsidian, telegram, wickrme, wickrpro, omnigraffle6, omnioutliner5, omniplan3, omnipresence, omnidisksweeper, exelbanstats, onionshare
+- Labels added: vanilla, taskpaper, calibre, redeye, lucifer, fantastical, launchbar, klokki, notion, lexarrecoverytool, easeusdatarecoverywizard, lastpass, front, telegram, obsidian, wickrme, wickrpro, omnigraffle6, omnioutliner5, omniplan3, omnipresence, omnidisksweeper, exelbanstats, onionshare
 
 ## 0.4.16 - 2021-01-08
 - Added variable `INSTALL` that can be set to `force` if software needs to be installed even though latest version is already installed (it will be a reinstall). Usefull if you need to install the universal build of the same software, if the latest was already installed, and the label just improved to handle the universal version. Brave Browser and Google Chrome ready for this.
