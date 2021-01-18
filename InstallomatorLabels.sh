@@ -1249,6 +1249,42 @@ front)
     expectedTeamID="X549L7572J"
     Company="FrontApp. Inc."
     ;;
+obsidian)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Obsidian"
+    type="dmg"
+    if [[ $(arch) == "arm64" ]]; then
+        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep "arm64" )
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep -v "arm64" )
+    fi
+    printlog $downloadURL
+    appNewVersion=$(versionFromGit obsidianmd obsidian-releases)
+    expectedTeamID="6JSW4SJWN9"
+    ;;
+telegram)
+    name="Telegram"
+    type="dmg"
+    downloadURL="https://telegram.org/dl/macos"
+    appNewVersion=$( curl -fs https://macos.telegram.org | grep anchor | head -1 | sed -E 's/.*a>([0-9.]*) .*/\1/g' )
+    expectedTeamID="6N38VWS5BX"
+    ;;
+wickrme)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="WickrMe"
+    type="dmg"
+    downloadURL=$( curl -fs https://me-download.wickr.com/api/download/me/download/mac | tr '"' '\n' | grep -e '^https://' )
+    appNewVersion=$( echo ${downloadURL} | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="W8RC3R952A"
+    ;;
+wickrpro)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="WickrPro"
+    type="dmg"
+    downloadURL=$( curl -fs https://me-download.wickr.com/api/download/pro/download/mac | tr '"' '\n' | grep -e '^https://' )
+    appNewVersion=$( echo ${downloadURL} | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="W8RC3R952A"
+    ;;
 
 # MARK: add new labels above here
 
