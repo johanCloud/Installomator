@@ -175,6 +175,8 @@ cleanupAndExit() { # $1 = exit code, $2 message
         printlog "Unmounting $dmgmount"
         hdiutil detach "$dmgmount"
     fi
+    # If we closed any processes, reopen the app again
+    reopenClosedProcess
     printlog "################## End Installomator, exit code $1 \n\n"
     exit "$1"
 }
@@ -182,7 +184,7 @@ cleanupAndExit() { # $1 = exit code, $2 message
 runAsUser() {
     if [[ $currentUser != "loginwindow" ]]; then
         uid=$(id -u "$currentUser")
-        launchctl asuser $uid sudo -u $currentUser "$@"
+        launchctl asuser $uid sudo -u $currentUser "$@" 2>/dev/null
     fi
 }
 
@@ -323,7 +325,8 @@ checkRunningProcesses() {
         for x in ${blockingProcesses}; do
             if pgrep -xq "$x"; then
                 printlog "found blocking process $x"
-
+                appClosed=1
+                
                 case $BLOCKING_PROCESS_ACTION in
                     kill)
                       printlog "killing process $x"
@@ -393,6 +396,21 @@ checkRunningProcesses() {
     fi
 
     printlog "no more blocking processes, continue with update"
+}
+
+reopenClosedProcess() {
+    # If Installomator closed any processes, let's get the app opened again
+    
+    # don't reopen in DEBUG mode
+    if [[ $DEBUG -ne 0 ]]; then
+        printlog "DEBUG mode, not reopening anything"
+        return
+    fi
+    
+    if [[ $appClosed == 1 ]]; then
+        printlog "Telling app $name to open"
+        runAsUser osascript -e "tell app \"$name\" to open" 2>/dev/null
+    fi
 }
 
 installAppWithPath() { # $1: path to app to install in $targetDir

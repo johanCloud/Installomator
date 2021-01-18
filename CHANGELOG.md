@@ -3,6 +3,7 @@
 ## 0.4.17 - 2021-01-??
 - Added a bit extra logging, when using INSTALL=force
 - Labels with appNewVersion: 1password7
+- Labels changed for Apple Silicon: vlc
 - Labels added: vanilla, taskpaper, calibre, redeye, lucifer, fantastical, launchbar, klokki, notion, lexarrecoverytool, easeusdatarecoverywizard, lastpass, front, obsidian, telegram, wickrme, wickrpro, omnigraffle6, omnioutliner5, omniplan3, omnipresence, omnidisksweeper, exelbanstats, onionshare
 
 ## 0.4.16 - 2021-01-08
@@ -15,7 +16,7 @@
 - Added notification before download and before installation, if NOTIFY=all
 - Function installPkgInZip changed to find files 2 levels deep if zip contains a folder.
 - `CheckInstallomator.sh` has added suggestion for checking labels
-- Labels changed: brave (now downloads universal version on Apple Silicon)
+- Labels changed for Apple Silicon: brave
 - Labels added: devonthink
 
 
