@@ -1246,7 +1246,7 @@ klokki)
     ;;
 notion)
     # credit: Søren Theilgaard (@theilgaard)
-    name="notion"
+    name="Notion"
     type="dmg"
     if [[ $(arch) == "arm64" ]]; then
         downloadURL="https://www.notion.so/desktop/apple-silicon/download"
