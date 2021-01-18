@@ -354,7 +354,7 @@ checkRunningProcesses() {
                           printlog "user wants to wait an hour"
                           sleep 3600 # 3600 seconds is an hour
                         else
-                          printlog "change of BLOCKING_PROCESS_ACTION to tell_user_then_kill"
+                          printlog "change of BLOCKING_PROCESS_ACTION to tell_user"
                           BLOCKING_PROCESS_ACTION=tell_user
                         fi
                       else
