@@ -21,7 +21,7 @@
 #set -x # Debug
 
 VERSION='0.4.17' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-01-??'
+VERSIONDATE='2021-01-19'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -184,7 +184,7 @@ cleanupAndExit() { # $1 = exit code, $2 message
 runAsUser() {
     if [[ $currentUser != "loginwindow" ]]; then
         uid=$(id -u "$currentUser")
-        launchctl asuser $uid sudo -u $currentUser "$@" 2>/dev/null
+        launchctl asuser $uid sudo -u $currentUser "$@"
     fi
 }
 
@@ -400,6 +400,7 @@ checkRunningProcesses() {
 
 reopenClosedProcess() {
     # If Installomator closed any processes, let's get the app opened again
+    # credit: Søren Theilgaard (@theilgaard)
     
     # don't reopen in DEBUG mode
     if [[ $DEBUG -ne 0 ]]; then
@@ -409,7 +410,7 @@ reopenClosedProcess() {
     
     if [[ $appClosed == 1 ]]; then
         printlog "Telling app $name to open"
-        runAsUser osascript -e "tell app \"$name\" to open" 2>/dev/null
+        runAsUser osascript -e "tell app \"$name\" to open"
     fi
 }
 

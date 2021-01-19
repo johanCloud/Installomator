@@ -1338,6 +1338,15 @@ onionshare)
     appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="N9B95FDWH4"
     ;;
+keyboardmaestro)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Keyboard Maestro"
+    type="zip"
+    downloadURL="https://download.keyboardmaestro.com/"
+    appNewVersion=$( curl -fs https://www.stairways.com/press/ | grep -i "releases Keyboard Maestro" | head -1 | sed -E 's/.*releases Keyboard Maestro ([0-9.]*)<.*/\1/g' )
+    expectedTeamID="QMHRBA4LGH"
+    blockingProcesses=( "Keyboard Maestro Engine" "Keyboard Maestro" )
+    ;;
 
 # MARK: add new labels above here
 
