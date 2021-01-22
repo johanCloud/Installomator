@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.17' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-01-19'
+VERSION='0.4.18' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-01-??'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -92,9 +92,20 @@ INSTALL=""
 #     - pkgInZip (not yet tested)
 #     - appInDmgInZip
 #
+# - packageID: (optional)
+#   The package ID of a pkg
+#   If given, will be used to find version of installed software, instead of searching for an app.
+#   Usefull if a pkg does not install an app.
+#   See label installomator_st
+#
 # - downloadURL: (required)
 #   URL to download the dmg.
 #   Can be generated with a series of commands (see BBEdit for an example).
+#
+# - appNewVersion: (optional)
+#   Version of the downloaded software.
+#   If given, it will be compared to installed version, to see if download is different.
+#   It does not check for newer or not, only different.
 #
 # - expectedTeamID: (required)
 #   10-digit developer team ID.
@@ -287,6 +298,17 @@ xpath() {
 
 getAppVersion() {
     # modified by: Søren Theilgaard (@theilgaard)
+    # pkgs contains a version number, then we don't have to search for an app
+    if [[ $packageID != "" ]]; then
+        appversion="$(pkgutil --pkg-info-plist ${packageID} 2>/dev/null | grep -A 1 pkg-version | tail -1 | sed -E 's/.*>([0-9.]*)<.*/\1/g')"
+        if [[ $appversion != "" ]]; then
+            printlog "found packageID $packageID installed, version $appversion"
+            return
+        else
+            printlog "No version found using packageID $packageID"
+        fi
+    fi
+    
     # get all apps matching name
     applist=$(mdfind "kind:application $appName" -0 )
     if [[ $applist = "" ]]; then

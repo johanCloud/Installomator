@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.17"
+labelsVERSION="0.4.18"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -71,6 +71,7 @@ santa)
     # credit: Tadayuki Onishi (@kenchan0130)
     name="Santa"
     type="pkgInDmg"
+    packageID="com.google.santa"
     downloadURL=$(downloadURLFromGit google santa)
     appNewVersion=$(versionFromGit google santa)
     expectedTeamID="EQHXZ8M8AV"
@@ -128,6 +129,7 @@ whatsapp)
 desktoppr)
     name="desktoppr"
     type="pkg"
+    packageID="com.scriptingosx.desktoppr"
     downloadURL=$(downloadURLFromGit "scriptingosx" "desktoppr")
     appNewVersion=$(versionFromGit "scriptingosx" "desktoppr")
     expectedTeamID="JME5BW3F3R"
@@ -359,7 +361,7 @@ icons)
     # credit: Mischa van der Bent (@mischavdbent)
     name="Icons"
     type="zip"
-    downloadURL=$(downloadURLFromGit sap macOS-icon-genera   )
+    downloadURL=$(downloadURLFromGit sap macOS-icon-generator )
     appNewVersion=$(versionFromGit sap macOS-icon-generator )
     expectedTeamID="7R5ZEU67FQ"
     ;;
@@ -380,7 +382,12 @@ plisteditpro)
 slack)
     name="Slack"
     type="dmg"
-    downloadURL="https://slack.com/ssb/download-osx"
+    if [[ $(arch) == "arm64" ]]; then
+        downloadURL="https://slack.com/ssb/download-osx-silicon"
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL="https://slack.com/ssb/download-osx"
+    fi
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | tr -d '\r\n' | sed -E 's/.*macos\/([0-9.]*)\/.*/\1/g' )
     expectedTeamID="BQR82RBBHL"
     ;;
 sublimetext)
@@ -510,7 +517,7 @@ jamfmigrator)
     name="jamf-migrator"
     type="zip"
     downloadURL=$(downloadURLFromGit jamf JamfMigrator)
-    appNewVersion=$(versionFromGit jamf JamfMigrator)
+    #appNewVersion=$(versionFromGit jamf JamfMigrator)
     expectedTeamID="PS2F6S478M"
     ;;
 jamfreenroller)
@@ -518,7 +525,7 @@ jamfreenroller)
     name="ReEnroller"
     type="zip"
     downloadURL=$(downloadURLFromGit jamf ReEnroller)
-    appNewVersion=$(versionFromGit jamf ReEnroller)
+    #appNewVersion=$(versionFromGit jamf ReEnroller)
     expectedTeamID="PS2F6S478M"
     ;;
 adobereaderdc|\
@@ -526,7 +533,7 @@ adobereaderdc-install)
     name="Adobe Acrobat Reader DC"
     type="pkgInDmg"
     downloadURL=$(curl --silent --fail -H "Sec-Fetch-Site: same-origin" -H "Accept-Encoding: gzip, deflate, br" -H "Accept-Language: en-US;q=0.9,en;q=0.8" -H "DNT: 1" -H "Sec-Fetch-Mode: cors" -H "X-Requested-With: XMLHttpRequest" -H "Referer: https://get.adobe.com/reader/enterprise/" -H "Accept: */*" "https://get.adobe.com/reader/webservices/json/standalone/?platform_type=Macintosh&platform_dist=OSX&platform_arch=x86-32&language=English&eventname=readerotherversions" | grep -Eo '"download_url":.*?[^\\]",' | head -n 1 | cut -d \" -f 4)
-    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep "<strong>Version" | sed 's/[^0-9 .]*//g' | awk '{print $1}') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version ([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
     expectedTeamID="JQ525L2MZD"
     blockingProcesses=( "AdobeReader" )
     ;;
@@ -534,7 +541,7 @@ adobereaderdc-update)
     name="Adobe Acrobat Reader DC"
     type="pkgInDmg"
     downloadURL=$(adobecurrent=`curl --fail --silent https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/reader/current_version.txt | tr -d '.'` && echo http://ardownload.adobe.com/pub/adobe/reader/mac/AcrobatDC/"$adobecurrent"/AcroRdrDCUpd"$adobecurrent"_MUI.dmg)
-    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep "<strong>Version" | sed 's/[^0-9 .]*//g' | awk '{print $1}') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version ([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
     expectedTeamID="JQ525L2MZD"
     blockingProcesses=( "AdobeReader" )
     ;;
@@ -1125,8 +1132,9 @@ vagrant)
     name="Vagrant"
     type="pkgInDmg"
     pkgName="vagrant.pkg"
-    downloadURL=$(curl -fs https://www.vagrantup.com/downloads.html \
-        | tr '><' '\n' | awk -F'"' '/x86_64.dmg/ {print $6}' | head -1)
+    downloadURL=$(curl -fs https://www.vagrantup.com/downloads | tr '><' '\n' | awk -F'"' '/x86_64.dmg/ {print $6}' | head -1)
+    #appNewVersion=$( curl -fs https://www.vagrantup.com/downloads.html | grep -i "Current Version" )
+    appNewVersion=$(versionFromGit hashicorp vagrant)
     expectedTeamID="D38WU7D763"
     ;;
 aircall)
@@ -1140,9 +1148,11 @@ installomator_st)
     # credit: Søren Theilgaard (@theilgaard)
     name="Installomator"
     type="pkg"
+    packageID="dk.theilgaard.pkg.Installomator"
     downloadURL=$(downloadURLFromGit theile Installomator )
     appNewVersion=$(versionFromGit theile Installomator )
     expectedTeamID="L8W73B6AH3"
+    blockingProcesses=( NONE )
     ;;
 etrecheck)
     # credit: @dvsjr macadmins slack
@@ -1174,6 +1184,7 @@ silnite)
     downloadURL=$(curl -fs https://eclecticlight.co/downloads/ | grep -i $name | grep zip | sed -E 's/.*href=\"(https.*)\">.*/\1/g')
     appNewVersion=$(curl -fs https://eclecticlight.co/downloads/ | grep zip | grep -o -E "silnite [0-9.]*" | awk '{print $2}')
     expectedTeamID="QWY4LRW926"
+    blockingProcesses=( NONE )
     ;;
 devonthink)
     # It's a zipped dmg file, needs function installAppInDmgInZip
@@ -1302,7 +1313,6 @@ obsidian)
     elif [[ $(arch) == "i386" ]]; then
         downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep -v "arm64" )
     fi
-    printlog $downloadURL
     appNewVersion=$(versionFromGit obsidianmd obsidian-releases)
     expectedTeamID="6JSW4SJWN9"
     ;;
@@ -1343,9 +1353,28 @@ keyboardmaestro)
     name="Keyboard Maestro"
     type="zip"
     downloadURL="https://download.keyboardmaestro.com/"
-    appNewVersion=$( curl -fs https://www.stairways.com/press/ | grep -i "releases Keyboard Maestro" | head -1 | sed -E 's/.*releases Keyboard Maestro ([0-9.]*)<.*/\1/g' )
+    #appNewVersion=$( curl -fs https://www.stairways.com/press/ | grep -i "releases Keyboard Maestro" | head -1 | sed -E 's/.*releases Keyboard Maestro ([0-9.]*)<.*/\1/g' ) # Text based from web site
+    appNewVersion=$( curl -fs "https://www.stairways.com/press/rss.xml" | xpath '//rss/channel/item/title[contains(text(), "releases Keyboard Maestro")]' 2>/dev/null | head -1 | sed -E 's/.*releases Keyboard Maestro ([0-9.]*)<.*/\1/g' ) # uses XML, so might be a little more precise/future proof
     expectedTeamID="QMHRBA4LGH"
     blockingProcesses=( "Keyboard Maestro Engine" "Keyboard Maestro" )
+    ;;
+loom)
+    # credit: Lance Stephens (@pythoninthegrass on MacAdmins Slack)
+    name="Loom"
+    type="dmg"
+    downloadURL=https://cdn.loom.com/desktop-packages/$(curl -fs https://s3-us-west-2.amazonaws.com/loom.desktop.packages/loom-inc-production/desktop-packages/latest-mac.yml | awk '/url/ && /dmg/ {print $3}')
+    appNewVersion=$(curl -fs https://s3-us-west-2.amazonaws.com/loom.desktop.packages/loom-inc-production/desktop-packages/latest-mac.yml | awk '/version/ {print $2}' )
+    expectedTeamID="QGD2ZPXZZG"
+    ;;
+golang)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="GoLang"
+    type="pkg"
+    packageID="org.golang.go"
+    downloadURL="$(curl -fsIL "https://golang.org$(curl -fs "https://golang.org/dl/" | grep -i "downloadBox" | grep "pkg" | tr '"' '\n' | grep "pkg")" | grep -i "^location" | awk '{print $2}' | tr -d '\r\n')"
+    appNewVersion="$( echo "${downloadURL}" | sed -E 's/.*\/(go[0-9.]*)\..*/\1/g' )"
+    expectedTeamID="EQHXZ8M8AV"
+    blockingProcesses=( NONE )
     ;;
 
 # MARK: add new labels above here

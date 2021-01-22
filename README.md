@@ -10,15 +10,17 @@ This version is not to be used like the original, that is built for Jamf Pro.
 
 This version is for MDMs, that can sent scripts, maybe at specific times. It has been testet a lot with Mosyle Business and Manager.
 
-Purpose is to add a version check before download, and/or before installation, so only if an update exist, will it install the software. A new variable for the label has been introduced so if the version can be obtained from the web site or similar place, the script can evaluate very quickly if it needs an update.
+Purpose is to add a version check before download, and/or before installation, so only if an update exist, will it install the software. 
 
 See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software and README.
 
-I will try to add new labels when they are submittet to scriptingosx, and maybe I will see if I can create the `appNewVersion` content.
+### Extra variables in labels
 
-### Extra scripts
+`appNewVersion` is the variable to use for the online version of the app/software, so if the version can be obtained from the web site or similar place, the script can evaluate very quickly if it needs an update.
 
-The two scripts with `app` in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward. Note: Mosyle does not currently handle exit codes from scripts. Please request support for this from Mosyle!
+`packageID` is a variable for pkg bundle IDs. Very usefull if a pkg only install command line tools, or the like that does not install an app. See label `installomator_st` and `desktoppr`.
+
+I will try to add new labels when they are submittet to scriptingosx, and maybe I will see if I can create the `appNewVersion` and/or the `packageID` variable(s).
 
 ### Handling of blocking processes
 
@@ -43,6 +45,10 @@ Added a `NOTIFY` option `all`, so notifications can be shown to the user even if
 ### Force installation
 
 Also added an `INSTALL` variable to be set to `force` if you want the software to be installed even though it is already install in the latest version. Can at least be used to install the latest universal version, even if the Intel-only built is installed, if a label is improved for this. And I simply wanted to force installation, if that was needed.
+
+### Extra scripts
+
+The two scripts with `app` in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward. Note: Mosyle does not currently handle exit codes from scripts. Please request support for this from Mosyle!
 
 ## Installation
 

@@ -52,7 +52,7 @@ versionFromGit() { # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
     
-    appNewVersion=$(curl --silent --fail "https://github.com/$gitusername/$gitreponame/releases/latest" | sed -E 's/.*tag\/(.*)\">.*/\1/g' )
+    appNewVersion=$(curl --silent --fail "https://github.com/$gitusername/$gitreponame/releases/latest" | sed -E 's/.*tag\/(.*)\">.*/\1/g' | sed 's/[^0-9\.]//g')
     if [ -z "$appNewVersion" ]; then
         printlog "could not retrieve version number for $gitusername/$gitreponame: $appNewVersion"
         exit 9
@@ -82,10 +82,11 @@ else
     allLabels=( ${=@} )
 fi
 
+countWarning=0
 countError=0
 for label in $allLabels; do
     echo "########## $label"
-    labelerror=0; expectedExtension=""; URLextension=""
+    labelWarning=0; labelError=0; expectedExtension=""; URLextension=""
     name=""; type=""; downloadURL=""; appNewVersion=""; expectedTeamID=""; blockingProcesses=""; updateTool=""; updateToolArguments=""; archiveName=""
     
     caseLabel
@@ -110,10 +111,14 @@ for label in $allLabels; do
     if [[ "$appNewVersion" == "" ]] ; then
         echo "No appNewVersion!"
     else
-        if [[ $( echo "$appNewVersion" | sed -E 's/([0-9.]*)/\1/g' ) == "" ]]; then
+        if [[ $( echo "$appNewVersion" | grep -i "[0-9.]" ) == "" || $appNewVersion == "" ]]; then
             echo "-> !! ERROR in appNewVersion"
-            labelerror=1
+            labelError=1
         else
+            if [[ $appNewVersion != $( echo "$appNewVersion" | sed -E 's/[^0-9]*([0-9.]*)[^0-9]*/\1/g' ) ]]; then
+                echo "Warning: Version contain not only numbers and dots."
+                labelWarning=1
+            fi
             echo "Version: $appNewVersion" ;
         fi
     fi
@@ -137,7 +142,7 @@ for label in $allLabels; do
                         echo "OK: download extension MATCH on ${URLextension}"
                     else
                         echo "-> !! ERROR in download extension, expected ${expectedExtension}, but got ${URLextension}."
-                        labelerror=1
+                        labelError=1
                     fi
                 else
                     echo "no header provided from server."
@@ -148,9 +153,10 @@ for label in $allLabels; do
         fi
     else
         echo "-> !! ERROR in downloadURL"
-        labelerror=1
+        labelError=1
     fi
-    if [[ $labelerror != 0 ]]; then; echo "########## ERROR in label: $label"; ((countError++)); fi
+    if [[ $labelWarning != 0 ]]; then; echo "########## Warning in label: $label"; ((countWarning++)); fi
+    if [[ $labelError != 0 ]]; then; echo "########## ERROR in label: $label"; ((countError++)); fi
 
     echo ""
 done
@@ -158,6 +164,11 @@ done
 ${SELFLOCATION}/Installomator.sh version
 echo ""
 
+if [[ countWarning > 0 ]]; then
+    echo "Warnings counted: $countWarning"
+else
+    echo "No warnings detected!"
+fi
 if [[ countError > 0 ]]; then
     echo "ERRORS counted: $countError"
 else
