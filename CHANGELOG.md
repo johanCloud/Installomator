@@ -1,6 +1,6 @@
 ## v0.5 - 2020-
 
-## 0.4.18 - 2021-01-??
+## 0.4.18 - 2021-01-22
 - Added `packageID` variable to label, so version of packages can be found
 - `CheckInstallomator.sh` improved for version checking on github and can give warnings
 - Labels changed for Apple Silicon: slack

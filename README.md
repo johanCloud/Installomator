@@ -10,9 +10,11 @@ This version is not to be used like the original, that is built for Jamf Pro.
 
 This version is for MDMs, that can sent scripts, maybe at specific times. It has been testet a lot with Mosyle Business and Manager.
 
-Purpose is to add a version check before download, and/or before installation, so only if an update exist, will it install the software. 
+The purpose is to add a version check before download, and/or before installation, so only if an update exist, will it install the software. In this way it can run at regular intervals and only bug the user with update notifications if a new version is available.
 
-See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software and README.
+Also this version should notify the user better, when they install apps themselves from the Self Service catalog (provided by some MDM providers).
+
+_See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software and README._
 
 ### Extra variables in labels
 
