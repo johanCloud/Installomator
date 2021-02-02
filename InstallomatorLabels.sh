@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.18"
+labelsVERSION="0.4.19"
 
 # MARK: labels in case statement
 caseLabel () {
@@ -1375,6 +1375,13 @@ golang)
     appNewVersion="$( echo "${downloadURL}" | sed -E 's/.*\/(go[0-9.]*)\..*/\1/g' )"
     expectedTeamID="EQHXZ8M8AV"
     blockingProcesses=( NONE )
+    ;;
+rectangle)
+    name="Rectangle"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit rxhanson Rectangle)
+    appNewVersion=$(versionFromGit rxhanson Rectangle)
+    expectedTeamID="XSYZ3E4B7D"
     ;;
 
 # MARK: add new labels above here
