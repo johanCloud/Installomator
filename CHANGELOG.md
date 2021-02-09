@@ -1,14 +1,15 @@
 ## v0.5 - 2020-
 
 ## 0.4.19 - 2021-02-??
-- Labels added: rectangle
+- Labels changed: googlechrome (changed appNewVersion per architecture), googledrivefilestream (added packageID and blockingProcesses, removed pkgName as that have changed and not really needed), adobereaderdc|adobereaderdc-install (new packageID, changed appNewVersion), adobereaderdc-update (changed appNewVersion), webexmeetings (added targetDir and blockingProcesses)
+- Labels added: rectangle, knockknock, lulu, element, teamviewerhost, amazonchime
 
 ## 0.4.18 - 2021-01-22
 - Added `packageID` variable to label, so version of packages can be found
 - `CheckInstallomator.sh` improved for version checking on github and can give warnings
 - Labels changed for Apple Silicon: slack
 - Labels with appNewVersion: slack
-- Labels changed: keyboardmaestro (bit better version checking), adobereaderdc & adobereaderdc-install & adobereaderdc-update (new appNewVersion), icons (error in downloadURL), vagrant (appNewVersion and fixed downloadURL)
+- Labels changed: keyboardmaestro (bit better version checking), adobereaderdc|adobereaderdc-install & adobereaderdc-update (new appNewVersion), icons (error in downloadURL), vagrant (appNewVersion and fixed downloadURL)
 - Labels added: loom
 
 ## 0.4.17 - 2021-01-19

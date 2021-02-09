@@ -39,11 +39,12 @@ googlechrome)
     if [[ $(arch) != "i386" ]]; then
         printlog "Architecture: arm64 (not i386)"
         downloadURL="https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
+        appNewVersion=$(curl -s https://omahaproxy.appspot.com/history | awk -F',' '/mac_arm64,stable/{print $3; exit}') # Credit: William Smith (@meck)
     else
         printlog "Architecture: i386"
         downloadURL="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
+        appNewVersion=$(curl -s https://omahaproxy.appspot.com/history | awk -F',' '/mac,stable/{print $3; exit}') # Credit: William Smith (@meck)
     fi
-    appNewVersion=$(curl -s https://omahaproxy.appspot.com/history | awk -F',' '/mac,stable/{print $3; exit}') # Credit: William Smith (@meck)
     expectedTeamID="EQHXZ8M8AV"
     ;;
 googlechromepkg)
@@ -333,6 +334,8 @@ webexmeetings)
     type="pkgInDmg"
     downloadURL="https://akamaicdn.webex.com/client/webexapp.dmg"
     expectedTeamID="DE8Y96K9QP"
+    targetDir="/Applications"
+    blockingProcesses=( Webex )
     ;;
 webexteams)
     # credit: Erik Stam (@erikstam)
@@ -369,8 +372,10 @@ googledrivefilestream)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Google Drive File Stream"
     type="pkgInDmg"
+    packageID="com.google.drivefs"
     downloadURL="https://dl.google.com/drive-file-stream/GoogleDriveFileStream.dmg"
-    pkgName="GoogleDriveFileStream.pkg"
+    #pkgName="GoogleDriveFileStream.pkg"
+    blockingProcesses=( "Google Docs" "Google Drive" "Google Sheets" "Google Slides" )
     expectedTeamID="EQHXZ8M8AV"
     ;;
 plisteditpro)
@@ -532,8 +537,9 @@ adobereaderdc|\
 adobereaderdc-install)
     name="Adobe Acrobat Reader DC"
     type="pkgInDmg"
+    packageID="com.adobe.acrobat.DC.reader.app.pkg.MUI"
     downloadURL=$(curl --silent --fail -H "Sec-Fetch-Site: same-origin" -H "Accept-Encoding: gzip, deflate, br" -H "Accept-Language: en-US;q=0.9,en;q=0.8" -H "DNT: 1" -H "Sec-Fetch-Mode: cors" -H "X-Requested-With: XMLHttpRequest" -H "Referer: https://get.adobe.com/reader/enterprise/" -H "Accept: */*" "https://get.adobe.com/reader/webservices/json/standalone/?platform_type=Macintosh&platform_dist=OSX&platform_arch=x86-32&language=English&eventname=readerotherversions" | grep -Eo '"download_url":.*?[^\\]",' | head -n 1 | cut -d \" -f 4)
-    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version ([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version 20([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
     expectedTeamID="JQ525L2MZD"
     blockingProcesses=( "AdobeReader" )
     ;;
@@ -541,7 +547,7 @@ adobereaderdc-update)
     name="Adobe Acrobat Reader DC"
     type="pkgInDmg"
     downloadURL=$(adobecurrent=`curl --fail --silent https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/reader/current_version.txt | tr -d '.'` && echo http://ardownload.adobe.com/pub/adobe/reader/mac/AcrobatDC/"$adobecurrent"/AcroRdrDCUpd"$adobecurrent"_MUI.dmg)
-    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version ([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version 20([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
     expectedTeamID="JQ525L2MZD"
     blockingProcesses=( "AdobeReader" )
     ;;
@@ -1382,6 +1388,45 @@ rectangle)
     downloadURL=$(downloadURLFromGit rxhanson Rectangle)
     appNewVersion=$(versionFromGit rxhanson Rectangle)
     expectedTeamID="XSYZ3E4B7D"
+    ;;
+knockknock)
+    name="KnockKnock"
+    type="zip"
+    downloadURL=$( curl -fs "https://objective-see.com/products/knockknock.html" | grep https | grep "$type" | head -1 | tr '"' "\n" | grep "^http" )
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*_([0-9.]*)\..*/\1/g' )
+    expectedTeamID="VBG97UB4TA"
+    ;;
+lulu)
+    name="LuLu"
+    type="dmg"
+    downloadURL=$( curl -fs "https://objective-see.com/products/lulu.html" | grep https | grep "$type" | head -1 | tr '"' "\n" | grep "^http" )
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*_([0-9.]*)\..*/\1/g' )
+    expectedTeamID="VBG97UB4TA"
+    ;;
+element)
+    # credit: Adrian Bühler (@midni9ht)
+    name="Element"
+    type="dmg"
+    downloadURL="https://packages.riot.im/desktop/install/macos/Element.dmg"
+    expectedTeamID="7J4U792NQT"
+    ;;
+teamviewerhost)
+    name="TeamViewerHost"
+    type="pkgInDmg"
+    packageID="com.teamviewer.teamviewerhost"
+    downloadURL="https://download.teamviewer.com/download/TeamViewerHost.dmg"
+    expectedTeamID="H7UGFBUGV6"
+    #blockingProcessesMaxCPU="5" # Not sure what this is
+    #Company="TeamViewer GmbH" # Not sure what this is
+    ;;
+amazonchime)
+    # credit: @dvsjr macadmins slack
+    name="Amazon Chime"
+    type="dmg"
+    downloadURL="https://clients.chime.aws/mac/latest"
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z.\-]*-([0-9.]*)\..*/\1/g' )
+    expectedTeamID="94KV3E626L"
+    #Company="Amazon"  # Not sure what this is
     ;;
 
 # MARK: add new labels above here
