@@ -781,8 +781,9 @@ vscodium)
     # credit: AP Orlebeke (@apizz)
     name="VSCodium"
     type="dmg"
-    downloadURL=$(curl -fs "https://api.github.com/repos/VSCodium/vscodium/releases/latest" \
-        | awk -F '"' "/browser_download_url/ && /dmg/ && ! /sig/ && ! /CLI/ && ! /sha256/ { print \$4 }")
+    downloadURL=$(curl -fs "https://api.github.com/repos/VSCodium/vscodium/releases/latest" | awk -F '"' "/browser_download_url/ && /dmg/ && ! /sig/ && ! /CLI/ && ! /sha256/ { print \$4 }")
+    #downloadURL=$(downloadURLFromGit VSCodium vscodium) # Too many versions
+    appNewVersion=$(versionFromGit VSCodium vscodium)
     expectedTeamID="C7S3ZQ2B8V"
     appName="VSCodium.app"
     blockingProcesses=( Electron )
@@ -833,6 +834,7 @@ yubikeymanagerqt)
     type="pkg"
     downloadURL="https://developers.yubico.com/yubikey-manager-qt/Releases/$(curl -sfL https://api.github.com/repos/Yubico/yubikey-manager-qt/releases/latest | awk -F '"' '/"tag_name"/ { print $4 }')-mac.pkg"
     #appNewVersion=$(curl -fs https://developers.yubico.com/yubikey-manager-qt/Releases/ | grep mac.pkg | head -1 | sed -E "s/.*-([0-9.]*)-mac.*/\1/") # does not work
+    appNewVersion=$(versionFromGit Yubico yubikey-manager-qt)
     expectedTeamID="LQA3CS5MM7"
     ;;
 skitch)
@@ -995,6 +997,7 @@ libreoffice)
     name="LibreOffice"
     type="dmg"
     downloadURL="https://download.documentfoundation.org/libreoffice/stable/$(curl -s https://www.libreoffice.org/download/download/ | grep dl_version_number | head -n 1 | cut -d'>' -f3 | cut -d'<' -f1)/mac/x86_64/LibreOffice_$(curl -s https://www.libreoffice.org/download/download/ | grep dl_version_number | head -n 1 | cut -d'>' -f3 | cut -d'<' -f1)_MacOS_x86-64.dmg"
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*_([0-9.]*)_.*/\1/g' )
     expectedTeamID="7P5S3ZLCN7"
     ;;
 toggltrack)
@@ -1363,7 +1366,7 @@ loom)
     # credit: Lance Stephens (@pythoninthegrass on MacAdmins Slack)
     name="Loom"
     type="dmg"
-    downloadURL=https://cdn.loom.com/desktop-packages/$(curl -fs https://s3-us-west-2.amazonaws.com/loom.desktop.packages/loom-inc-production/desktop-packages/latest-mac.yml | awk '/url/ && /dmg/ {print $3}')
+    downloadURL=https://cdn.loom.com/desktop-packages/$(curl -fs https://s3-us-west-2.amazonaws.com/loom.desktop.packages/loom-inc-production/desktop-packages/latest-mac.yml | awk '/url/ && /dmg/ {print $3}' | head -1)
     appNewVersion=$(curl -fs https://s3-us-west-2.amazonaws.com/loom.desktop.packages/loom-inc-production/desktop-packages/latest-mac.yml | awk '/version/ {print $2}' )
     expectedTeamID="QGD2ZPXZZG"
     ;;
@@ -1373,7 +1376,7 @@ golang)
     type="pkg"
     packageID="org.golang.go"
     downloadURL="$(curl -fsIL "https://golang.org$(curl -fs "https://golang.org/dl/" | grep -i "downloadBox" | grep "pkg" | tr '"' '\n' | grep "pkg")" | grep -i "^location" | awk '{print $2}' | tr -d '\r\n')"
-    appNewVersion="$( echo "${downloadURL}" | sed -E 's/.*\/(go[0-9.]*)\..*/\1/g' )"
+    appNewVersion="$( echo "${downloadURL}" | sed -E 's/.*\/(go[0-9.]*)\..*/\1/g' )" # Version includes letters "go"
     expectedTeamID="EQHXZ8M8AV"
     blockingProcesses=( NONE )
     ;;
