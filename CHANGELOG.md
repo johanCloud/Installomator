@@ -1,8 +1,9 @@
 ## v0.5 - 2020-
 
-## 0.4.19 - 2021-02-??
-- Labels changed: googlechrome (changed appNewVersion per architecture), googledrivefilestream (added packageID and blockingProcesses, removed pkgName as that have changed and not really needed), adobereaderdc|adobereaderdc-install (new packageID, changed appNewVersion), adobereaderdc-update (changed appNewVersion), webexmeetings (added targetDir and blockingProcesses)
-- Labels added: rectangle, knockknock, lulu, element, teamviewerhost, amazonchime
+## 0.4.19 - 2021-02-15
+- Added icons to dialog boxes
+- Labels changed: googlechrome (changed appNewVersion per architecture), googledrivefilestream (added packageID and blockingProcesses, removed pkgName as that have changed and not really needed, and googledrive=googledrivefilestream), adobereaderdc|adobereaderdc-install (new packageID, changed appNewVersion), adobereaderdc-update (changed appNewVersion), webexmeetings (added targetDir and blockingProcesses),
+- Labels added: rectangle, knockknock, lulu, element, teamviewerhost, amazonchime, basecamp3, proctortrack, viscosity
 
 ## 0.4.18 - 2021-01-22
 - Added `packageID` variable to label, so version of packages can be found

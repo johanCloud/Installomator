@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.18' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-01-22'
+VERSION='0.4.19' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-02-15'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -202,13 +202,13 @@ runAsUser() {
 displaydialog() { # $1: message $2: title
     message=${1:-"Message"}
     title=${2:-"Installomator"}
-    runAsUser osascript -e "button returned of (display dialog \"$message\" with title \"$title\" buttons {\"Not Now\", \"Quit and Update\"} default button \"Quit and Update\")"
+    runAsUser osascript -e "button returned of (display dialog \"$message\" with  title \"$title\" buttons {\"Not Now\", \"Quit and Update\"} default button \"Quit and Update\" with icon caution)"
 }
 
 displaydialogContinue() { # $1: message $2: title
     message=${1:-"Message"}
     title=${2:-"Installomator"}
-    runAsUser osascript -e "button returned of (display dialog \"$message\" with title \"$title\" buttons {\"Quit and Update\"} default button \"Quit and Update\")"
+    runAsUser osascript -e "button returned of (display dialog \"$message\" with  title \"$title\" buttons {\"Quit and Update\"} default button \"Quit and Update\" with icon stop)"
 }
 
 displaynotification() { # $1: message $2: title
@@ -236,7 +236,8 @@ printlog(){
     else
         echo "$timestamp" "$label" "$1"
     fi
-    logger -t "$SELF $label" "$1"
+    # Logging to system.log
+    logger -t "$SELF" "$label $1"
 }
 
 # will get the latest release download from a github repo

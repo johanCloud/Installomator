@@ -6,8 +6,8 @@
 
 labelsVERSION="0.4.19"
 
-# MARK: labels in case statement
 caseLabel () {
+# MARK: labels in case statement
 case $label in
 version)
     # print the script VERSION
@@ -368,13 +368,12 @@ icons)
     appNewVersion=$(versionFromGit sap macOS-icon-generator )
     expectedTeamID="7R5ZEU67FQ"
     ;;
-googledrivefilestream)
+googledrive|googledrivefilestream)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Google Drive File Stream"
     type="pkgInDmg"
     packageID="com.google.drivefs"
-    downloadURL="https://dl.google.com/drive-file-stream/GoogleDriveFileStream.dmg"
-    #pkgName="GoogleDriveFileStream.pkg"
+    downloadURL="https://dl.google.com/drive-file-stream/GoogleDriveFileStream.dmg" # downloadURL="https://dl.google.com/drive-file-stream/GoogleDrive.dmg"
     blockingProcesses=( "Google Docs" "Google Drive" "Google Sheets" "Google Slides" )
     expectedTeamID="EQHXZ8M8AV"
     ;;
@@ -865,8 +864,6 @@ apparency)
     downloadURL="https://www.mothersruin.com/software/downloads/Apparency.dmg"
     expectedTeamID="936EB786NH"
     ;;
-
-# MARK: labels by others between releases
 bluejeans)
     name="BlueJeans"
     type="pkg"
@@ -918,8 +915,6 @@ wireshark)
     appNewVersion=$(curl -fs https://www.wireshark.org/download.html | grep "Stable Release" | grep -o "(.*.)" | cut -f2 | head -1 | awk -F'[()]' '{print $2}')
     expectedTeamID="7Z6EMTD2C6"
     ;;
-    
-# MARK: labels by Søren Theilgaard (@theilgaard)
 sketch)
      name="Sketch"
      type="zip"
@@ -1416,8 +1411,8 @@ teamviewerhost)
     packageID="com.teamviewer.teamviewerhost"
     downloadURL="https://download.teamviewer.com/download/TeamViewerHost.dmg"
     expectedTeamID="H7UGFBUGV6"
-    #blockingProcessesMaxCPU="5" # Not sure what this is
-    #Company="TeamViewer GmbH" # Not sure what this is
+    #blockingProcessesMaxCPU="5" # Future feature
+    #Company="TeamViewer GmbH"
     ;;
 amazonchime)
     # credit: @dvsjr macadmins slack
@@ -1426,7 +1421,31 @@ amazonchime)
     downloadURL="https://clients.chime.aws/mac/latest"
     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z.\-]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="94KV3E626L"
-    #Company="Amazon"  # Not sure what this is
+    #Company="Amazon"
+    ;;
+basecamp3)
+    #credit: @matins
+    name="Basecamp 3"
+    type="dmg"
+    downloadURL="https://bc3-desktop.s3.amazonaws.com/mac/basecamp3.dmg"
+    expectedTeamID="2WNYUYRS7G"
+    appName="Basecamp 3.app"
+    ;;
+proctortrack)
+    #credit: Jeff F. (@jefff on MacAdmins Slack)
+    name="Proctortrack"
+    type="zip"
+    downloadURL="https://storage.googleapis.com/verificientstatic/ProctortrackApp/Production/Proctortrack.zip"
+    expectedTeamID="SNHZD6TJE6"
+    #Company="Verificient Technologies"
+    ;;
+viscosity)
+    #credit: @matins
+    name="Viscosity"
+    type="dmg"
+    downloadURL="https://www.sparklabs.com/downloads/Viscosity.dmg"
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z.\-]*%20([0-9.]*)\..*/\1/g' )
+    expectedTeamID="34XR7GXFPX"
     ;;
 
 # MARK: add new labels above here
