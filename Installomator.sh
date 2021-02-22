@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.19' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-02-15'
+VERSION='0.4.20' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-02-??'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -255,14 +255,14 @@ downloadURLFromGit() { # $1 git user name, $2 git repo name
     
     if [ -n "$archiveName" ]; then
     downloadURL=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" \
-    | awk -F '"' "/browser_download_url/ && /$archiveName/ { print \$4 }")
+    | awk -F '"' "/browser_download_url/ && /$archiveName\"/ { print \$4; exit }")
     else
     downloadURL=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" \
-    | awk -F '"' "/browser_download_url/ && /$filetype\"/ { print \$4 }")
+    | awk -F '"' "/browser_download_url/ && /$filetype\"/ { print \$4; exit }")
     fi
     if [ -z "$downloadURL" ]; then
-        printlog "could not retrieve download URL for $gitusername/$gitreponame"
-        exit 9
+        cleanupAndExit 9 "could not retrieve download URL for $gitusername/$gitreponame"
+        #exit 9
     else
         echo "$downloadURL"
         return 0
@@ -291,6 +291,8 @@ xpath() {
     # the xpath tool changes in Big Sur and now requires the `-e` option
     if [[ $(sw_vers -buildVersion) > "20A" ]]; then
         /usr/bin/xpath -e $@
+        # alternative: switch to xmllint (which is not perl)
+        #xmllint --xpath $@ -
     else
         /usr/bin/xpath $@
     fi
@@ -325,7 +327,8 @@ getAppVersion() {
         filteredAppPaths=( ${(M)appPathArray:#${targetDir}*} )
         if [[ ${#filteredAppPaths} -eq 1 ]]; then
             installedAppPath=$filteredAppPaths[1]
-            appversion=$(defaults read $installedAppPath/Contents/Info.plist CFBundleShortVersionString) #Not dependant on Spotlight indexing, Armin: appversion=$(mdls -name kMDItemVersion -raw $installedAppPath )
+            #appversion=$(mdls -name kMDItemVersion -raw $installedAppPath )
+            appversion=$(defaults read $installedAppPath/Contents/Info.plist CFBundleShortVersionString) #Not dependant on Spotlight indexing
             printlog "found app at $installedAppPath, version $appversion"
         else
             printlog "could not determine location of $appName"
@@ -477,15 +480,16 @@ installAppWithPath() { # $1: path to app to install in $targetDir
         printlog "Downloaded version of $name is $appNewVersion (replacing version $appversion)."
     fi
 
+    # skip install for DEBUG
+    if [ "$DEBUG" -ne 0 ]; then
+        printlog "DEBUG enabled, skipping remove, copy and chown steps"
+        return 0
+    fi
+
     # check for root
     if [ "$(whoami)" != "root" ]; then
         # not running as root
-        if [ "$DEBUG" -eq 0 ]; then
-            cleanupAndExit 6 "not running as root, exiting"
-        fi
-
-        printlog "DEBUG enabled, skipping copy and chown steps"
-        return 0
+        cleanupAndExit 6 "not running as root, exiting"
     fi
 
     # remove existing application
@@ -704,8 +708,8 @@ fi
 # MARK: argument parsing
 if [[ $# -eq 0 ]]; then
     printlog "no label provided, printing labels, version $labelsVERSION:"
-    #grep -E '^[a-z0-9\-]*(\)|\|\\)$' "$0" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
-    grep -E '^[a-z0-9\-]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
+    #grep -E '^[a-z0-9\-_]*(\)|\|\\)$' "$0" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
+    grep -E '^[a-z0-9\-_]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
     exit 0
 elif [[ $1 == "/" ]]; then
     # jamf uses sends '/' as the first argument

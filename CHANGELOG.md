@@ -1,8 +1,14 @@
 ## v0.5 - 2020-
 
+## 0.4.20 - 2021-02-??
+- Fixed the printing of labels if no label is given. Previously it would omit a label containing a "_", but that will be included now. If a label has more than one name those are now on individual lines, som they all will be included in the print of labels.
+- Fixed, if DEBUG=1 and script was running as root, so now it will not install anything (earlier it would not install pkgs, but still install apps)
+- Labels added `appNewVersion`: aquaskk, sidekick
+- Labels added: camostudio, abstract, awsvpnclient, figma, gimp, googleearth, googledrivebackupandsync, intellijideace, jamfconnect, musescore, prism9, promiseutilityr, pycharmce, pymol, ricohpsprinters, ringcentralclassicapp, ringcentralphone, rstudio, universaltypeclient, xeroxphaser7800, zappy, zoomclient, zulujdk11, zulujdk13, zulujdk15
+
 ## 0.4.19 - 2021-02-15
 - Added icons to dialog boxes
-- Labels added appNewVersion: vscodium, libreoffice
+- Labels added `appNewVersion`: vscodium, libreoffice
 - Labels changed: googlechrome (changed appNewVersion per architecture), googledrivefilestream (added packageID and blockingProcesses, removed pkgName as that have changed and not really needed, and googledrive=googledrivefilestream), adobereaderdc|adobereaderdc-install (new packageID, changed appNewVersion), adobereaderdc-update (changed appNewVersion), webexmeetings (added targetDir and blockingProcesses), loom (downloadURL changed)
 - Labels added: rectangle, knockknock, lulu, element, teamviewerhost, amazonchime, basecamp3, proctortrack, viscosity
 

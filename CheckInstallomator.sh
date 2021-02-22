@@ -9,7 +9,7 @@
 # https://github.com/theile/Installomator
 
 # To check this script use these labels:
-# dbeaverce brave microsoftteams whatsapp citrixworkspace aircall devonthink
+# desktoppr dbeaverce brave microsoftteams whatsapp citrixworkspace aircall devonthink
 
 # MARK: Load the labels
 SELF=$(basename $0)
@@ -76,7 +76,7 @@ xpath() {
 # MARK: Script
 
 if [[ $# -eq 0 ]]; then
-    allLabels=$(grep -E '^[a-z0-9\-]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | tr '\n' ' ')
+    allLabels=$(grep -E '^[a-z0-9\-_]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | tr '\n' ' ')
     allLabels=( ${=allLabels} ) #to separate white space
 else
     allLabels=( ${=@} )
