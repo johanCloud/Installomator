@@ -21,7 +21,7 @@
 #set -x # Debug
 
 VERSION='0.4.20' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-02-??'
+VERSIONDATE='2021-02-22'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
