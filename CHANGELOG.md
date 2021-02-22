@@ -3,8 +3,10 @@
 ## 0.4.20 - 2021-02-??
 - Fixed the printing of labels if no label is given. Previously it would omit a label containing a "_", but that will be included now. If a label has more than one name those are now on individual lines, som they all will be included in the print of labels.
 - Fixed, if DEBUG=1 and script was running as root, so now it will not install anything (earlier it would not install pkgs, but still install apps)
+- Labels changed: onionshare (it's now a dmg, not a pkg)
 - Labels added `appNewVersion`: aquaskk, sidekick
-- Labels added: camostudio, abstract, awsvpnclient, figma, gimp, googleearth, googledrivebackupandsync, intellijideace, jamfconnect, musescore, prism9, promiseutilityr, pycharmce, pymol, ricohpsprinters, ringcentralclassicapp, ringcentralphone, rstudio, universaltypeclient, xeroxphaser7800, zappy, zoomclient, zulujdk11, zulujdk13, zulujdk15
+- Labels added: camostudio, abstract, awsvpnclient, figma, gimp, googleearth, googledrivebackupandsync, intellijideace, jamfconnect, musescore, prism9, promiseutilityr, pycharmce, pymol, ricohpsprinters, ringcentralclassicapp, ringcentralphone, rstudio, universaltypeclient, xeroxphaser7800, zappy, zoomclient, zulujdk11, zulujdk13, zulujdk15, omniplan4
+- Labels not working: omniplan3
 
 ## 0.4.19 - 2021-02-15
 - Added icons to dialog boxes
