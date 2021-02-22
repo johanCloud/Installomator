@@ -487,6 +487,7 @@ firefox_da)
     expectedTeamID="43AQ936H96"
     blockingProcesses=( firefox )
     ;;
+firefoxesr|\
 firefoxesrpkg)
     name="Firefox"
     type="pkg"

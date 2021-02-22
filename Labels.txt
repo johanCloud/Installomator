@@ -58,6 +58,7 @@ ferdi
 figma
 firefox
 firefox_da
+firefoxesr
 firefoxesrpkg
 firefoxpkg
 front
