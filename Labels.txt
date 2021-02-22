@@ -137,6 +137,7 @@ omnigraffle6
 omnigraffle7
 omnioutliner5
 omniplan3
+omniplan4
 omnipresence
 onionshare
 onlyofficedesktop
