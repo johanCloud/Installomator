@@ -66,14 +66,14 @@ BLOCKING_PROCESS_ACTION=prompt_user_loop
 #   - kill         kill process without prompting or giving the user a chance to save
 
 
-# logo-icon used in dialog boxes if apps are blocking
+# logo-icon used in dialog boxes if app is blocking
 LOGO=appstore
 # options:
 #   - appstore      Icon is Apple App Store (default)
 #   - jamf          JAMF Pro
 #   - mosyleb       Mosyle Business
 #   - mosylem       Mosyle Manager (Education)
-# path can also be set in the command call, and if file exists, it will be used.
+# path can also be set in the command call, and if file exists, it will be used, like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"' (spaces are escaped).
 
 
 # install behavior
@@ -764,7 +764,11 @@ printlog "NOTIFY=${NOTIFY}"
 case $LOGO in
     appstore)
         # Apple App Store on Mac
-        LOGO="/System/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+        if [[ $(sw_vers -buildVersion) > "19" ]]; then
+            LOGO="/System/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+        else
+            LOGO="/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+        fi
         ;;
     jamf)
         # Jamf Pro
@@ -781,7 +785,11 @@ case $LOGO in
         ;;
 esac
 if [[ ! -a "${LOGO}" ]]; then
-    LOGO="/System/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+    if [[ $(sw_vers -buildVersion) > "19" ]]; then
+        LOGO="/System/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+    else
+        LOGO="/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+    fi
 fi
 printlog "LOGO=${LOGO}"
 

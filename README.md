@@ -1,4 +1,4 @@
-# Installomator (ST branch)
+# Installomator (ST fork)
 
 _The one installer script to rule them all._
 
@@ -38,7 +38,18 @@ __Options:__
 - `tell_user_then_kill`: Show dialog 2 times, and if the quitting fails, the blocking processes will be killed.
 - `kill`: kill process without prompting or giving the user a chance to save.
 
-If any process was closed, Installomator will try to open the app again, after the update process is done.
+If any process was closed, Installomator will try to open the app again, after the update process is done. (Version 0.4.21 has removed the re-opening as som kind of issue is happening with access to keychain, issue being investigated and hopefully fixed.)
+
+### Logo-icon in dialog boxes if app is blocking
+
+Default is `LOGO=appstore`
+__Options:__
+- `appstore`: Icon is Apple App Store (default)
+- `jamf`: JAMF Pro
+- `mosyleb`: Mosyle Business
+- `mosylem`: Mosyle Manager (Education)
+
+A path can also be set in the command call, and if file exists, it will be used, like `LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"` (spaces are escaped).
 
 ### Notification
 

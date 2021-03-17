@@ -1,6 +1,7 @@
 ## v0.5 - 2020-
 
 ## 0.4.21 - 2021-03-17
+- Added LOGO variable for icons i dialogs, use `LOGO=appstore` (or `jamf` or `mosyleb` or `mosylem`) so the old AppleScript icons is out. Default is `appstore`. (Path to JAMF Pro logo is probably not correct.)
 - Labels added: clevershare2, hpeasyadmin, hpeasystart, clickshare
 
 ## 0.4.20 - 2021-02-22
