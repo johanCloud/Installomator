@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.20' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-02-22'
+VERSION='0.4.21' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-03-17'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -64,6 +64,16 @@ BLOCKING_PROCESS_ACTION=prompt_user_loop
 #                  Show dialog 2 times, and if the quitting fails, the
 #                  blocking processes will be killed.
 #   - kill         kill process without prompting or giving the user a chance to save
+
+
+# logo-icon used in dialog boxes if apps are blocking
+LOGO=appstore
+# options:
+#   - appstore      Icon is Apple App Store (default)
+#   - jamf          JAMF Pro
+#   - mosyleb       Mosyle Business
+#   - mosylem       Mosyle Manager (Education)
+# path can also be set in the command call, and if file exists, it will be used.
 
 
 # install behavior
@@ -202,13 +212,13 @@ runAsUser() {
 displaydialog() { # $1: message $2: title
     message=${1:-"Message"}
     title=${2:-"Installomator"}
-    runAsUser osascript -e "button returned of (display dialog \"$message\" with  title \"$title\" buttons {\"Not Now\", \"Quit and Update\"} default button \"Quit and Update\" with icon caution)"
+    runAsUser osascript -e "button returned of (display dialog \"$message\" with  title \"$title\" buttons {\"Not Now\", \"Quit and Update\"} default button \"Quit and Update\" with icon POSIX file \"$LOGO\")"
 }
 
 displaydialogContinue() { # $1: message $2: title
     message=${1:-"Message"}
     title=${2:-"Installomator"}
-    runAsUser osascript -e "button returned of (display dialog \"$message\" with  title \"$title\" buttons {\"Quit and Update\"} default button \"Quit and Update\" with icon stop)"
+    runAsUser osascript -e "button returned of (display dialog \"$message\" with  title \"$title\" buttons {\"Quit and Update\"} default button \"Quit and Update\" with icon POSIX file \"$LOGO\")"
 }
 
 displaynotification() { # $1: message $2: title
@@ -749,6 +759,31 @@ caseLabel
 
 printlog "BLOCKING_PROCESS_ACTION=${BLOCKING_PROCESS_ACTION}"
 printlog "NOTIFY=${NOTIFY}"
+
+# Finding LOGO to use in dialogs
+case $LOGO in
+    appstore)
+        # Apple App Store on Mac
+        LOGO="/System/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+        ;;
+    jamf)
+        # Jamf Pro
+        LOGO="/Library/Application Support/JAMF/Jamf.app/Contents/Resources/AppIcon.icns"
+        #LOGO="/Library/Application Support/JAMF/Logos/Logo512.png"
+        ;;
+    mosyleb)
+        # Mosyle Business
+        LOGO="/Applications/Business.app/Contents/Resources/AppIcon.icns"
+        ;;
+    mosylem)
+        # Mosyle Manager (education)
+        LOGO="/Applications/Manager.app/Contents/Resources/AppIcon.icns"
+        ;;
+esac
+if [[ ! -a "${LOGO}" ]]; then
+    LOGO="/System/Applications/App Store.app/Contents/Resources/AppIcon.icns"
+fi
+printlog "LOGO=${LOGO}"
 
 # MARK: extract info from data
 if [ -z "$archiveName" ]; then

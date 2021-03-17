@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.20"
+labelsVERSION="0.4.21"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -291,6 +291,21 @@ citrixworkspace)
     downloadURL="https:"$(curl -s -L "https://www.citrix.com/downloads/workspace-app/mac/workspace-app-for-mac-latest.html#ctx-dl-eula-external" | grep "dmg?" | sed "s/.*rel=.\(.*\)..id=.*/\1/") # http://downloads.citrix.com/18823/CitrixWorkspaceApp.dmg?__gda__=1605791892_edc6786a90eb5197fb226861a8e27aa8
     appNewVersion=$(curl -fs https://www.citrix.com/downloads/workspace-app/mac/workspace-app-for-mac-latest.html | grep "<p>Version" | head -1 | cut -d " " -f1 | cut -d ";" -f2 | cut -d "." -f 1-3)
     expectedTeamID="S272Y5R93J"
+    ;;
+clevershare2)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Clevershare"
+    type="dmg"
+    downloadURL=$(curl -fs https://archive.clevertouch.com/clevershare2g | grep -i "_Mac" | tr '"' "\n" | grep "^http.*dmg")
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z-]*_Mac\.([0-9.]*)\.[0-9]*\.dmg$/\1/g' )
+    expectedTeamID="P76M9BE8DQ"
+    ;;
+clickshare)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="ClickShare"
+    type="appInDmgInZip"
+    downloadURL=https://www.barco.com$(curl -fs "https://www.barco.com/en/clickshare/app" | grep -E -o '(\/\S*Download\?FileNumber=R3306192\S*ShowDownloadPage=False)' | tail -1)
+    expectedTeamID="P6CDJZR997"
     ;;
 code42)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
@@ -637,6 +652,20 @@ hazel)
     downloadURL=$(curl -fsI https://www.noodlesoft.com/Products/Hazel/download | grep -i "^location" | awk '{print $2}' | tr -d '\r\n')
     appNewVersion=$(curl -fsI https://www.noodlesoft.com/Products/Hazel/download | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g')
     expectedTeamID="86Z3GCJ4MF"
+    ;;
+hpeasyadmin)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="HP Easy Admin"
+    type="zip"
+    downloadURL="https://ftp.hp.com/pub/softlib/software12/HP_Quick_Start/osx/Applications/HP_Easy_Admin.app.zip"
+    expectedTeamID="6HB5Y2QTA3"
+    ;;
+hpeasystart)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="HP Easy Start"
+    type="zip"
+    downloadURL="https://ftp.hp.com/pub/softlib/software12/HP_Quick_Start/osx/Applications/HP_Easy_Start.app.zip"
+    expectedTeamID="6HB5Y2QTA3"
     ;;
 hyper)
     # credit: Adrian Bühler (@midni9ht)
