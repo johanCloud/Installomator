@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.21' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-03-17'
+VERSION='0.4.23' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-??-??'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -73,6 +73,7 @@ LOGO=appstore
 #   - jamf          JAMF Pro
 #   - mosyleb       Mosyle Business
 #   - mosylem       Mosyle Manager (Education)
+#   - addigy        Addigy
 # path can also be set in the command call, and if file exists, it will be used, like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"' (spaces are escaped).
 
 
@@ -197,7 +198,7 @@ cleanupAndExit() { # $1 = exit code, $2 message
         hdiutil detach "$dmgmount"
     fi
     # If we closed any processes, reopen the app again
-    #reopenClosedProcess
+    reopenClosedProcess
     printlog "################## End Installomator, exit code $1 \n\n"
     exit "$1"
 }
@@ -446,7 +447,10 @@ reopenClosedProcess() {
     
     if [[ $appClosed == 1 ]]; then
         printlog "Telling app $name to open"
-        runAsUser osascript -e "tell app \"$name\" to open"
+        #runAsUser osascript -e "tell app \"$name\" to open"
+        runAsUser open -a "${name}"
+        processuser=$(ps aux | grep -i "${name}")
+        printlog "Reopened ${name} as $processuser"
     fi
 }
 
@@ -571,6 +575,30 @@ installFromPKG() {
         cleanupAndExit 5
     fi
 
+    # Check version of pkg to be installed if packageID is set
+    if [[ $packageID != "" && $appversion != "" ]]; then
+        printlog "Checking package version."
+        pkgutil --expand "$archiveName" "$archiveName"_pkg
+        printlog "$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null)"
+        #appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id="$packageID"][@version]' 2>/dev/null | tr ' ' '\n' | grep version | sed -E 's/.*\"([0-9.]*)\".*/\1/g') # not working with packageID inside
+        appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null | grep "$packageID" | tr ' ' '\n' | grep version | sed -E 's/.*\"([0-9.]*)\".*/\1/g')
+        rm -r "$archiveName"_pkg
+        printlog "Downloaded package $packageID version $appNewVersion"
+        if [[ $appversion == $appNewVersion ]]; then
+            printlog "Downloaded version of $name is the same as installed."
+            if [[ $INSTALL != "force" ]]; then
+                message="$name, version $appNewVersion, is  the latest version."
+                if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+                    printlog "notifying"
+                    displaynotification "$message" "No update for $name!"
+                fi
+                cleanupAndExit 0 "No new version to install"
+            else
+                printlog "Using force to install anyway."
+            fi
+        fi
+    fi
+    
     # skip install for DEBUG
     if [ "$DEBUG" -ne 0 ]; then
         printlog "DEBUG enabled, skipping installation"
@@ -717,10 +745,12 @@ fi
 
 # MARK: argument parsing
 if [[ $# -eq 0 ]]; then
-    printlog "no label provided, printing labels, version $labelsVERSION:"
-    #grep -E '^[a-z0-9\_-]*(\)|\|\\)$' "$0" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
-    grep -E '^[a-z0-9\_-]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
-    exit 0
+    if [[ -z $label ]]; then # check if label is set inside script
+        printlog "no label provided, printing labels, version $labelsVERSION:"
+        #grep -E '^[a-z0-9\_-]*(\)|\|\\)$' "$0" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
+        grep -E '^[a-z0-9\_-]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | sort
+        exit 0
+    fi
 elif [[ $1 == "/" ]]; then
     # jamf uses sends '/' as the first argument
     printlog "shifting arguments for Jamf"
@@ -782,6 +812,10 @@ case $LOGO in
     mosylem)
         # Mosyle Manager (education)
         LOGO="/Applications/Manager.app/Contents/Resources/AppIcon.icns"
+        ;;
+    addigy)
+        # Addigy
+        LOGO="/Library/Addigy/macmanage/MacManage.app/Contents/Resources/atom.icns"
         ;;
 esac
 if [[ ! -a "${LOGO}" ]]; then

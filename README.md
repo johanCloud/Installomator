@@ -50,6 +50,7 @@ __Options:__
 - `jamf`: JAMF Pro
 - `mosyleb`: Mosyle Business
 - `mosylem`: Mosyle Manager (Education)
+- `addigy`: Addigy
 
 A path can also be set in the command call, and if file exists, it will be used, like `LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"` (spaces are escaped).
 

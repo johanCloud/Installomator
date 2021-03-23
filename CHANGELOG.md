@@ -1,6 +1,13 @@
 ## v0.5 - 2020-
 
+## 0.4.23 - 2021-??-??
+- Reopening of apps put back again (using `open` command instead of `osascript`)
+- Version checking added to PKGs if `packageID` variable is set.
+- Addigy added as LOGO
+- Labels added: pdfsam, odrive
+
 ## 0.4.21 - 2021-03-17
+- Removed reopening of apps (if they were closed) as it gave some problems for apps using the keychain.
 - Added LOGO variable for icons i dialogs, use `LOGO=appstore` (or `jamf` or `mosyleb` or `mosylem`) so the old AppleScript icons is out. Default is `appstore`. (Path to JAMF Pro logo is probably not correct.)
 - Labels added: clevershare2, hpeasyadmin, hpeasystart, clickshare
 

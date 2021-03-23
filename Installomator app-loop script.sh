@@ -18,7 +18,7 @@ fi
 
 for item in $what; do
     #echo $item
-    ${destFile} ${item} #NOTIFY=all #BLOCKING_PROCESS_ACTION=tell_user_then_kill #INSTALL=force
+    ${destFile} ${item} LOGO=mosyleb #NOTIFY=all #BLOCKING_PROCESS_ACTION=tell_user_then_kill #INSTALL=force
     if [ $? != 0 ]; then
     # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
         echo "[$(DATE)] Error installing ${item}. Exit code $?"
@@ -61,6 +61,16 @@ exit 0
 #                  Show dialog 2 times, and if the quitting fails, the
 #                  blocking processes will be killed.
 #   - kill         kill process without prompting or giving the user a chance to save
+
+# logo-icon used in dialog boxes if app is blocking
+# LOGO=appstore
+# options:
+#   - appstore      Icon is Apple App Store (default)
+#   - jamf          JAMF Pro
+#   - mosyleb       Mosyle Business
+#   - mosylem       Mosyle Manager (Education)
+#   - addigy        Addigy
+# path can also be set in the command call, and if file exists, it will be used, like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"' (spaces are escaped).
 
 # install behavior
 # Default is

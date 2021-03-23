@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.21"
+labelsVERSION="0.4.23"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -951,6 +951,15 @@ obsidian)
     appNewVersion=$(versionFromGit obsidianmd obsidian-releases)
     expectedTeamID="6JSW4SJWN9"
     ;;
+odrive)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="odrive"
+    type="pkg"
+    packageID="com.oxygen.odrive.installer-prod.pkg"
+    # https://docs.odrive.com/docs/odrive-usage-guide#install-desktop-sync
+    downloadURL="https://www.odrive.com/downloaddesktop?platform=mac"
+    expectedTeamID="N887K88VYZ"
+    ;;
 omnidisksweeper)
     name="OmniDiskSweeper"
     type="dmg"
@@ -1042,6 +1051,13 @@ pacifist)
     type="dmg"
     downloadURL="https://charlessoft.com/cgi-bin/pacifist_download.cgi?type=dmg"
     expectedTeamID="HRLUCP7QP4"
+    ;;
+pdfsam)
+    name="PDFsam Basic"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit torakiki pdfsam)
+    appNewVersion=$(versionFromGit torakiki pdfsam)
+    expectedTeamID="8XM3GHX436"
     ;;
 pitch)
     name="Pitch"
