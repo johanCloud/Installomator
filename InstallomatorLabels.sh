@@ -943,11 +943,12 @@ obsidian)
     # credit: Søren Theilgaard (@theilgaard)
     name="Obsidian"
     type="dmg"
-    if [[ $(arch) == "arm64" ]]; then
-        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep "arm64" )
-    elif [[ $(arch) == "i386" ]]; then
-        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep -v "arm64" )
-    fi
+#    if [[ $(arch) == "arm64" ]]; then
+#        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep "arm64" )
+#    elif [[ $(arch) == "i386" ]]; then
+#        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep -v "arm64" )
+#    fi
+    downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases )
     appNewVersion=$(versionFromGit obsidianmd obsidian-releases)
     expectedTeamID="6JSW4SJWN9"
     ;;

@@ -24,6 +24,9 @@ echo "LabalFile: $labelFile"
 ${SELFLOCATION}/Installomator.sh longversion
 echo
 
+archLabels=( brave googlechrome notion slack vlc zulujdk11 zulujdk13 zulujdk15 )
+#archLabels=( ${=archLabels} )
+
 # MARK: check minimal macOS requirement
 autoload is-at-least
 
@@ -73,15 +76,30 @@ xpath() {
     fi
 }
 
+# Handling architecture, so I can verify both architectures
+arch () {
+    echo $fixedArch
+}
+
+
 # MARK: Script
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
 
 if [[ $# -eq 0 ]]; then
     allLabels=$(grep -E '^[a-z0-9\_-]*(\)|\|\\)$' "${labelFile}" | tr -d ')|\\' | grep -v -E '^(broken.*|longversion|version|valuesfromarguments)$' | tr '\n' ' ')
     allLabels=( ${=allLabels} ) #to separate white space
 else
     allLabels=( ${=@} )
+    archLabels=( ${=allLabels} )
 fi
+#echo $allLabels
 
+for fixedArch in i386 arm64; do
+echo "Architecture: $fixedArch"
+echo
 countWarning=0
 countError=0
 for label in $allLabels; do
@@ -112,20 +130,20 @@ for label in $allLabels; do
         echo "No appNewVersion!"
     else
         if [[ $( echo "$appNewVersion" | grep -i "[0-9.]" ) == "" || $appNewVersion == "" ]]; then
-            echo "-> !! ERROR in appNewVersion"
+            echo "${RED}-> !! ERROR in appNewVersion${NC}"
             labelError=1
         else
             if [[ $appNewVersion != $( echo "$appNewVersion" | sed -E 's/[^0-9]*([0-9.]*)[^0-9]*/\1/g' ) ]]; then
-                echo "Warning: Version contain not only numbers and dots."
+                echo "${YELLOW}Warning: Version contain not only numbers and dots.${NC}"
                 labelWarning=1
             fi
             echo "Version: $appNewVersion" ;
         fi
     fi
     if curl -sfL --output /dev/null -r 0-0 "$downloadURL" ; then
-        echo "OK: downloadURL works OK"
+        echo "${GREEN}OK: downloadURL works OK${NC}"
         if [[ $(echo "$downloadURL" | sed -E 's/.*\.([a-zA-Z]*)\s*/\1/g' ) == "${expectedExtension}" ]]; then
-            echo "OK: download extension MATCH on ${expectedExtension}"
+            echo "${GREEN}OK: download extension MATCH on ${expectedExtension}${NC}"
         else
             if [[ $(echo "$downloadURL" | grep -io "github.com") != "github.com" ]]; then
                 URLheader=$( curl -fsIL "$downloadURL" )
@@ -139,9 +157,9 @@ for label in $allLabels; do
                     fi
                     URLextension=${URLextension:l}
                     if [[ "${URLextension}" == "${expectedExtension}" ]]; then
-                        echo "OK: download extension MATCH on ${URLextension}"
+                        echo "${GREEN}OK: download extension MATCH on ${URLextension}${NC}"
                     else
-                        echo "-> !! ERROR in download extension, expected ${expectedExtension}, but got ${URLextension}."
+                        echo "${RED}-> !! ERROR in download extension, expected ${expectedExtension}, but got ${URLextension}.${NC}"
                         labelError=1
                     fi
                 else
@@ -152,27 +170,29 @@ for label in $allLabels; do
             fi
         fi
     else
-        echo "-> !! ERROR in downloadURL"
+        echo "${RED}-> !! ERROR in downloadURL${NC}"
         labelError=1
     fi
-    if [[ $labelWarning != 0 ]]; then; echo "########## Warning in label: $label"; ((countWarning++)); fi
-    if [[ $labelError != 0 ]]; then; echo "########## ERROR in label: $label"; ((countError++)); fi
+    if [[ $labelWarning != 0 ]]; then; echo "${YELLOW}########## Warning in label: $label${NC}"; ((countWarning++)); fi
+    if [[ $labelError != 0 ]]; then; echo "${RED}########## ERROR in label: $label${NC}"; ((countError++)); fi
 
-    echo ""
+    echo
+done
+allLabels=( ${=archLabels} )
 done
 
 ${SELFLOCATION}/Installomator.sh version
-echo ""
+echo
 
 if [[ countWarning > 0 ]]; then
-    echo "Warnings counted: $countWarning"
+    echo "${YELLOW}Warnings counted: $countWarning${NC}"
 else
-    echo "No warnings detected!"
+    echo "${GREEN}No warnings detected!${NC}"
 fi
 if [[ countError > 0 ]]; then
-    echo "ERRORS counted: $countError"
+    echo "${RED}ERRORS counted: $countError${NC}"
 else
-    echo "No errors detected!"
+    echo "${GREEN}No errors detected!${NC}"
 fi
 
 echo "Done!"

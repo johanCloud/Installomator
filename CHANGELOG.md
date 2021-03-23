@@ -1,10 +1,11 @@
 ## v0.5 - 2020-
 
-## 0.4.24 - 2021-??-??
+## 0.4.24 - 2021-03-23
 - Reopening of apps put back again (using `open` command instead of `osascript`)
 - Version checking added to PKGs if `packageID` variable is set.
 - Addigy added as LOGO
 - Labels added: pdfsam, odrive
+- Labels changed: obsidian is universal
 
 ## 0.4.21 - 2021-03-17
 - Removed reopening of apps (if they were closed) as it gave some problems for apps using the keychain.
