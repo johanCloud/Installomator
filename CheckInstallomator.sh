@@ -97,11 +97,11 @@ else
 fi
 #echo $allLabels
 
+countWarning=0
+countError=0
 for fixedArch in i386 arm64; do
 echo "Architecture: $fixedArch"
 echo
-countWarning=0
-countError=0
 for label in $allLabels; do
     echo "########## $label"
     labelWarning=0; labelError=0; expectedExtension=""; URLextension=""
