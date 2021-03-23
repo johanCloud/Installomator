@@ -1,6 +1,6 @@
 ## v0.5 - 2020-
 
-## 0.4.23 - 2021-??-??
+## 0.4.24 - 2021-??-??
 - Reopening of apps put back again (using `open` command instead of `osascript`)
 - Version checking added to PKGs if `packageID` variable is set.
 - Addigy added as LOGO
