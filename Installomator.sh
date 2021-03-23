@@ -579,9 +579,9 @@ installFromPKG() {
     if [[ $packageID != "" && $appversion != "" ]]; then
         printlog "Checking package version."
         pkgutil --expand "$archiveName" "$archiveName"_pkg
-        printlog "$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null)"
+        #printlog "$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null)"
         #appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id="$packageID"][@version]' 2>/dev/null | tr ' ' '\n' | grep version | sed -E 's/.*\"([0-9.]*)\".*/\1/g') # not working with packageID inside
-        appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null | grep "$packageID" | tr ' ' '\n' | grep version | sed -E 's/.*\"([0-9.]*)\".*/\1/g')
+        appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null | grep -i "$packageID" | tr ' ' '\n' | grep -i version | cut -d \" -f 2) #sed -E 's/.*\"([0-9.]*)\".*/\1/g'
         rm -r "$archiveName"_pkg
         printlog "Downloaded package $packageID version $appNewVersion"
         if [[ $appversion == $appNewVersion ]]; then
