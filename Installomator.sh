@@ -20,7 +20,7 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.24' # This version branched by Søren Theilgaard
+VERSION='0.4.25' # This version branched by Søren Theilgaard
 VERSIONDATE='2021-03-??'
 VERSIONBRANCH='Søren Theilgaard'
 
