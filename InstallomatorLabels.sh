@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.4.23"
+labelsVERSION="0.4.24"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -1047,6 +1047,13 @@ openvpnconnectv3)
     downloadURL="https://openvpn.net/downloads/openvpn-connect-v3-macos.dmg"
     expectedTeamID="ACV7L3WCD8"
     ;;
+opera)
+    name="Opera"
+    type="dmg"
+    downloadURL="https://get.geo.opera.com/ftp/pub/opera/desktop/"$( curl -fs "https://get.geo.opera.com/ftp/pub/opera/desktop/" | grep href | tail -1 | tr '"' '\n' | grep "/" | head -1 )"mac/Opera_"$( curl -fs "https://get.geo.opera.com/ftp/pub/opera/desktop/" | grep href | tail -1 | tr '"' '\n' | grep "/" | head -1 | sed -E 's/^([0-9.]*)\//\1/g' )"_Setup.dmg"
+    appNewVersion="$( curl -fs "https://get.geo.opera.com/ftp/pub/opera/desktop/" | grep href | tail -1 | tr '"' '\n' | grep "/" | head -1 | sed -E 's/^([0-9]*\.[0-9]*).*\//\1/g' )"
+    expectedTeamID="A2P9LX4JPN"
+    ;;
 pacifist)
     name="Pacifist"
     type="dmg"
@@ -1169,6 +1176,13 @@ resiliosynchome)
     downloadURL="https://download-cdn.resilio.com/stable/osx/Resilio-Sync.dmg"
     expectedTeamID="2953Z5SZSK"
     ;;
+retrobatch)
+    name="Retrobatch"
+    type="zip"
+    downloadURL="https://flyingmeat.com/download/Retrobatch.zip"
+    appNewVersion=$(curl -fs "https://flyingmeat.com/retrobatch/" | grep -i download | grep -i zip | grep -iv Documentation | sed -E 's/.*Download.*href.*https.*zip.*Retrobatch ([0-9.]*)<.*/\1/g')
+    expectedTeamID="WZCN9HJ4VP"
+    ;;
 ricohpsprinters)
     name="Ricoh Printers"
     type="pkgInDmg"
@@ -1212,6 +1226,13 @@ ringcentralphone)
     blockingProcesses=( "RingCentral Phone" )
     #Company="RingCentral"
     ;;
+rocket)
+    name="Rocket"
+    type="dmg"
+    downloadURL="https://macrelease.matthewpalmer.net/Rocket.dmg"
+    appNewVersion=""
+    expectedTeamID="Z4JV2M65MH"
+    ;;
 royaltsx)
     name="Royal TSX"
     type="dmg"
@@ -1235,6 +1256,12 @@ santa)
     downloadURL=$(downloadURLFromGit google santa)
     appNewVersion=$(versionFromGit google santa)
     expectedTeamID="EQHXZ8M8AV"
+    ;;
+screamingfrogseospider)
+    name="Screaming Frog SEO Spider"
+    type="dmg"
+    downloadURL="https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-14.3.dmg"
+    expectedTeamID="CAHEVC3HZC"
     ;;
 sfsymbols)
     name="SF Symbols"
@@ -1371,6 +1398,13 @@ swiftruntimeforcommandlinetools)
     type="pkgInDmg"
     downloadURL="https://updates.cdn-apple.com/2019/cert/061-41823-20191025-5efc5a59-d7dc-46d3-9096-396bb8cb4a73/SwiftRuntimeForCommandLineTools.dmg"
     expectedTeamID="Software Update"
+    ;;
+tableaureader)
+    name="Tableau Reader"
+    type="pkgInDmg"
+    packageID="com.tableausoftware.reader.app"
+    downloadURL="https://www.tableau.com/downloads/reader/mac"
+    expectedTeamID="QJ4XPRK37C"
     ;;
 taskpaper)
     # credit: Drew Diver (@grumpydrew on MacAdmins Slack)
