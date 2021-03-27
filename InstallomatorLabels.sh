@@ -232,6 +232,13 @@ bitwarden)
     appNewVersion=$(versionFromGit bitwarden desktop )
     expectedTeamID="LTZ2PFU5D6"
     ;;
+blender)
+    name="blender"
+    type="dmg"
+    downloadURL=$(redirect=$(curl -sfL https://www.blender.org/download/ | sed 's/.*href="//' | sed 's/".*//' | grep .dmg) && curl -sfL "$redirect" | sed 's/.*href="//' | sed 's/".*//' | grep .dmg)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)-.*/\1/g' )
+    expectedTeamID="68UA947AUU"
+    ;;
 bluejeans)
     name="BlueJeans"
     type="pkg"
@@ -244,7 +251,12 @@ boxdrive)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Box"
     type="pkg"
-    downloadURL="https://e3.boxcdn.net/box-installers/desktop/releases/mac/Box.pkg"
+    if [[ $(arch) == "arm64" ]]; then
+        #Note: https://support.box.com/hc/en-us/articles/1500004479962-Box-Drive-support-on-devices-with-M1-chips
+        downloadURL="https://e3.boxcdn.net/desktop/pre-releases/mac/BoxDrive.2.20.140-M1-beta.pkg"
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL="https://e3.boxcdn.net/box-installers/desktop/releases/mac/Box.pkg"
+    fi
     expectedTeamID="M683GB7CPW"
     ;;
 brave)
@@ -1416,7 +1428,7 @@ taskpaper)
 teamviewer)
     name="TeamViewer"
     type="pkgInDmg"
-    pkgName="Install TeamViewer.pkg"
+    pkgName="Install TeamViewer.app/Contents/Resources/Install TeamViewer.pkg"
     downloadURL="https://download.teamviewer.com/download/TeamViewer.dmg"
     expectedTeamID="H7UGFBUGV6"
     ;;
@@ -1424,7 +1436,7 @@ teamviewerhost)
     name="TeamViewerHost"
     type="pkgInDmg"
     packageID="com.teamviewer.teamviewerhost"
-    downloadURL="https://download.teamviewer.com/download/TeamViewerHost.dmg"
+    pkgName="Install TeamViewerHost.app/Contents/Resources/Install TeamViewerHost.pkg"    downloadURL="https://download.teamviewer.com/download/TeamViewerHost.dmg"
     expectedTeamID="H7UGFBUGV6"
     #blockingProcessesMaxCPU="5" # Future feature
     #Company="TeamViewer GmbH"

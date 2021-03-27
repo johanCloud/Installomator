@@ -803,7 +803,6 @@ case $LOGO in
     jamf)
         # Jamf Pro
         LOGO="/Library/Application Support/JAMF/Jamf.app/Contents/Resources/AppIcon.icns"
-        #LOGO="/Library/Application Support/JAMF/Logos/Logo512.png"
         ;;
     mosyleb)
         # Mosyle Business

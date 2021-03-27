@@ -1,7 +1,8 @@
 ## v0.5 - 2020-
 
 ## 0.4.25 - 2021-??-??
-- Labels added: retrobatch, rocket, screamingfrogseospider, tableaureader
+- Labels added: blender, opera, retrobatch, rocket, screamingfrogseospider, tableaureader
+- Labels changed/fixed: teamviewer, teamviewerhost
 
 ## 0.4.24 - 2021-03-23
 - Reopening of apps put back again (using `open` command instead of `osascript`)

@@ -25,7 +25,7 @@ ${SELFLOCATION}/Installomator.sh longversion
 echo
 
 # Labels with the arch call for different versions for Intel and Apple Silicon should be listed here:
-archLabels=( brave googlechrome notion slack vlc zulujdk11 zulujdk13 zulujdk15 )
+archLabels=( boxdrive brave googlechrome notion slack vlc zulujdk11 zulujdk13 zulujdk15 )
 
 # MARK: check minimal macOS requirement
 autoload is-at-least
@@ -93,7 +93,7 @@ if [[ $# -eq 0 ]]; then
     allLabels=( ${=allLabels} ) #to separate white space
 else
     allLabels=( ${=@} )
-    archLabels=( ${=allLabels} )
+    #archLabels=( ${=allLabels} )
 fi
 #echo $allLabels
 
@@ -176,9 +176,15 @@ for label in $allLabels; do
     if [[ $labelWarning != 0 ]]; then; echo "${YELLOW}########## Warning in label: $label${NC}"; ((countWarning++)); fi
     if [[ $labelError != 0 ]]; then; echo "${RED}########## ERROR in label: $label${NC}"; ((countError++)); fi
 
+    if (($archLabels[(Ie)$label])); then
+        secondRoundLabels="${secondReoundLabels} $label"
+    fi
+    
     echo
 done
-allLabels=( ${=archLabels} )
+allLabels=( ${=secondRoundLabels} )
+archLabels=()
+echo
 done
 
 ${SELFLOCATION}/Installomator.sh version
