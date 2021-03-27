@@ -2,7 +2,8 @@
 
 ## 0.4.25 - 2021-??-??
 - Labels added: blender, opera, retrobatch, rocket, screamingfrogseospider, tableaureader
-- Labels changed/fixed: teamviewer, teamviewerhost
+- Labels changed/fixed: omniplan3, teamviewer, teamviewerhost
+- Labels removed: skitch (moved to App Store))
 
 ## 0.4.24 - 2021-03-23
 - Reopening of apps put back again (using `open` command instead of `osascript`)

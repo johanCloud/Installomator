@@ -86,6 +86,7 @@ arch () {
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
 if [[ $# -eq 0 ]]; then
@@ -97,10 +98,11 @@ else
 fi
 #echo $allLabels
 
+secondReoundLabels=""
 countWarning=0
 countError=0
 for fixedArch in i386 arm64; do
-echo "Architecture: $fixedArch"
+echo "${BLUE}Architecture: $fixedArch${NC}"
 echo
 for label in $allLabels; do
     echo "########## $label"
@@ -177,7 +179,7 @@ for label in $allLabels; do
     if [[ $labelError != 0 ]]; then; echo "${RED}########## ERROR in label: $label${NC}"; ((countError++)); fi
 
     if (($archLabels[(Ie)$label])); then
-        secondRoundLabels="${secondReoundLabels} $label"
+        secondRoundLabels+=( "$label" )
     fi
     
     echo
