@@ -1,9 +1,7 @@
-## v0.5 - 2020-
-
-## 0.4.25 - 2021-??-??
+## 0.5.0 - 2021-03-28
 - Labels added: blender, opera, retrobatch, rocket, screamingfrogseospider, tableaureader
 - Labels changed/fixed: omniplan3, teamviewer, teamviewerhost
-- Labels removed: skitch (moved to App Store))
+- Labels removed: skitch (moved to App Store)
 
 ## 0.4.24 - 2021-03-23
 - Reopening of apps put back again (using `open` command instead of `osascript`)
@@ -96,7 +94,7 @@
 ## v0.4.9 - 2020-11-11
 
 - Testet with macOS 11 Big Sur
-- Default BLOCKING_PROCESS_ACTION=prompt_user_loop
+- Default `BLOCKING_PROCESS_ACTION=prompt_user_loop`
 - FIxed a bug preventing labels using github from working
 - Labels added: keka
 - Removed Label cdef, as it does not contain signing.

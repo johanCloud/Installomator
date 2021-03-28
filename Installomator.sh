@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.4.25' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-03-??'
+VERSION='0.5.0' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-03-28'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -100,7 +100,7 @@ INSTALL=""
 #     - pkg
 #     - zip
 #     - pkgInDmg
-#     - pkgInZip (not yet tested)
+#     - pkgInZip
 #     - appInDmgInZip
 #
 # - packageID: (optional)

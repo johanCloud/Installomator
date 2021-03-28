@@ -18,11 +18,17 @@ _See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator)
 
 ### Extra variables in labels
 
-`appNewVersion` is the variable to use for the online version of the app/software, so if the version can be obtained from the web site or similar place, the script can evaluate very quickly if it needs an update.
+- `appNewVersion` (optional, but recommended):
+Version of the downloaded software.
+If given, it will be compared to installed version, to see if download is different.
+It does not check for newer or not, only different.
+Not always easy to figure out how to make this. Sometimes this is listed on the downloads page, sometimes in other places. And how can we isolate it in a genral manner? (See `abstract`, `bbedit`, `brave`, `desktoppr`, `googlechrome`, or `omnidisksweeper`).
 
-`packageID` is a variable for pkg bundle IDs. Very usefull if a pkg only install command line tools, or the like that does not install an app. See label `installomator_st` and `desktoppr`.
+- `packageID` (optional, but recommended for pkgs without an app)
+This variable is for pkg bundle IDs. Very usefull if a pkg only install command line tools, or the like that does not install an app. (See label `desktoppr`, `golang`, `installomator_st`, `odrive`, or `teamviewerhost`).
 
 I will try to add new labels when they are submittet to scriptingosx, and maybe I will see if I can create the `appNewVersion` and/or the `packageID` variable(s).
+
 
 ### Handling of blocking processes
 
@@ -40,7 +46,6 @@ __Options:__
 
 If any process was closed, Installomator will try to open the app again, after the update process is done. 
 
-(Version 0.4.21 has removed the re-opening as som kind of issue is happening with access to keychain, issue being investigated and hopefully fixed.)
 
 ### Logo-icon in dialog boxes if app is blocking
 
@@ -58,7 +63,7 @@ A path can also be set in the command call, and if file exists, it will be used,
 
 Added a `NOTIFY` option `all`, so notifications can be shown to the user even if no upgrade is available, or if there is a failure in download. This is usable if the user click install in Self Service, then we want them to know, when we are done, no matter what happened. `success` is still default so `NOTIFY=all` needs to be added to the command to get all the notifications.
 
-### Force installation
+### Install behavior (force installation)
 
 Also added an `INSTALL` variable to be set to `force` if you want the software to be installed even though it is already install in the latest version. Can at least be used to install the latest universal version, even if the Intel-only built is installed, if a label is improved for this. And I simply wanted to force installation, if that was needed.
 
