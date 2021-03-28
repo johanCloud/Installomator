@@ -25,6 +25,7 @@ basecamp3
 bbedit
 bettertouchtool
 bitwarden
+blender
 bluejeans
 boxdrive
 brave
@@ -32,6 +33,7 @@ calibre
 camostudio
 camtasia
 citrixworkspace
+clevershare2
 code42
 coderunner
 cormorant
@@ -78,6 +80,8 @@ gpgsync
 grandperspective
 handbrake
 hazel
+hpeasyadmin
+hpeasystart
 hyper
 icons
 inkscape
@@ -131,6 +135,7 @@ nomad
 nomadlogin
 notion
 obsidian
+odrive
 omnidisksweeper
 omnifocus3
 omnigraffle6
@@ -143,7 +148,9 @@ onionshare
 onlyofficedesktop
 openvpnconnect
 openvpnconnectv3
+opera
 pacifist
+pdfsam
 pitch
 plantronicshub
 plisteditpro
@@ -159,21 +166,23 @@ ramboxce
 rectangle
 redeye
 resiliosynchome
+retrobatch
 ricohpsprinters
 ringcentralapp
 ringcentralclassicapp
 ringcentralmeetings
 ringcentralphone
+rocket
 royaltsx
 rstudio
 santa
+screamingfrogseospider
 sfsymbols
 sidekick
 signal
 silnite
 sizeup
 sketch
-skitch
 skype
 slack
 snagit
@@ -187,6 +196,7 @@ spotify
 sublimetext
 suspiciouspackage
 swiftruntimeforcommandlinetools
+tableaureader
 taskpaper
 teamviewer
 teamviewerhost
@@ -201,6 +211,7 @@ torbrowser
 tunnelbear
 tunnelblick
 umbrellaroamingclient
+universaltypeclient
 universaltypeclient
 vagrant
 vanilla
