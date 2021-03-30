@@ -1354,6 +1354,14 @@ sfsymbols)
     downloadURL="https://developer.apple.com/design/downloads/SF-Symbols.dmg"
     expectedTeamID="Software Update"
     ;;
+shield)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="Shield"
+    type="zip"
+    downloadURL=$(downloadURLFromGit theevilbit Shield)
+    appNewVersion=$(versionFromGit theevilbit Shield)
+    expectedTeamID="33YRLYRBYV"
+    ;;
 sidekick)
     name="Sidekick"
     type="dmg"

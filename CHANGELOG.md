@@ -1,5 +1,5 @@
 ## 0.5.1
-- Labels added: awscli2, cryptomator, gotomeeting, gyazo, gyazogif, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, krita, macfuse, nvivo, snapgeneviewer, veracrypt
+- Labels added: awscli2, cryptomator, gotomeeting, gyazo, gyazogif, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, krita, macfuse, nvivo, shield, snapgeneviewer, veracrypt
 
 ## 0.5.0 - 2021-03-28
 - Labels added: blender, opera, retrobatch, rocket, screamingfrogseospider, tableaureader
