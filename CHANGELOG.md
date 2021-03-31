@@ -1,5 +1,6 @@
-## 0.5.1
+## 0.5.1 - 2021-??-??
 - Labels added: awscli2, cakebrew, cryptomator, gotomeeting, gyazo, gyazogif, jetbrainsintellijidea, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, krita, macfuse, nextcloud, nvivo, rocketchat, shield, snapgeneviewer, veracrypt
+- Labels changed: visualstudiocode (now universal)
 
 ## 0.5.0 - 2021-03-28
 - Labels added: blender, opera, retrobatch, rocket, screamingfrogseospider, tableaureader
