@@ -31,6 +31,9 @@ longversion)
     downloadURL="https://app-updates.agilebits.com/download/OPM7"
     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[0-9a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="2BUA8C4S2C"
+    blockingProcesses=( "1Password Extension Helper" "1Password 7" "1Password (Safari)" "1PasswordNativeMessageHost" "1PasswordSafariAppExtension" )
+    #forcefulQuit=YES
+    #Company="Agilebits"
     ;;
 8x8)
     # credit: #D-A-James from MacAdmins Slack and Isaac Ordonez, Mann consulting (@mannconsulting)
@@ -40,6 +43,7 @@ longversion)
     # As for appNewVersion, it needs to be checked for newer version than 7.2.4
     appNewVersion=$(curl -fs -L https://support.8x8.com/cloud-phone-service/voice/work-desktop/download-8x8-work-for-desktop | grep -m 1 -o "https.*dmg" | sed 's/\"//' | awk '{print $1}' | sed -E 's/.*-v([0-9\.]*)[-\.]*.*/\1/' )
     expectedTeamID="FC967L3QRG"
+    #Company="8x8"
     ;;
 abstract)
     name="Abstract"
@@ -48,6 +52,7 @@ abstract)
     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="77MZLZE47D"
     Company="Elastic Projects, Inc"
+    #Company="Elastic Projects, Inc"
     ;;
 adobebrackets)
     # credit: Adrian Bühler (@midni9ht)
