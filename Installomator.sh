@@ -99,6 +99,7 @@ INSTALL=""
 #     - dmg
 #     - pkg
 #     - zip
+#     - tbz
 #     - pkgInDmg
 #     - pkgInZip
 #     - appInDmgInZip
