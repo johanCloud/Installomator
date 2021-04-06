@@ -25,7 +25,7 @@ ${SELFLOCATION}/Installomator.sh longversion
 echo
 
 # Labels with the arch call for different versions for Intel and Apple Silicon should be listed here:
-archLabels=( boxdrive brave googlechrome notion slack vlc zulujdk11 zulujdk13 zulujdk15 )
+archLabels=( boxdrive brave googlechrome notion vlc zulujdk11 zulujdk13 zulujdk15 )
 
 # MARK: check minimal macOS requirement
 autoload is-at-least
