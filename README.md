@@ -1,4 +1,4 @@
-# Installomator (ST fork)
+# Installomator (Theile fork)
 
 _The one installer script to rule them all._
 
@@ -76,7 +76,7 @@ The two scripts with `app` in the name is the script, that should be inside Mosy
 I have signed and notarized the pkg. And now you can update Installomator_ST from within Installomator itself.
 `/usr/local/bin/Installomator.sh installomator_st`
 
-## Like the original Installomator, this text apply for this brach version:
+## Like the original Installomator, this text apply for this fork version:
 Your production and deployment environment will be different, please test thoroughly before rolling it out to your production.
 
 I have put a lot of work into making it stable and safe, but I cannot - of course - make _any_ promises that it won't break in some not yet encountered edge case.

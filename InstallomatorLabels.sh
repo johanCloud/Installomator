@@ -385,6 +385,14 @@ dangerzone)
     downloadURL=$(curl -s https://dangerzone.rocks/ | grep https://github.com/firstlookmedia/dangerzone/releases/download | grep \.dmg | cut -d'"' -f2)
     expectedTeamID="P24U45L8P5"
     ;;
+darktable)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="darktable"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit darktable-org darktable)
+    appNewVersion=$(versionFromGit darktable-org darktable)
+    expectedTeamID="85Q3K4KQRY"
+    ;;
 dbeaverce)
     # credit: Adrian Bühler (@midni9ht)
     name="DBeaver"
@@ -756,6 +764,7 @@ inkscape)
     #appNewVersion=$(curl -fsJL https://inkscape.org/release/  | grep "<h2>Inkscape" | cut -d '>' -f 3 | cut -d '<' -f 1 | sed 's/[^0-9.]*//g') # Can't figure out where exact new version is found. Currently returns 1.0, but version is "1.0.0 (4035a4f)"
     expectedTeamID="SW3D6BB6A6"
     ;;
+installomator_theile|\
 installomator_st)
     # credit: Søren Theilgaard (@theilgaard)
     name="Installomator"
@@ -992,6 +1001,13 @@ menumeters)
     downloadURL=$(downloadURLFromGit yujitach MenuMeters )
     appNewVersion=$(versionFromGit yujitach MenuMeters )
     expectedTeamID="95AQ7YKR5A"
+    ;;
+miro)
+    # credit: @matins
+    name="Miro"
+    type="dmg"
+    downloadURL="https://desktop.miro.com/platforms/darwin/Miro.dmg"
+    expectedTeamID="M3GM7MFY7U"
     ;;
 musescore)
     name="MuseScore 3"

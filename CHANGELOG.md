@@ -1,5 +1,6 @@
 ## 0.5.1 - 2021-??-??
-- Labels added: awscli2, cakebrew, cryptomator, gotomeeting, gyazo, gyazogif, jetbrainsintellijidea, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, krita, macfuse, nextcloud, nvivo, rocketchat, shield, snapgeneviewer, veracrypt
+- Changed pkg name to match my GitHub handle, rather than my initials (also added installomator_theile label, still keeping installomator_st, but it is discontinued)
+- Labels added: awscli2, cakebrew, cryptomator, darktable, gotomeeting, gyazo, gyazogif, jetbrainsintellijidea, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, krita, macfuse, miro, nextcloud, nvivo, rocketchat, shield, snapgeneviewer, veracrypt
 - Labels changed: visualstudiocode (now universal), OmniGroup xpath statements improved
 
 ## 0.5.0 - 2021-03-28

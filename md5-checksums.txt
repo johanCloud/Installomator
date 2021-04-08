@@ -1,0 +1,10 @@
+md5 checksums on pkg files
+
+Check with md5 command
+md5 -q Installomator_ST-0.5.0.pkg
+
+0.5.0 : fe80eb8332c8ab1e05786b93cb0d4aa5
+0.4.24: 56def76284fd1222408b7e579089b2a9
+0.4.21: 864c75e90f2f37eb1137984cf241d5a7
+0.4.20: b859cd05760917dacd5a2ec5a681c4bf
+0.4.19: e42ddd36d493f26dd2ad0e93187f21d4
