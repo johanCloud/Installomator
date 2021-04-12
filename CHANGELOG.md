@@ -1,5 +1,6 @@
 ## 0.5.1 - 2021-??-??
 - Fixed a bug in a variable name that prevented updateTool to be used
+- added `type` variable for value `"updateronly"` if the label should only run an updater tool.
 - Changed pkg name to match my GitHub handle, rather than my initials (also added installomator_theile label, still keeping installomator_st, but it is discontinued)
 - Labels added: awscli2, cakebrew, cryptomator, darktable, gotomeeting, gyazo, gyazogif, jetbrainsintellijidea, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, jetbrainspycharm, jetbrainspycharmce (same as pycharmce), krita, macfuse, miro, nextcloud, nvivo, rocketchat, shield, snapgeneviewer, veracrypt
 - Labels changed: visualstudiocode (now universal), OmniGroup xpath statements improved

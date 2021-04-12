@@ -103,6 +103,7 @@ INSTALL=""
 #     - pkgInDmg
 #     - pkgInZip
 #     - appInDmgInZip
+#     - updateronly     This last one is for labels that should only run an updateTool (see below)
 #
 # - packageID: (optional)
 #   The package ID of a pkg
@@ -862,6 +863,8 @@ if [ -z "$archiveName" ]; then
         *InZip)
             archiveName="${name}.zip"
             ;;
+        updateronly)
+            ;;
         *)
             printlog "Cannot handle type $type"
             cleanupAndExit 99
@@ -881,6 +884,8 @@ if [ -z "$targetDir" ]; then
             ;;
         pkg*)
             targetDir="/"
+            ;;
+        updateronly)
             ;;
         *)
             printlog "Cannot handle type $type"
@@ -907,18 +912,20 @@ fi
 printlog "Changing directory to $tmpDir"
 if ! cd "$tmpDir"; then
     printlog "error changing directory $tmpDir"
-    #rm -Rf "$tmpDir"
     cleanupAndExit 1
 fi
 
 # MARK: check if this is an Update and we can use updateTool
 getAppVersion
 printlog "appversion: $appversion"
-if [[ -n $appversion && -n "$updateTool" ]]; then
+if [[ (-n $appversion && -n "$updateTool") || "$type" == "updateronly" ]]; then
     printlog "appversion & updateTool"
     if [[ $DEBUG -eq 0 ]]; then
         if runUpdateTool; then
             finishing
+            cleanupAndExit 0
+        elif [[ $type == "updateronly" ]];then
+            printlog "type is $type so we end here."
             cleanupAndExit 0
         fi # otherwise continue
     else
