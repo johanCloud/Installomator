@@ -1,7 +1,8 @@
 ## 0.5.1 - 2021-??-??
 - Changed pkg name to match my GitHub handle, rather than my initials (also added installomator_theile label, still keeping installomator_st, but it is discontinued)
-- Labels added: awscli2, cakebrew, cryptomator, darktable, gotomeeting, gyazo, gyazogif, jetbrainsintellijidea, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, krita, macfuse, miro, nextcloud, nvivo, rocketchat, shield, snapgeneviewer, veracrypt
+- Labels added: awscli2, cakebrew, cryptomator, darktable, gotomeeting, gyazo, gyazogif, jetbrainsintellijidea, jetbrainsintellijideace (same as intellijideace), jetbrainsphpstorm, jetbrainspycharm, jetbrainspycharmce (same as pycharmce), krita, macfuse, miro, nextcloud, nvivo, rocketchat, shield, snapgeneviewer, veracrypt
 - Labels changed: visualstudiocode (now universal), OmniGroup xpath statements improved
+- Microsoft labels changed for appNewVersion. We now use the downloaded url version string, instead of relying on macadmins.software (which often is behind) if it's available. Not for all. (This is not a certain way to get the correct version. Right now it returns 16.47 for Excel, that currently has version 16.47.1)
 
 ## 0.5.0 - 2021-03-28
 - Labels added: blender, opera, retrobatch, rocket, screamingfrogseospider, tableaureader
