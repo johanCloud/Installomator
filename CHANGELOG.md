@@ -1,4 +1,4 @@
-## 0.5.1 - 2021-??-??
+## 0.5.1 - 2021-04-13
 - Fixed a bug in a variable name that prevented updateTool to be used
 - added `type` variable for value `"updateronly"` if the label should only run an updater tool.
 - Changed pkg name to match my GitHub handle, rather than my initials (also added installomator_theile label, still keeping installomator_st, but it is discontinued)
