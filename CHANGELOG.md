@@ -1,4 +1,5 @@
-## 0.5.1 - 2021-04-13
+## 0.5.2 - 2021-04-14
+- REMOVED reopening apps again. It still gives problem with some apps. The user have to open the updated app themselves after they get the notification
 - Fixed a bug in a variable name that prevented updateTool to be used
 - added `type` variable for value `"updateronly"` if the label should only run an updater tool.
 - Changed pkg name to match my GitHub handle, rather than my initials (also added installomator_theile label, still keeping installomator_st, but it is discontinued)

@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.5.1' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-04-13'
+VERSION='0.5.2' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-04-14'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -200,7 +200,7 @@ cleanupAndExit() { # $1 = exit code, $2 message
         hdiutil detach "$dmgmount"
     fi
     # If we closed any processes, reopen the app again
-    reopenClosedProcess
+    "reopenClosedProcess # We skip this again, not all apps work correctly when opened like this
     printlog "################## End Installomator, exit code $1 \n\n"
     exit "$1"
 }
