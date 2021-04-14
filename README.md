@@ -14,6 +14,8 @@ The purpose is to add a version check before download, and/or before installatio
 
 Also this version should notify the user better, when they install apps themselves from the Self Service catalog (provided by some MDM providers).
 
+I also part of the team working on the original Installomator script.
+
 _See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software and README._
 
 ### Extra variables in labels
@@ -74,7 +76,7 @@ The two scripts with `app` in the name is the script, that should be inside Mosy
 ## Installation
 
 I have signed and notarized the pkg. And now you can update Installomator_ST from within Installomator itself.
-`/usr/local/bin/Installomator.sh installomator_st`
+`/usr/local/bin/Installomator.sh installomator_theile`
 
 ## Like the original Installomator, this text apply for this fork version:
 Your production and deployment environment will be different, please test thoroughly before rolling it out to your production.
