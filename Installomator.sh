@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.5.2' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-04-14'
+VERSION='0.5.3' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-04-18'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -83,6 +83,13 @@ INSTALL=""
 #  -               When not set, software will only be installed
 #                  if it is newer/different in version
 #  - force         Install even if it’s the same version
+
+
+# Re-opening of closed app
+REOPEN="yes"
+# options:
+#  - yes           App wil be reopened if it was closed
+#  - no            App not reopened
 
 
 # NOTE: How labels work
@@ -200,7 +207,7 @@ cleanupAndExit() { # $1 = exit code, $2 message
         hdiutil detach "$dmgmount"
     fi
     # If we closed any processes, reopen the app again
-    #reopenClosedProcess # We skip this again, not all apps work correctly when opened like this
+    reopenClosedProcess
     printlog "################## End Installomator, exit code $1 \n\n"
     exit "$1"
 }
@@ -209,6 +216,13 @@ runAsUser() {
     if [[ $currentUser != "loginwindow" ]]; then
         uid=$(id -u "$currentUser")
         launchctl asuser $uid sudo -u $currentUser "$@"
+    fi
+}
+
+reloadAsUser() {
+    if [[ $currentUser != "loginwindow" ]]; then
+        uid=$(id -u "$currentUser")
+        su - $currentUser -c "${@}"
     fi
 }
 
@@ -444,6 +458,12 @@ reopenClosedProcess() {
     # If Installomator closed any processes, let's get the app opened again
     # credit: Søren Theilgaard (@theilgaard)
     
+    # don't reopen if REOPEN is not "yes"
+    if [[ $REOPEN != yes ]]; then
+        printlog "REOPEN=no, not reopening anything"
+        return
+    fi
+
     # don't reopen in DEBUG mode
     if [[ $DEBUG -ne 0 ]]; then
         printlog "DEBUG mode, not reopening anything"
@@ -451,11 +471,15 @@ reopenClosedProcess() {
     fi
     
     if [[ $appClosed == 1 ]]; then
-        printlog "Telling app $name to open"
-        #runAsUser osascript -e "tell app \"$name\" to open"
-        runAsUser open -a "${name}"
-        processuser=$(ps aux | grep -i "${name}")
-        printlog "Reopened ${name} as $processuser"
+        printlog "Telling app $appName to open"
+        #runAsUser osascript -e "tell app \"$appName\" to open"
+        #runAsUser open -a "${appName}"
+        reloadAsUser "open -a \"${appName}\""
+        #reloadAsUser "open \"${(0)applist}\""
+        processuser=$(ps aux | grep -i "${appName}" | grep -vi "grep" | awk '{print $1}')
+        printlog "Reopened ${appName} as $processuser"
+    else
+        printlog "App not closed, so no reopen."
     fi
 }
 

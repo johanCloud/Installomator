@@ -69,6 +69,13 @@ Added a `NOTIFY` option `all`, so notifications can be shown to the user even if
 
 Also added an `INSTALL` variable to be set to `force` if you want the software to be installed even though it is already install in the latest version. Can at least be used to install the latest universal version, even if the Intel-only built is installed, if a label is improved for this. And I simply wanted to force installation, if that was needed.
 
+### Re-opening of closed app
+
+The `REOPEN` can be used to prevent the reopening of a closed app
+
+- `yes`:   (default) app will be reopened if it was closed
+- `no`:    app not reopened
+
 ### Extra scripts
 
 The two scripts with `app` in the name is the script, that should be inside Mosyle Manager. They will test if Installomator.sh is installed, and run the command. The one script will cal the command with one label, the other script will loop through a bunch of labels. Rather streight forward. Note: Mosyle does not currently handle exit codes from scripts. Please request support for this from Mosyle!

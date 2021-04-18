@@ -1,3 +1,7 @@
+## 0.5.3 - 2021-04-18
+- Added reopening of apps again. Using new method.
+- Added `REOPEN` variable. Can be "yes" or "no". Will only reopen a closed app if value is `REOPEN=yes`
+
 ## 0.5.2 - 2021-04-14
 - REMOVED reopening apps again. It still gives problem with some apps. The user have to open the updated app themselves after they get the notification
 - Fixed a bug in a variable name that prevented updateTool to be used
