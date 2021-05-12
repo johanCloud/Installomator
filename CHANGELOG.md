@@ -1,3 +1,9 @@
+## 0.5.4 - 2021-05-??
+-  Labels added: applenyfonts, applesfpro, applesfmono, applesfcompact, trex
+-  Labels changed: docker (now both arm and Intel), opera (improved version checking)
+-  Added variable `versionKey` so that we can compare version numbers with normal field `CFBundleShortVersionString`, or field `CFBundleVersion`, as used by Opera.
+-  A function `appCustomVersion(){}`can be used in a label, if a custom command has to be used to know what version is installed. See labels zulujdk11, zulujdk13, zulujdk15
+
 ## 0.5.3 - 2021-04-18
 - Added reopening of apps again. Using new method.
 - Added `REOPEN` variable. Can be "yes" or "no". Will only reopen a closed app if value is `REOPEN=yes`

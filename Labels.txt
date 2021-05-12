@@ -14,6 +14,10 @@ amazonworkspaces
 androidfiletransfer
 apparency
 appcleaner
+applenyfonts
+applesfcompact
+applesfmono
+applesfpro
 aquaskk
 atom
 autodmg
@@ -106,6 +110,8 @@ jamfreenroller
 jetbrainsintellijidea
 jetbrainsintellijideace
 jetbrainsphpstorm
+jetbrainspycharm
+jetbrainspycharmce
 karabinerelements
 keepassxc
 keka
@@ -129,6 +135,7 @@ microsoftautoupdate
 microsoftcompanyportal
 microsoftdefenderatp
 microsoftedge
+microsoftedgeconsumerstable
 microsoftedgeenterprisestable
 microsoftexcel
 microsoftlicenseremovaltool
@@ -148,7 +155,7 @@ microsoftyammer
 miro
 musescore
 netnewswire
-nextcloud)
+nextcloud
 nomad
 nomadlogin
 notion
@@ -216,6 +223,7 @@ sonoss2
 sourcetree
 spotify
 sublimetext
+supportapp
 suspiciouspackage
 swiftruntimeforcommandlinetools
 tableaureader
@@ -230,6 +238,7 @@ thunderbird
 tigervnc
 toggltrack
 torbrowser
+trex
 tunnelbear
 tunnelblick
 umbrellaroamingclient
