@@ -69,7 +69,9 @@ ferdi
 figma
 firefox
 firefox_da
+firefox_intl
 firefoxesr
+firefoxesr_intl
 firefoxesrpkg
 firefoxpkg
 front
@@ -259,6 +261,7 @@ whatsapp
 wickrme
 wickrpro
 wireshark
+wwdc
 xeroxphaser7800
 xink
 yubikeymanagerqt
