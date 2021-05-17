@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.5.4' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-05-??'
+VERSION='0.5.5' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-05-17'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin

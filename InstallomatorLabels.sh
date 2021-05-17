@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.5.4"
+labelsVERSION="0.5.5"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -1864,8 +1864,16 @@ wireshark)
     name="Wireshark"
     type="dmg"
     downloadURL="https://1.as.dl.wireshark.org/osx/Wireshark%20Latest%20Intel%2064.dmg"
-    appNewVersion=$(curl -fs https://www.wireshark.org/download.html | grep "Stable Release" | grep -o "(.*.)" | cut -f2 | head -1 | awk -F'[()]' '{print $2}')
+    appNewVersion=$(curl -fs https://www.wireshark.org/download.html | grep "Stable Release" | grep -o "(.*.)" | cut -f2 | head -1 | awk -F '[()]' '{print $2}')
     expectedTeamID="7Z6EMTD2C6"
+    ;;
+wwdc)
+    # credit: Søren Theilgaard (@theilgaard)
+    name="WWDC"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit insidegui WWDC)
+    appNewVersion=$(versionFromGit insidegui WWDC)
+    expectedTeamID="8C7439RJLG"
     ;;
 xink)
     name="Xink"
@@ -2044,14 +2052,6 @@ zulujdk15)
 #    appNewVersion=$(versionFromGit Eduap-com WordMat)
 #    #curl -fs "https://api.github.com/repos/Eduap-com/WordMat/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g'
 #    expectedTeamID=""
-#    ;;
-
-#wwdcformac)
-#    this label looks like software/site is gone
-#    name="WWDC"
-#    type="zip"
-#    downloadURL="https://cdn.wwdc.io/WWDC_latest.zip"
-#    expectedTeamID="8C7439RJLG"
 #    ;;
 
 
