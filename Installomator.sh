@@ -961,9 +961,41 @@ if ! cd "$tmpDir"; then
     cleanupAndExit 1
 fi
 
-# MARK: check if this is an Update and we can use updateTool
+# MARK: get installed version
 getAppVersion
 printlog "appversion: $appversion"
+
+# MARK: Exit if new version is the same as installed version (appNewVersion specified)
+# credit: Søren Theilgaard (@theilgaard)
+if [[ -n $appNewVersion ]]; then
+    printlog "Latest version of $name is $appNewVersion"
+    if [[ $appversion == $appNewVersion ]]; then
+        if [[ $DEBUG -eq 0 ]]; then
+            printlog "There is no newer version available."
+            if [[ $INSTALL != "force" ]]; then
+                message="$name, version $appNewVersion, is  the latest version."
+                if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
+                    printlog "notifying"
+                    displaynotification "$message" "No update for $name!"
+                fi
+                cleanupAndExit 0 "No newer version."
+            else
+                printlog "Using force to install anyway. Not using updateTool."
+                updateTool=""
+            fi
+        else
+            printlog "DEBUG mode enabled, not exiting, but there is no new version of app."
+        fi
+    fi
+else
+    printlog "Latest version not specified."
+    if [[ $INSTALL == "force" ]]; then
+        printlog "Using force to install, so not using updateTool."
+        updateTool=""
+    fi
+fi
+
+# MARK: check if this is an Update and we can use updateTool
 if [[ (-n $appversion && -n "$updateTool") || "$type" == "updateronly" ]]; then
     printlog "appversion & updateTool"
     if [[ $DEBUG -eq 0 ]]; then
@@ -977,31 +1009,6 @@ if [[ (-n $appversion && -n "$updateTool") || "$type" == "updateronly" ]]; then
     else
         printlog "DEBUG mode enabled, not running update tool"
     fi
-fi
-
-# MARK: Exit if new version is the same as installed version (appNewVersion specified)
-# credit: Søren Theilgaard (@theilgaard)
-if [[ -n $appNewVersion ]]; then
-	printlog "Latest version of $name is $appNewVersion"
-	if [[ $appversion == $appNewVersion ]]; then
-	    if [[ $DEBUG -eq 0 ]]; then
-			printlog "There is no newer version available."
-            if [[ $INSTALL != "force" ]]; then
-                message="$name, version $appNewVersion, is  the latest version."
-                if [[ $currentUser != "loginwindow" && $NOTIFY == "all" ]]; then
-                    printlog "notifying"
-                    displaynotification "$message" "No update for $name!"
-                fi
-                cleanupAndExit 0 "No newer version."
-            else
-                printlog "Using force to install anyway."
-            fi
-	    else
-	        printlog "DEBUG mode enabled, not exiting, but there is no new version of app."
-	    fi
-	fi
-else
-	printlog "Latest version not specified."
 fi
 
 # MARK: download the archive
