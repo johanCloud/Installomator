@@ -1,5 +1,6 @@
 ## 0.5.5 - 2021-05-17
 -  Labels added: applenyfonts, applesfpro, applesfmono, applesfcompact, trex, wwdc
+-  Special labels added: firefox_intl, firefoxesr_intl (both will check for wich language the user has, and install that version, if possible)
 -  Labels changed: docker (now both arm and Intel), opera (improved version checking), wireshark (added a space character to `awk` part of `appNewVersion`)
 -  Added variable `versionKey` so that we can compare version numbers with normal field `CFBundleShortVersionString`, or field `CFBundleVersion`, as used by Opera.
 -  A function `appCustomVersion(){}`can be used in a label, if a custom command has to be used to know what version is installed. See labels zulujdk11, zulujdk13, zulujdk15
