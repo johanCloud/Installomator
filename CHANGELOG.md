@@ -1,5 +1,7 @@
 ## 0.5.6 - 2021-05-20
--  Labels added: theunarchiver
+-  Labels added: arq7, proxyman, textexpander, theunarchiver
+-  Labels changed: googlejapaneseinput (no blocking processes)
+-  New `BLOCKING_PROCESS_ACTION` variables `quit` and `quit_kill`. They will just ask to quit. If after 3 tries it has not quit, it will be killed with the latter option. Could be of great use for service-apps if they do not respawn automatically.
 
 ## 0.5.5 - 2021-05-17
 -  Labels added: applenyfonts, applesfpro, applesfmono, applesfcompact, trex, wwdc
@@ -118,7 +120,7 @@
 
 - Testet with macOS 11 Big Sur
 - Default `BLOCKING_PROCESS_ACTION=prompt_user_loop`
-- FIxed a bug preventing labels using github from working
+- Fixed a bug preventing labels using github from working
 - Labels added: keka
 - Removed Label cdef, as it does not contain signing.
 
