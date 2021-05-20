@@ -46,6 +46,9 @@ NOTIFY=success
 BLOCKING_PROCESS_ACTION=prompt_user_loop
 # options:
 #   - ignore       continue even when blocking processes are found
+#   - quit         app will be told to quit nicely, if running
+#   - quit_kill    told to quit twice, then it will be killed
+#                  Could be great for service apps, if they do not respawn
 #   - silent_fail  exit script without prompt or installation
 #   - prompt_user  show a user dialog for each blocking process found
 #                  abort after three attempts to quit

@@ -25,7 +25,7 @@ ${SELFLOCATION}/Installomator.sh longversion
 echo
 
 # Labels with the arch call for different versions for Intel and Apple Silicon should be listed here:
-archLabels=( boxdrive brave docker googlechrome jetbrainspycharm jetbrainspycharmce pycharmce notion vlc zulujdk11 zulujdk13 zulujdk15 )
+archLabels=( bluejeans boxdrive brave docker googlechrome jetbrainspycharm jetbrainspycharmce pycharmce notion vlc zulujdk11 zulujdk13 zulujdk15 )
 
 # MARK: check minimal macOS requirement
 autoload is-at-least
@@ -41,15 +41,22 @@ printlog(){
     echo "$1"
 }
 
+runAsUser() {
+    if [[ $currentUser != "loginwindow" ]]; then
+        uid=$(id -u "$currentUser")
+        launchctl asuser $uid sudo -u $currentUser "$@"
+    fi
+}
+
 # will get the latest release download from a github repo
 downloadURLFromGit() { # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
     
+    #githubPart="$gitusername/$gitreponame/releases/download"
+    #echo "$githubPart"
     downloadURL="https://github.com/$gitusername/$gitreponame/releases/latest"
     echo "$downloadURL"
-    githubPart="$gitusername/$gitreponame/releases/download"
-    # echo "$githubPart"
     return 0
 }
 
@@ -170,6 +177,7 @@ for label in $allLabels; do
                     echo "no header provided from server."
                 fi
             else
+                githubPart="$(echo "$downloadURL" | cut -d "/" -f4-6)"
                 if [[ "$(curl -fsL "$downloadURL" | grep -io "${githubPart}.*\.${expectedExtension}")" != "" ]]; then
                     echo "${GREEN}OK: download extension MATCH on ${expectedExtension}${NC}"
                 else
