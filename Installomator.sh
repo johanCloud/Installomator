@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.5.5' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-05-17'
+VERSION='0.5.6' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-05-20'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -401,6 +401,18 @@ checkRunningProcesses() {
                 appClosed=1
                 
                 case $BLOCKING_PROCESS_ACTION in
+                    quit|quit_kill)
+                        printlog "telling app $x to quit"
+                        runAsUser osascript -e "tell app \"$x\" to quit"
+                        if [[ $i > 2 && $BLOCKING_PROCESS_ACTION = "quit_kill" ]]; then
+                          printlog "Changing BLOCKING_PROCESS_ACTION to kill"
+                          BLOCKING_PROCESS_ACTION=kill
+                        else
+                            # give the user a bit of time to quit apps
+                            printlog "waiting 30 seconds for processes to quit"
+                            sleep 30
+                        fi
+                        ;;
                     kill)
                       printlog "killing process $x"
                       pkill $x

@@ -1,3 +1,6 @@
+## 0.5.6 - 2021-05-20
+-  Labels added: theunarchiver
+
 ## 0.5.5 - 2021-05-17
 -  Labels added: applenyfonts, applesfpro, applesfmono, applesfcompact, trex, wwdc
 -  Special labels added: firefox_intl, firefoxesr_intl (both will check for wich language the user has, and install that version, if possible)

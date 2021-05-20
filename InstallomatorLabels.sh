@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.5.5"
+labelsVERSION="0.5.6"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -187,6 +187,14 @@ aquaskk)
     appNewVersion=$(versionFromGit codefirst aquaskk)
     expectedTeamID="FPZK4WRGW7"
     ;;
+arq7)
+    name="Arq7"
+    type="pkg"
+    packageID="com.haystacksoftware.Arq"
+    downloadURL="https://arqbackup.com/download/arqbackup/Arq7.pkg"
+    appNewVersion="$(curl -fs "https://arqbackup.com" | grep -io "version .*[0-9.]*.* for macOS" | cut -d ">" -f2 | cut -d "<" -f1)"
+    expectedTeamID="48ZCSDVL96"
+    ;;
 atom)
     name="Atom"
     type="zip"
@@ -337,7 +345,7 @@ camostudio)
     name="Camo Studio"
     type="zip"
     downloadURL="https://reincubate.com/res/labs/camo/camo-macos-latest.zip"
-    #appNewVersion=$(  ) # Can't find any versioniing on web server
+    appNewVersion=$(curl -s -L  https://reincubate.com/support/camo/release-notes/ | grep -m2 "has-m-t-0" | head -1 | cut -d ">" -f2 | cut -d " " -f1) 
     expectedTeamID="Q248YREB53"
     ;;
 camtasia)
@@ -494,6 +502,13 @@ docker)
     fi
     appNewVersion=$(curl -ifs https://docs.docker.com/docker-for-mac/release-notes/ | grep ">Docker Desktop Community" | head -1 | sed -n -e 's/^.*Community //p' | cut -d '<' -f1)
     expectedTeamID="9BNSXJN65R"
+    ;;
+drift)
+    # credit Elena Ackley (@elenaelago)
+    name="Drift"
+    type="dmg"
+    downloadURL="https://drift-prod-desktop-installers.s3.amazonaws.com/mac/Drift-latest.dmg"
+    expectedTeamID="78559WUUR9"
     ;;
 dropbox)
     name="Dropbox"
@@ -744,6 +759,7 @@ googlejapaneseinput)
     type="pkgInDmg"
     pkgName="GoogleJapaneseInput.pkg"
     downloadURL="https://dl.google.com/japanese-ime/latest/GoogleJapaneseInput.dmg"
+    blockingProcesses=( NONE )
     expectedTeamID="EQHXZ8M8AV"
     ;;
 gotomeeting)
@@ -791,6 +807,14 @@ gyazogif)
     downloadURL="https://files.gyazo.com/setup/Gyazo-${appNewVersion}.dmg"
     expectedTeamID="9647Y3B7A4"
     ;;
+hancock)
+    # Credit: Bilal Habib @Pro4TLZZZ
+    name="Hancock"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit JeremyAgost Hancock )
+    appNewVersion=$(versionFromGit JeremyAgost Hancock )
+    expectedTeamID="SWD2B88S58"
+    ;;
 handbrake)
     name="HandBrake"
     type="dmg"
@@ -836,6 +860,13 @@ icons)
     downloadURL=$(downloadURLFromGit sap macOS-icon-generator )
     appNewVersion=$(versionFromGit sap macOS-icon-generator )
     expectedTeamID="7R5ZEU67FQ"
+    ;;
+imazingprofileeditor)
+    # Credit: Bilal Habib @Pro4TLZZZ
+    name="iMazing Profile Editor"
+    type="dmg"
+    downloadURL="https://downloads.imazing.com/mac/iMazing-Profile-Editor/iMazingProfileEditorMac.dmg"
+    expectedTeamID="J5PR93692Y"
     ;;
 inkscape)
     # credit: Søren Theilgaard (@theilgaard)
@@ -1367,6 +1398,13 @@ promiseutilityr)
     expectedTeamID="268CCUR4WN"
     #Company="Promise"
     ;;
+proxyman)
+	name="Proxyman"
+	type="dmg"
+	downloadURL="https://proxyman.io/release/osx/Proxyman_latest.dmg"
+	expectedTeamID="3X57WP8E8V"
+	appNewVersion=$(curl -s -L https://github.com/ProxymanApp/Proxyman | grep -o 'releases/tag/.*\>' | awk -F '/' '{print $3}')
+	;;
 pymol)
     name="PyMOL"
     type="dmg"
@@ -1708,6 +1746,13 @@ telegram)
     appNewVersion=$( curl -fs https://macos.telegram.org | grep anchor | head -1 | sed -E 's/.*a>([0-9.]*) .*/\1/g' )
     expectedTeamID="6N38VWS5BX"
     ;;
+textexpander)
+    name="TextExpander"
+    type="zip"
+    downloadURL="https://textexpander.com/cgi-bin/redirect.pl?cmd=download&platform=osx"
+    appNewVersion=$( curl -fsIL "https://textexpander.com/cgi-bin/redirect.pl?cmd=download&platform=osx" | grep -i "^location" | awk '{print $2}' | tail -1 | cut -d "_" -f2 | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p' )
+    expectedTeamID="7PKJ6G4DXL"
+    ;;
 textmate)
     name="TextMate"
     type="tbz"
@@ -1715,6 +1760,14 @@ textmate)
     downloadURL=$(downloadURLFromGit "textmate" "textmate")
     appNewVersion=$(versionFromGit "textmate" "textmate")
     expectedTeamID="45TL96F76G"
+    ;;
+theunarchiver)
+    name="The Unarchiver"
+    type="dmg"
+    downloadURL="https://dl.devmate.com/com.macpaw.site.theunarchiver/TheUnarchiver.dmg"
+    #appNewVersion=""
+    expectedTeamID="S8EX82NJP6"
+    appName="The Unarchiver.app"
     ;;
 things)
     name="Things"
@@ -2285,8 +2338,9 @@ microsoftteams)
     # Still using macadmin.software for version, as the path does not contain the version in a matching format. packageID can be used, but version is the same.
     expectedTeamID="UBF8T346G9"
     blockingProcesses=( Teams "Microsoft Teams Helper" )
-    updateTool="/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/msupdate"
-    updateToolArguments=( --install --apps TEAM01 )
+    # Commenting out msupdate as it is not really supported *yet* for teams
+    # updateTool="/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app/Contents/MacOS/msupdate"
+    # updateToolArguments=( --install --apps TEAM01 )
     ;;
 microsoftvisualstudiocode|\
 visualstudiocode)

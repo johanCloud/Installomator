@@ -234,7 +234,9 @@ teamviewer
 teamviewerhost
 teamviewerqs
 telegram
+textexpander
 textmate
+theunarchiver
 things
 thunderbird
 tigervnc

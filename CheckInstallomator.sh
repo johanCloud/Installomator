@@ -48,6 +48,8 @@ downloadURLFromGit() { # $1 git user name, $2 git repo name
     
     downloadURL="https://github.com/$gitusername/$gitreponame/releases/latest"
     echo "$downloadURL"
+    githubPart="$gitusername/$gitreponame/releases/download"
+    # echo "$githubPart"
     return 0
 }
 
@@ -168,7 +170,12 @@ for label in $allLabels; do
                     echo "no header provided from server."
                 fi
             else
-                echo "github.com not type checked."
+                if [[ "$(curl -fsL "$downloadURL" | grep -io "${githubPart}.*\.${expectedExtension}")" != "" ]]; then
+                    echo "${GREEN}OK: download extension MATCH on ${expectedExtension}${NC}"
+                else
+                    echo "${RED}-> !! ERROR in download extension, expected ${expectedExtension}, but it was wrong${NC}"
+                    labelError=1
+                fi
             fi
         fi
     else
