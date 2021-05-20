@@ -1,6 +1,6 @@
 ## 0.5.6 - 2021-05-20
 -  Labels added: arq7, proxyman, textexpander, theunarchiver
--  Labels changed: googlejapaneseinput (no blocking processes)
+-  Labels changed: googlejapaneseinput (no blocking processes), webexteams (fixed links)
 -  New `BLOCKING_PROCESS_ACTION` variables `quit` and `quit_kill`. They will just ask to quit. If after 3 tries it has not quit, it will be killed with the latter option. Could be of great use for service-apps if they do not respawn automatically.
 
 ## 0.5.5 - 2021-05-17
