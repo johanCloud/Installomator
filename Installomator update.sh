@@ -13,16 +13,17 @@ if [ ! -e "${destFile}" ]; then
     exit 99
 fi
 
-#${destFile} valuesfromarguments\
-#            name=Installomator \
-#            type=pkg \
-#            packageID=dk.theilgaard.pkg.Installomator \
-#            downloadURL=https://github.com/Theile/Installomator/releases/download/v0.4.20/Installomator_theile-0.5.1.pkg \
-#            appNewVersion=0.5.1 \
-#            expectedTeamID=L8W73B6AH3 \
-#            BLOCKING_PROCESS_ACTION=ignore \
-#            NOTIFY=silent
-${destFile} ${what} BLOCKING_PROCESS_ACTION=ignore NOTIFY=silent
+${destFile} valuesfromarguments\
+            name=Installomator \
+            type=pkg \
+            packageID=dk.theilgaard.pkg.Installomator \
+            downloadURL=https://github.com/Theile/Installomator/releases/download/v0.5.7/Installomator_Theile-0.5.7.pkg \
+            appNewVersion=0.5.7 \
+            expectedTeamID=FXW6QXBFW5 \
+            BLOCKING_PROCESS_ACTION=ignore \
+            NOTIFY=silent
+
+# ${destFile} ${what} BLOCKING_PROCESS_ACTION=ignore NOTIFY=silent
 if [ $? != 0 ]; then
 # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
     echo "Error installing ${what}. Exit code $?"
