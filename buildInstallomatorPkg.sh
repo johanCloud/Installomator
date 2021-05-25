@@ -10,7 +10,7 @@
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 pkgname="Installomator_Theile"
-version="0.5.6"
+version="0.5.7"
 identifier="dk.theilgaard.pkg.Installomator"
 install_location="/usr/local/bin/"
 signature=""

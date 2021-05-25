@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.5.6"
+labelsVERSION="0.5.7"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -888,7 +888,7 @@ installomator_st)
     packageID="dk.theilgaard.pkg.Installomator"
     downloadURL=$(downloadURLFromGit theile Installomator )
     appNewVersion=$(versionFromGit theile Installomator )
-    expectedTeamID="L8W73B6AH3"
+    expectedTeamID="FXW6QXBFW5"
     blockingProcesses=( NONE )
     ;;
 istatmenus)
@@ -1669,12 +1669,11 @@ spotify)
     expectedTeamID="2FNC3A47ZF"
     ;;
 sublimetext)
-    # credit: Mischa van der Bent (@mischavdbent)
+    # credit: Søren Theilgaard (@theilgaard)
     name="Sublime Text"
-    type="dmg"
-    downloadURL="https://download.sublimetext.com/latest/stable/osx"
-    appNewVersion=$(curl -fs https://www.sublimetext.com/3 | grep 'class="latest"' | cut -d '>' -f 4 | sed -E 's/ (.*[0-9]*)<.*/\1/g')
-    #appNewVersion=$(curl -Is https://download.sublimetext.com/latest/stable/osx | grep "Location:" | sed -n -e 's/^.*Sublime Text //p' | sed 's/.dmg//g' | sed $'s/[^[:print:]\t]//g') # Alternative from @Oh4sh0
+    type="zip"
+    downloadURL="$(curl -fs https://www.sublimetext.com/download | grep -io "https://download.*_mac.zip")"
+    appNewVersion=$(curl -fs https://www.sublimetext.com/download | grep -i -A 4 "id.*changelog" | grep -io "Build [0-9]*")
     expectedTeamID="Z6D26JE4Y4"
     ;;
 supportapp)
