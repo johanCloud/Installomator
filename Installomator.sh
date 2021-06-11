@@ -20,8 +20,8 @@
 #set -o xtrace # outputting every command of the script
 #set -x # Debug
 
-VERSION='0.5.6' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-05-20'
+VERSION='0.5.8' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-0?-??'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -641,7 +641,6 @@ installFromPKG() {
         printlog "Checking package version."
         pkgutil --expand "$archiveName" "$archiveName"_pkg
         #printlog "$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null)"
-        #appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id="$packageID"][@version]' 2>/dev/null | tr ' ' '\n' | grep version | sed -E 's/.*\"([0-9.]*)\".*/\1/g') # not working with packageID inside
         appNewVersion=$(cat "$archiveName"_pkg/Distribution | xpath '//installer-gui-script/pkg-ref[@id][@version]' 2>/dev/null | grep -i "$packageID" | tr ' ' '\n' | grep -i version | cut -d \" -f 2) #sed -E 's/.*\"([0-9.]*)\".*/\1/g'
         rm -r "$archiveName"_pkg
         printlog "Downloaded package $packageID version $appNewVersion"
@@ -669,8 +668,7 @@ installFromPKG() {
     # check for root
     if [ "$(whoami)" != "root" ]; then
         # not running as root
-        printlog "not running as root, exiting"
-        cleanupAndExit 6
+        cleanupAndExit 6 "not running as root, exiting"
     fi
 
     # install pkg

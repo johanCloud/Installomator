@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.5.7"
+labelsVERSION="0.5.8"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -51,7 +51,6 @@ abstract)
     downloadURL="https://api.goabstract.com/releases/latest/download"
     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)\..*/\1/g' )
     expectedTeamID="77MZLZE47D"
-    Company="Elastic Projects, Inc"
     #Company="Elastic Projects, Inc"
     ;;
 adobebrackets)
@@ -78,15 +77,20 @@ adobereaderdc-install)
     type="pkgInDmg"
     packageID="com.adobe.acrobat.DC.reader.app.pkg.MUI"
     downloadURL=$(curl --silent --fail -H "Sec-Fetch-Site: same-origin" -H "Accept-Encoding: gzip, deflate, br" -H "Accept-Language: en-US;q=0.9,en;q=0.8" -H "DNT: 1" -H "Sec-Fetch-Mode: cors" -H "X-Requested-With: XMLHttpRequest" -H "Referer: https://get.adobe.com/reader/enterprise/" -H "Accept: */*" "https://get.adobe.com/reader/webservices/json/standalone/?platform_type=Macintosh&platform_dist=OSX&platform_arch=x86-32&language=English&eventname=readerotherversions" | grep -Eo '"download_url":.*?[^\\]",' | head -n 1 | cut -d \" -f 4)
-    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version 20([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -s https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/reader/current_version.txt)
+    #appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version 20([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
     expectedTeamID="JQ525L2MZD"
     blockingProcesses=( "AdobeReader" )
+    #Company="Adobe"
+    #PatchName="AcrobatReader"
+    #PatchSkip="YES"
     ;;
 adobereaderdc-update)
     name="Adobe Acrobat Reader DC"
     type="pkgInDmg"
     downloadURL=$(adobecurrent=`curl --fail --silent https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/reader/current_version.txt | tr -d '.'` && echo http://ardownload.adobe.com/pub/adobe/reader/mac/AcrobatDC/"$adobecurrent"/AcroRdrDCUpd"$adobecurrent"_MUI.dmg)
-    appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version 20([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -s https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/reader/current_version.txt)
+    #appNewVersion=$(curl -s -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" https://get.adobe.com/reader/ | grep ">Version" | sed -E 's/.*Version 20([0-9.]*)<.*/\1/g') # credit: Søren Theilgaard (@theilgaard)
     expectedTeamID="JQ525L2MZD"
     blockingProcesses=( "AdobeReader" )
     ;;
@@ -104,6 +108,7 @@ airserver)
     downloadURL="https://www.airserver.com/download/mac/latest"
     #appNewVersion=$() # Cannot find version history or release notes on home page
     expectedTeamID="6C755KS5W3"
+    #Company="App Dynamic ehf"
     ;;
 alfred)
     # credit: AP Orlebeke (@apizz)
@@ -113,6 +118,7 @@ alfred)
     appNewVersion=$(echo "${downloadURL}" | sed -E 's/.*Alfred_([0-9.]*)_.*/\1/')
     appName="Alfred 4.app"
     expectedTeamID="XZZXE9SED4"
+    #Company="Running with Crayons Ltd"
     ;;
 amazonchime)
     # credit: @dvsjr macadmins slack
@@ -143,6 +149,7 @@ apparency)
     type="dmg"
     downloadURL="https://www.mothersruin.com/software/downloads/Apparency.dmg"
     expectedTeamID="936EB786NH"
+    #Company="Mother's Ruin Graphics"
     ;;
 appcleaner)
     # credit: Tadayuki Onishi (@kenchan0130)
@@ -150,6 +157,7 @@ appcleaner)
     type="zip"
     downloadURL=$(curl -fs https://freemacsoft.net/appcleaner/Updates.xml | xpath '//rss/channel/*/enclosure/@url' 2>/dev/null | tr " " "\n" | sort | tail -1 | cut -d '"' -f 2)
     expectedTeamID="X85ZX835W9"
+    #Company=FreeMacSoft
     ;;
 applenyfonts)
     name="Apple New York Font Collection"
@@ -186,6 +194,8 @@ aquaskk)
     downloadURL=$(downloadURLFromGit codefirst aquaskk)
     appNewVersion=$(versionFromGit codefirst aquaskk)
     expectedTeamID="FPZK4WRGW7"
+    #Company="Code First"
+    #PatchSkip="YES"
     ;;
 arq7)
     name="Arq7"
@@ -202,6 +212,7 @@ atom)
     downloadURL=$(downloadURLFromGit atom atom )
     appNewVersion=$(versionFromGit atom atom)
     expectedTeamID="VEKTX9H2N7"
+    #Company=GitHub
     ;;
 autodmg)
     # credit: Mischa van der Bent (@mischavdbent)
@@ -210,6 +221,7 @@ autodmg)
     downloadURL=$(downloadURLFromGit MagerValp AutoDMG)
     appNewVersion=$(versionFromGit MagerValp AutoDMG)
     expectedTeamID="5KQ3D3FG5H"
+    #Company=MagerValp
     ;;
 autopkgr)
     # credit: Søren Theilgaard (@theilgaard)
@@ -219,6 +231,7 @@ autopkgr)
     downloadURL=$(downloadURLFromGit lindegroup autopkgr)
     appNewVersion=$(versionFromGit lindegroup autopkgr)
     expectedTeamID="JVY2ZR6SEF"
+    #Company="Linde Group"
     ;;
 aviatrix)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
@@ -226,6 +239,7 @@ aviatrix)
     type="pkg"
     downloadURL="https://s3-us-west-2.amazonaws.com/aviatrix-download/AviatrixVPNClient/AVPNC_mac.pkg"
     expectedTeamID="32953Z7NBN"
+    #Company=Aviatrix
     ;;
 awscli2)
     # credit: Bilal Habib (@Pro4TLZZ)
@@ -251,6 +265,7 @@ balenaetcher)
     downloadURL=$(downloadURLFromGit balena-io etcher )
     appNewVersion=$(versionFromGit balena-io etcher )
     expectedTeamID="66H43P8FRG"
+    #Company="Balena"
     ;;
 basecamp3)
     #credit: @matins
@@ -266,6 +281,7 @@ bbedit)
     downloadURL=$(curl -s https://versioncheck.barebones.com/BBEdit.xml | grep dmg | sort | tail -n1 | cut -d">" -f2 | cut -d"<" -f1)
     appNewVersion=$(curl -s https://versioncheck.barebones.com/BBEdit.xml | grep dmg | sort  | tail -n1 | sed -E 's/.*BBEdit_([0-9 .]*)\.dmg.*/\1/')
     expectedTeamID="W52GZAXT98"
+    #Company="Bare Bones Software"
     ;;
 bettertouchtool)
     # credit: Søren Theilgaard (@theilgaard)
@@ -299,7 +315,7 @@ bluejeans)
     fi
     appNewVersion=$(echo $downloadURL | cut -d '/' -f6)
     expectedTeamID="HE4P42JBGN"
-    Company="Verizon"
+    #Company="Verizon"
     ;;
 boxdrive)
     # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
@@ -349,7 +365,7 @@ camostudio)
     name="Camo Studio"
     type="zip"
     downloadURL="https://reincubate.com/res/labs/camo/camo-macos-latest.zip"
-    appNewVersion=$(curl -s -L  https://reincubate.com/support/camo/release-notes/ | grep -m2 "has-m-t-0" | head -1 | cut -d ">" -f2 | cut -d " " -f1) 
+    appNewVersion=$(curl -s -L  https://reincubate.com/support/camo/release-notes/ | grep -m2 "has-m-t-0" | head -1 | cut -d ">" -f2 | cut -d " " -f1)
     expectedTeamID="Q248YREB53"
     ;;
 camtasia)
@@ -880,14 +896,14 @@ inkscape)
     #appNewVersion=$(curl -fsJL https://inkscape.org/release/  | grep "<h2>Inkscape" | cut -d '>' -f 3 | cut -d '<' -f 1 | sed 's/[^0-9.]*//g') # Can't figure out where exact new version is found. Currently returns 1.0, but version is "1.0.0 (4035a4f)"
     expectedTeamID="SW3D6BB6A6"
     ;;
-installomator_theile|\
-installomator_st)
+installomator_theile)
     # credit: Søren Theilgaard (@theilgaard)
     name="Installomator"
     type="pkg"
     packageID="dk.theilgaard.pkg.Installomator"
     downloadURL=$(downloadURLFromGit theile Installomator )
     appNewVersion=$(versionFromGit theile Installomator )
+    #appCustomVersion(){/usr/local/bin/Installomator.sh version | tail -1 | awk '{print $4}'}
     expectedTeamID="FXW6QXBFW5"
     blockingProcesses=( NONE )
     ;;
@@ -1173,10 +1189,11 @@ nextcloud)
     type="pkg"
     #packageID="com.nextcloud.desktopclient"
     downloadURL=$(downloadURLFromGit nextcloud desktop)
-    #appNewVersion=$(versionFromGit nextcloud desktop)
+    appNewVersion=$(versionFromGit nextcloud desktop)
     # The version of the app is not equal to the version listed on GitHub.
     # App version something like "3.1.3git (build 4850)" but web page lists as "3.1.3"
     # Also it does not math packageID version "3.1.34850"
+    appCustomVersion(){defaults read /Applications/nextcloud.app/Contents/Info.plist CFBundleShortVersionString | sed -E 's/^([0-9.]*)git.*/\1/g'}
     expectedTeamID="NKUJUXUJ3B"
     ;;
 nomad)
@@ -1219,11 +1236,6 @@ obsidian)
     # credit: Søren Theilgaard (@theilgaard)
     name="Obsidian"
     type="dmg"
-#    if [[ $(arch) == "arm64" ]]; then
-#        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep "arm64" )
-#    elif [[ $(arch) == "i386" ]]; then
-#        downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases | grep -v "arm64" )
-#    fi
     downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases )
     appNewVersion=$(versionFromGit obsidianmd obsidian-releases)
     expectedTeamID="6JSW4SJWN9"
@@ -1352,7 +1364,7 @@ pitch)
     ;;
 plantronicshub)
     name="Plantronics Hub"
-    type="dmg"
+    type="pkgInDmg"
     downloadURL="https://www.poly.com/content/dam/www/software/PlantronicsHubInstaller.dmg"
     expectedTeamID="SKWK2Q7JJV"
     appNewVersion=$(curl -fs "https://www.poly.com/in/en/support/knowledge-base/kb-article-page?lang=en_US&urlName=Hub-Release-Notes&type=Product_Information__kav" | grep -o "(*.*<span>)" | head -1 | cut -d "(" -f2 | sed 's/\<\/span\>//g' | cut -d "<" -f1)
@@ -1507,7 +1519,6 @@ rocket)
     name="Rocket"
     type="dmg"
     downloadURL="https://macrelease.matthewpalmer.net/Rocket.dmg"
-    appNewVersion=""
     expectedTeamID="Z4JV2M65MH"
     ;;
 rocketchat)
@@ -1938,7 +1949,6 @@ webexteams)
     # credit: Erik Stam (@erikstam)
     name="Webex"
     type="dmg"
-    downloadURL="https://binaries.webex.com/WebexTeamsDesktop-MACOS-Gold/WebexTeams.dmg"
     if [[ $(arch) == arm64 ]]; then
         downloadURL="https://binaries.webex.com/WebexDesktop-MACOS-Apple-Silicon-Gold/Webex.dmg"
     elif [[ $(arch) == i386 ]]; then
@@ -2083,6 +2093,7 @@ zulujdk15)
     ;;
 
 # MARK: Add new labels after this line (let us sort them in the list)
+
 
 # MARK: Add new labels above here
 
@@ -2340,10 +2351,10 @@ microsoftskypeforbusiness)
 microsoftteams)
     name="Microsoft Teams"
     type="pkg"
-    #packageID="com.microsoft.teams"
+    packageID="com.microsoft.teams"
     downloadURL="https://go.microsoft.com/fwlink/?linkid=869428"
-    #appNewVersion=$(curl -fs https://macadmins.software/latest.xml | xpath '//latest/package[id="com.microsoft.teams.standalone"]/version' 2>/dev/null | sed -E 's/<version>([0-9.]*) .*/\1/')
-    # Still using macadmin.software for version, as the path does not contain the version in a matching format. packageID can be used, but version is the same.
+    appNewVersion=$(curl -fs https://macadmins.software/latest.xml | xpath '//latest/package[id="com.microsoft.teams.standalone"]/version' 2>/dev/null | sed -E 's/<version>([0-9.]*) .*/\1/')
+    # Looks like macadmin.software has package ID version. At least on 202105-28 version 1.00.411161 is matched on installed version and homepage.
     expectedTeamID="UBF8T346G9"
     blockingProcesses=( Teams "Microsoft Teams Helper" )
     # Commenting out msupdate as it is not really supported *yet* for teams

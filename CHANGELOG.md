@@ -1,3 +1,6 @@
+## 0.5.8 - 2021-0?-??
+-  Labels changed: githubdesktop (difference between arm and intel), microsoftteams (getting `appNewVersion` from macadmins.software as it matches `BundleID` of pkg)
+
 ## 0.5.7 - 2021-05-21
 -  New developer certificate, so you cannot update from an older version of `installomator_theile` to this new version, as the TeamID is different. It is now "FXW6QXBFW5"
 

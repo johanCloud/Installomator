@@ -8,5 +8,4 @@ scratch/
 *.zip
 *.app
 *.tbz
-
-
+buildInstallomatorPkg.sh

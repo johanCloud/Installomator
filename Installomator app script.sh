@@ -82,11 +82,11 @@ exit 0
 # Often used labels:
 ########################
 
-# googlechrome
 # firefox
 # firefox_da
 # brave
 # torbrowser
+# googlechrome
 # netnewswire
 
 # adobereaderdc
