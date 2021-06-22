@@ -572,6 +572,14 @@ etrecheck)
     downloadURL="https://cdn.etrecheck.com/EtreCheckPro.zip"
     expectedTeamID="U87NE528LC"
     ;;
+evernote)
+    name="Evernote"
+    type="dmg"
+    downloadURL=$(curl -fs -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" "https://evernote.com/download" | grep -i ".dmg" | cut -d '"' -f2)
+    appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z]*-([0-9.]*)-.*/\1/g' )
+    expectedTeamID="Q79WDW8YH9"
+    appName="Evernote.app"
+    ;;
 exelbanstats)
     # credit: Søren Theilgaard (@theilgaard)
     name="Stats"
@@ -707,7 +715,11 @@ gimp)
 githubdesktop)
     name="GitHub Desktop"
     type="zip"
-    downloadURL="https://central.github.com/deployments/desktop/desktop/latest/darwin"
+    if [[ $(arch) == "arm64" ]]; then
+        downloadURL="https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64"
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL="https://central.github.com/deployments/desktop/desktop/latest/darwin"
+    fi
     appNewVersion=$(curl -fsL https://central.github.com/deployments/desktop/desktop/changelog.json | awk -F '{' '/"version"/ { print $2 }' | sed -E 's/.*,\"version\":\"([0-9.]*)\".*/\1/g')
     expectedTeamID="VEKTX9H2N7"
     ;;
@@ -1666,10 +1678,8 @@ sonoss2)
 sourcetree)
     name="Sourcetree"
     type="zip"
-    downloadURL=$(curl -fs https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcastAlpha.xml \
-        | xpath '//rss/channel/item[last()]/enclosure/@url' 2>/dev/null \
-        | cut -d '"' -f 2 )
-    appNewVersion=$(curl -fs https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcastAlpha.xml | xpath '//rss/channel/item[last()]/title' 2>/dev/null | sed -n -e 's/^.*Version //p' | sed 's/\<\/title\>//' | sed $'s/[^[:print:]\t]//g')
+    downloadURL=$(curl -fs "https://www.sourcetreeapp.com" | grep -i "macURL" | tr '"' '\n' | grep -io "https://.*/Sourcetree.*\.zip" | tail -1)
+    appNewVersion=$(echo "${downloadURL}" | sed -E 's/.*\/Sourcetree_([0-9.]*)_[0-9]*\.zip/\1/g')
     expectedTeamID="UPXU4CQZ5P"
     ;;
 spotify)

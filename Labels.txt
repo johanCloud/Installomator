@@ -63,6 +63,7 @@ egnyte
 element
 eraseinstall
 etrecheck
+evernote
 exelbanstats
 fantastical
 ferdi
