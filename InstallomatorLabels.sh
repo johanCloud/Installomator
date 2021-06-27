@@ -1789,7 +1789,7 @@ theunarchiver)
     name="The Unarchiver"
     type="dmg"
     downloadURL="https://dl.devmate.com/com.macpaw.site.theunarchiver/TheUnarchiver.dmg"
-    #appNewVersion=""
+    appNewVersion="$(curl -fs "https://theunarchiver.com" | grep -i "Latest version" | head -1 | sed -E 's/.*> ([0-9.]*) .*/\1/g')"
     expectedTeamID="S8EX82NJP6"
     appName="The Unarchiver.app"
     ;;
@@ -2380,7 +2380,7 @@ visualstudiocode)
     appNewVersion=$(curl -fsL "https://code.visualstudio.com/Updates" | grep "/darwin" | grep -oiE ".com/([^>]+)([^<]+)/darwin" | cut -d "/" -f 2 | sed $'s/[^[:print:]\t]//g' | head -1 )
     expectedTeamID="UBF8T346G9"
     appName="Visual Studio Code.app"
-    blockingProcesses=( Electron )
+    blockingProcesses=( Code )
     ;;
 microsoftword)
     name="Microsoft Word"

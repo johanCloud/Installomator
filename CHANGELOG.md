@@ -1,6 +1,7 @@
 ## 0.5.8 - 2021-06-??
+- Change how we search for currently installed app. Now we first try /Applications, and if nothing there, we search using Spotlight. The problem we have seen is that if Parallels is installed and the user has a Windows app (like Micrososft Teams og microsoft Edge), then we constantly got update notification to the user, as Parallels had created a Mac-app with the name of the Windows app (and a wrong version number)
 -  Labels added: evernote
--  Labels changed: githubdesktop (difference between arm and intel), microsoftteams (getting `appNewVersion` from macadmins.software as it matches `BundleID` of pkg), sourcetree (Sparkle does not have the latest version anymore)
+-  Labels changed: githubdesktop (difference between arm and intel), microsoftteams (getting `appNewVersion` from macadmins.software as it matches `BundleID` of pkg), sourcetree (Sparkle does not have the latest version anymore), theunarchiver (now with appNewVersion), visualstudiocode (process name changed)
 -  Mosyle changed their app name from Business to Self-Service
 
 ## 0.5.7 - 2021-05-21
