@@ -21,7 +21,7 @@
 #set -x # Debug
 
 VERSION='0.5.8' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-06-??'
+VERSIONDATE='2021-06-27'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -362,9 +362,11 @@ getAppVersion() {
         fi
     fi
     
-    # get app from /Applications or find using Spotify
+    # find app in /Applications, or /Applications/Utilities, or search using Spotify
     if [[ -d "/Applications/$appName" ]]; then
         applist="/Applications/$appName"
+    elif [[ -d "/Applications/Utilities/$appName" ]]; then
+        applist="/Applications/Utilities/$appName"
     else
         applist=$(mdfind "kind:application $appName" -0 )
     fi
