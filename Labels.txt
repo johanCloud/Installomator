@@ -12,6 +12,7 @@ alfred
 amazonchime
 amazonworkspaces
 androidfiletransfer
+anydesk
 apparency
 appcleaner
 applenyfonts
@@ -19,6 +20,7 @@ applesfcompact
 applesfmono
 applesfpro
 aquaskk
+arq7
 atom
 autodmg
 autopkgr
@@ -57,6 +59,7 @@ devonthink
 dialpad
 discord
 docker
+drift
 dropbox
 easeusdatarecoverywizard
 egnyte
@@ -93,14 +96,15 @@ gpgsync
 grandperspective
 gyazo
 gyazogif
+hancock
 handbrake
 hazel
 hpeasyadmin
 hpeasystart
 hyper
 icons
+imazingprofileeditor
 inkscape
-installomator_st
 installomator_theile
 intellijideace
 istatmenus
@@ -188,6 +192,7 @@ prism9
 privileges
 proctortrack
 promiseutilityr
+proxyman
 pycharmce
 pymol
 r
