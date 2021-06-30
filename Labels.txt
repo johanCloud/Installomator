@@ -69,6 +69,7 @@ etrecheck
 evernote
 exelbanstats
 fantastical
+favro
 ferdi
 figma
 firefox
