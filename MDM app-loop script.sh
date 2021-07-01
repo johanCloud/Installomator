@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installation using Installomator
-what="microsoftteams microsoftyammer firefox_da googlechrome cyberduck vlc signal" # enter the software to install separated with spaces
+what="microsoftteams microsoftyammer firefox bravebrowser cyberduck vlc signal" # enter the software to install separated with spaces
 
 # To be used as a script sent out from a MDM.
 # Fill the variable "what" above with labels separated by space " ".

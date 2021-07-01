@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installation using Installomator
-what="googledrivefilestream" # enter the software to install
+what="bravebrowser" # enter the software to install
 
 # To be used as a script sent out from a MDM.
 # Fill the variable "what" above with a label.

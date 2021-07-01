@@ -1624,6 +1624,13 @@ silnite)
     expectedTeamID="QWY4LRW926"
     blockingProcesses=( NONE )
     ;;
+sirimote)
+    name="SiriMote"
+    type="zip"
+    downloadURL="http://bit.ly/sirimotezip"
+    #appNewVersion="" # Not found on web page
+    expectedTeamID="G78RJ6NLJU"
+    ;;
 sizeup)
     # credit: AP Orlebeke (@apizz)
     name="SizeUp"
