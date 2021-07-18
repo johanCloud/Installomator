@@ -1,7 +1,7 @@
 ## 0.6.0 - 2021-07-18
 -  Synchronized with original Installomator version 0.6
 -  Labels added: 4kvideodownloader, aldente, alttab, anydesk, atext, audacity, balsamiqwireframes, bartender, defaultfolderx, favro, googlesoftwareupdate, grasshopper, keyboardmaestro, logitechoptions, obs, screenflick, sirimote, tableaudesktop, techsmithcapture, uniconverter, xquartz
--  Labels changed: element (`appNewVersion` added), figma (changed `downloadURL`), keepassxc (changed `downloadURL`)
+-  Labels changed: applesfsymbols (same as sfsymbols), element (`appNewVersion` added), figma (changed `downloadURL`), keepassxc (changed `downloadURL`)
 
 ## 0.5.8 - 2021-06-27
 -  Change how we search for currently installed app. Now we first try /Applications, and if nothing there, we search using Spotlight. The problem we have seen is that if Parallels is installed and the user has a Windows app (like Micrososft Teams og microsoft Edge), then we constantly got update notification to the user, as Parallels had created a Mac-app with the name of the Windows app (and a wrong version number)
