@@ -3,7 +3,7 @@ md5 checksums on pkg files
 Check with md5 command
 md5 -q Installomator_Theile-0.6.0.pkg
 
-0.6.0 : 
+0.6.0 : 708609a51ef6a00a2690dafda4d71e88
 0.5.8 : c004092d4c7dc1f57682f21927fbfe8f
 0.5.7 : a2a57443da9c399b1ff0a4a3215d1f95
 0.5.3 : 4aa2efb91a88c9adc7f5bbd903009d45
