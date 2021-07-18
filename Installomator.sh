@@ -1,27 +1,37 @@
 #!/bin/zsh
+label="" # if no label is sent to the script, this will be used
 
 # Installomator
 #
-# Downloads and installs an Applications
-# 2020 Armin Briegel - Scripting OS X
-#
-# https://github.com/scriptingosx/Installomator
+# Downloads and installs Applications
+# 2020-2021 Installomator
 #
 # inspired by the download scripts from William Smith and Sander Schram
-# with additional ideas and contribution from Isaac Ordonez, Mann consulting
+# 
+# Contributers:
+#    Armin Briegel - @scriptingosx
+#    Isaac Ordonez - @issacatmann
+#    Søren Theilgaard - @Theile
+#    Adam Codega - @acodega
+#
+# with contributions from many others
+#
+# https://github.com/Installomator/Installomator
 #
 # This branch by Søren Theilgaard (@theilgaard)
-# -  Mostly to implement version checking before demanding app to close
-#    but also to separate the labels.
+# -  Mostly to implement version checking before demanding app to close,
+#    but also to separate the labels in a separate file,
+#    and have this script installed for MDM calls.
 # -  Not recommended for use in Jamf Pro.
-# -  Testet with Mosyle Business and Manager.
-# https://github.com/theile/Installomator
+# -  Testet with Mosyle Business and Manager MDMs.
+# -  Testet with Addigy MDM.
+# https://github.com/Theile/Installomator
 
-#set -o xtrace # outputting every command of the script
-#set -x # Debug
+# set -o xtrace # outputting every command of the script
+# set -x # Debug
 
-VERSION='0.5.9' # This version branched by Søren Theilgaard
-VERSIONDATE='2021-07-??'
+VERSION='0.6.0' # This version branched by Søren Theilgaard
+VERSIONDATE='2021-07-18'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -362,7 +372,7 @@ getAppVersion() {
         fi
     fi
     
-    # find app in /Applications, or /Applications/Utilities, or search using Spotify
+    # get app in /Applications, or /Applications/Utilities, or find using Spotify
     if [[ -d "/Applications/$appName" ]]; then
         applist="/Applications/$appName"
     elif [[ -d "/Applications/Utilities/$appName" ]]; then

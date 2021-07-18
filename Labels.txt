@@ -9,7 +9,9 @@ adobereaderdc-install
 adobereaderdc-update
 aircall
 airserver
+aldente
 alfred
+alttab
 amazonchime
 amazonworkspaces
 androidfiletransfer
@@ -22,13 +24,17 @@ applesfmono
 applesfpro
 aquaskk
 arq7
+atext
 atom
+audacity
 autodmg
 autopkgr
 aviatrix
 awscli2
 awsvpnclient
 balenaetcher
+balsamiqwireframes
+bartender
 basecamp3
 bbedit
 bettertouchtool
@@ -53,6 +59,7 @@ dangerzone
 darktable
 dbeaverce
 debookee
+defaultfolderx
 depnotify
 desktoppr
 detectxswift
@@ -92,10 +99,12 @@ googledrivebackupandsync
 googledrivefilestream
 googleearth
 googlejapaneseinput
+googlesoftwareupdate
 gotomeeting
 gpgsuite
 gpgsync
 grandperspective
+grasshopper
 gyazo
 gyazogif
 hancock
@@ -133,6 +142,7 @@ lastpass
 launchbar
 lexarrecoverytool
 libreoffice
+logitechoptions
 loom
 lucifer
 lulu
@@ -169,6 +179,7 @@ nomad
 nomadlogin
 notion
 nvivo
+obs
 obsidian
 odrive
 omnidisksweeper
@@ -214,6 +225,7 @@ royaltsx
 rstudio
 santa
 screamingfrogseospider
+screenflick
 sfsymbols
 shield
 sidekick
@@ -237,11 +249,13 @@ sublimetext
 supportapp
 suspiciouspackage
 swiftruntimeforcommandlinetools
+tableaudesktop
 tableaureader
 taskpaper
 teamviewer
 teamviewerhost
 teamviewerqs
+techsmithcapture
 telegram
 textexpander
 textmate
@@ -255,6 +269,7 @@ trex
 tunnelbear
 tunnelblick
 umbrellaroamingclient
+uniconverter
 universaltypeclient
 vagrant
 vanilla
@@ -266,6 +281,7 @@ vivaldi
 vlc
 vmwarehorizonclient
 vscodium
+webex
 webexmeetings
 webexteams
 whatsapp
@@ -275,6 +291,7 @@ wireshark
 wwdc
 xeroxphaser7800
 xink
+xquartz
 yubikeymanagerqt
 zappy
 zoom
