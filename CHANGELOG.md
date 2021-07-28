@@ -1,3 +1,6 @@
+## 0.6.1 - 2021-0?-??
+-  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
+
 ## 0.6.0 - 2021-07-18
 -  Synchronized with original Installomator version 0.6
 -  Labels added: 4kvideodownloader, aldente, alttab, anydesk, atext, audacity, balsamiqwireframes, bartender, defaultfolderx, favro, googlesoftwareupdate, grasshopper, keyboardmaestro, logitechoptions, obs, screenflick, sirimote, tableaudesktop, techsmithcapture, uniconverter, xquartz
