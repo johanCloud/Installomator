@@ -1,4 +1,5 @@
 ## 0.6.1 - 2021-0?-??
+-  Labels added: muzzle
 -  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
 
 ## 0.6.0 - 2021-07-18
