@@ -165,6 +165,7 @@ apparency)
     name="Apparency"
     type="dmg"
     downloadURL="https://www.mothersruin.com/software/downloads/Apparency.dmg"
+    addNewVersion=$(curl -fs https://mothersruin.com/software/Apparency/get.html | grep 'class="version"' | sed -E 's/.*>([0-9\.]*) \(.*/\1/g')
     expectedTeamID="936EB786NH"
     ;;
 appcleaner)
