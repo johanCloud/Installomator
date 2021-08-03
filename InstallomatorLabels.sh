@@ -140,7 +140,6 @@ amazonchime)
     expectedTeamID="94KV3E626L"
     ;;
 amazonworkspaces)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Workspaces"
     type="pkg"
     downloadURL="https://d2td7dqidlhjx7.cloudfront.net/prod/global/osx/WorkSpaces.pkg"
@@ -265,7 +264,6 @@ autopkgr)
     expectedTeamID="JVY2ZR6SEF"
     ;;
 aviatrix)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Aviatrix VPN Client"
     type="pkg"
     downloadURL="https://s3-us-west-2.amazonaws.com/aviatrix-download/AviatrixVPNClient/AVPNC_mac.pkg"
@@ -358,7 +356,6 @@ bluejeans)
     expectedTeamID="HE4P42JBGN"
     ;;
 boxdrive)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Box"
     type="pkg"
     if [[ $(arch) == "arm64" ]]; then
@@ -434,7 +431,6 @@ clickshare)
     expectedTeamID="P6CDJZR997"
     ;;
 code42)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Code42"
     type="pkgInDmg"
     downloadURL=https://download.code42.com/installs/agent/latest-mac.dmg
@@ -805,7 +801,6 @@ googleearth)
     ;;
 googledrive|\
 googledrivefilestream)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Google Drive File Stream"
     type="pkgInDmg"
     packageID="com.google.drivefs"
@@ -1553,7 +1548,6 @@ ricohpsprinters)
     expectedTeamID="5KACUT3YX8"
     ;;
 ringcentralapp)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Glip"
     type="dmg"
     downloadURL="https://downloads.ringcentral.com/glip/rc/GlipForMac"
@@ -1569,7 +1563,6 @@ ringcentralclassicapp)
     #blockingProcessesMaxCPU="5"
     ;;
 ringcentralmeetings)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Ring Central Meetings"
     type="pkg"
     downloadURL="http://dn.ringcentral.com/data/web/download/RCMeetings/1210/RCMeetingsClientSetup.pkg"
@@ -2107,7 +2100,6 @@ zappy)
     expectedTeamID="6LS97Q5E79"
     ;;
 zoom)
-    # credit: Isaac Ordonez, Mann consulting (@mannconsulting)
     name="Zoom.us"
     type="pkg"
     downloadURL="https://zoom.us/client/latest/ZoomInstallerIT.pkg"
@@ -2278,7 +2270,6 @@ microsoftexcel)
     updateToolArguments=( --install --apps XCEL2019 )
     ;;
 microsoftlicenseremovaltool)
-    # credit: Isaac Ordonez (@isaac) macadmins slack
     name="Microsoft License Removal Tool"
     type="pkg"
     downloadURL="https://go.microsoft.com/fwlink/?linkid=849815"
