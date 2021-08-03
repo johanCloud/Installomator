@@ -326,7 +326,6 @@ bbedit)
     expectedTeamID="W52GZAXT98"
     ;;
 bettertouchtool)
-    # credit: Søren Theilgaard (@theilgaard)
     name="BetterTouchTool"
     type="zip"
     downloadURL="https://folivora.ai/releases/BetterTouchTool.zip"
@@ -401,7 +400,6 @@ calibre)
     expectedTeamID="NTY7FVCEKP"
     ;;
 camostudio)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Camo Studio"
     type="zip"
     downloadURL="https://reincubate.com/res/labs/camo/camo-macos-latest.zip"
@@ -423,7 +421,6 @@ citrixworkspace)
     expectedTeamID="S272Y5R93J"
     ;;
 clevershare2)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Clevershare"
     type="dmg"
     downloadURL=$(curl -fs https://archive.clevertouch.com/clevershare2g | grep -i "_Mac" | tr '"' "\n" | grep "^http.*dmg")
@@ -431,7 +428,6 @@ clevershare2)
     expectedTeamID="P76M9BE8DQ"
     ;;
 clickshare)
-    # credit: Søren Theilgaard (@theilgaard)
     name="ClickShare"
     type="appInDmgInZip"
     downloadURL=https://www.barco.com$(curl -fs "https://www.barco.com/en/clickshare/app" | grep -E -o '(\/\S*Download\?FileNumber=R3306192\S*ShowDownloadPage=False)' | tail -1)
@@ -453,7 +449,6 @@ coderunner)
     expectedTeamID="R4GD98AJF9"
     ;;
 cormorant)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Cormorant"
     type="zip"
     downloadURL=$(curl -fs https://eclecticlight.co/downloads/ | grep -i $name | grep zip | sed -E 's/.*href=\"(https.*)\">.*/\1/g')
@@ -482,7 +477,6 @@ dangerzone)
     expectedTeamID="P24U45L8P5"
     ;;
 darktable)
-    # credit: Søren Theilgaard (@theilgaard)
     name="darktable"
     type="dmg"
     downloadURL=$(downloadURLFromGit darktable-org darktable)
@@ -534,8 +528,6 @@ detectxswift)
     expectedTeamID="MAJ5XBJSG3"
     ;;
 devonthink)
-    # It's a zipped dmg file, needs function installAppInDmgInZip
-    # credit: Søren Theilgaard (@theilgaard)
     name="DEVONthink 3"
     type="appInDmgInZip"
     downloadURL=$( curl -fs https://www.devontechnologies.com/apps/devonthink | grep -i "download.devon" | tr '"' '\n' | tr "'" '\n' | grep -e '^https://' )
@@ -582,7 +574,6 @@ dropbox)
     expectedTeamID="G7HH3F8CAK"
     ;;
 easeusdatarecoverywizard)
-    # credit: Søren Theilgaard (@theilgaard)
     name="EaseUS Data Recovery Wizard"
     type="dmg"
     downloadURL=$( curl -fsIL https://down.easeus.com/product/mac_drw_free_setup | grep -i "^location" | awk '{print $2}' | tr -d '\r\n' )
@@ -626,7 +617,6 @@ evernote)
     appName="Evernote.app"
     ;;
 exelbanstats)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Stats"
     type="dmg"
     downloadURL=$(downloadURLFromGit exelban stats)
@@ -772,7 +762,6 @@ githubdesktop)
     expectedTeamID="VEKTX9H2N7"
     ;;
 golang)
-    # credit: Søren Theilgaard (@theilgaard)
     name="GoLang"
     type="pkg"
     packageID="org.golang.go"
@@ -917,7 +906,6 @@ handbrake)
     expectedTeamID="5X9DE89KYV"
     ;;
 hazel)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Hazel"
     type="dmg"
     downloadURL=$(curl -fsI https://www.noodlesoft.com/Products/Hazel/download | grep -i "^location" | awk '{print $2}' | tr -d '\r\n')
@@ -925,14 +913,12 @@ hazel)
     expectedTeamID="86Z3GCJ4MF"
     ;;
 hpeasyadmin)
-    # credit: Søren Theilgaard (@theilgaard)
     name="HP Easy Admin"
     type="zip"
     downloadURL="https://ftp.hp.com/pub/softlib/software12/HP_Quick_Start/osx/Applications/HP_Easy_Admin.app.zip"
     expectedTeamID="6HB5Y2QTA3"
     ;;
 hpeasystart)
-    # credit: Søren Theilgaard (@theilgaard)
     name="HP Easy Start"
     type="zip"
     downloadURL="https://ftp.hp.com/pub/softlib/software12/HP_Quick_Start/osx/Applications/HP_Easy_Start.app.zip"
@@ -961,7 +947,6 @@ imazingprofileeditor)
     expectedTeamID="J5PR93692Y"
     ;;
 inkscape)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Inkscape"
     type="dmg"
     downloadURL="https://inkscape.org$(curl -fs https://inkscape.org$(curl -fsJL https://inkscape.org/release/  | grep "/release/" | grep en | head -n 1 | cut -d '"' -f 6)mac-os-x/1010-1015/dl/ | grep "click here" | cut -d '"' -f 2)"
@@ -969,7 +954,6 @@ inkscape)
     expectedTeamID="SW3D6BB6A6"
     ;;
 installomator_theile)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Installomator"
     type="pkg"
     packageID="dk.theilgaard.pkg.Installomator"
@@ -1119,7 +1103,6 @@ keka)
     expectedTeamID="4FG648TM2A"
     ;;
 keyboardmaestro)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Keyboard Maestro"
     type="zip"
     downloadURL="https://download.keyboardmaestro.com/"
@@ -1128,7 +1111,6 @@ keyboardmaestro)
     blockingProcesses=( "Keyboard Maestro Engine" "Keyboard Maestro" )
     ;;
 klokki)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Klokki"
     type="dmg"
     downloadURL="https://storage.yandexcloud.net/klokki/Klokki.dmg"
@@ -1149,7 +1131,6 @@ krisp)
     expectedTeamID="U5R26XM5Z2"
     ;;
 krita)
-    # credit: Søren Theilgaard (@theilgaard)
     name="krita"
     type="dmg"
     downloadURL=$( curl -fs "https://krita.org/en/download/krita-desktop/" | grep ".*https.*stable.*dmg.*" | head -1 | sed -E 's/.*(https.*dmg).*/\1/g' )
@@ -1171,7 +1152,6 @@ launchbar)
     expectedTeamID="MLZF7K7B5R"
     ;;
 lexarrecoverytool)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Lexar Recovery Tool"
     type="appInDmgInZip"
     downloadURL="https://www.lexar.com$( curl -fs "https://www.lexar.com/support/downloads/" | grep -i "mac" | grep -i "recovery" | head -1 | tr '"' '\n' | grep -i ".zip" )"
@@ -1301,7 +1281,6 @@ nomad)
     expectedTeamID="VRPY9KHGX6"
     ;;
 nomadlogin)
-    # credit: Søren Theilgaard (@theilgaard)
     name="NoMAD Login"
     type="pkg"
     downloadURL="https://files.nomad.menu/NoMAD-Login-AD.pkg"
@@ -1309,7 +1288,6 @@ nomadlogin)
     expectedTeamID="AAPZK3CB24"
     ;;
 notion)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Notion"
     type="dmg"
     if [[ $(arch) == "arm64" ]]; then
@@ -1336,7 +1314,6 @@ obs)
     expectedTeamID="2MMRE5MTB8"
     ;;
 obsidian)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Obsidian"
     type="dmg"
     downloadURL=$( downloadURLFromGit obsidianmd obsidian-releases )
@@ -1344,7 +1321,6 @@ obsidian)
     expectedTeamID="6JSW4SJWN9"
     ;;
 odrive)
-    # credit: Søren Theilgaard (@theilgaard)
     name="odrive"
     type="pkg"
     packageID="com.oxygen.odrive.installer-prod.pkg"
@@ -1409,7 +1385,6 @@ omnipresence)
     expectedTeamID="34YW5XSRB7"
     ;;
 onionshare)
-    # credit: Søren Theilgaard (@theilgaard)
     name="OnionShare"
     type="dmg"
     downloadURL="https://onionshare.org$(curl -fs https://onionshare.org | grep "button.*dmg" | tr '"' '\n' | grep ".dmg")"
@@ -1660,7 +1635,6 @@ screenflick)
     expectedTeamID="28488A87JB"
     ;;
 shield)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Shield"
     type="zip"
     downloadURL=$(downloadURLFromGit theevilbit Shield)
@@ -1675,7 +1649,6 @@ sidekick)
     expectedTeamID="N975558CUS"
     ;;
 signal)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Signal"
     type="dmg"
     downloadURL=https://updates.signal.org/desktop/$(curl -fs https://updates.signal.org/desktop/latest-mac.yml | awk '/url/ && /dmg/ {print $3}')
@@ -1683,7 +1656,6 @@ signal)
     expectedTeamID="U68MSDN6DR"
     ;;
 silnite)
-    # credit: Søren Theilgaard (@theilgaard)
     name="silnite"
     type="pkgInZip"
     downloadURL=$(curl -fs https://eclecticlight.co/downloads/ | grep -i $name | grep zip | sed -E 's/.*href=\"(https.*)\">.*/\1/g')
@@ -1777,7 +1749,6 @@ spotify)
     expectedTeamID="2FNC3A47ZF"
     ;;
 sublimetext)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Sublime Text"
     type="zip"
     downloadURL="$(curl -fs https://www.sublimetext.com/download | grep -io "https://download.*_mac.zip")"
@@ -1785,7 +1756,6 @@ sublimetext)
     expectedTeamID="Z6D26JE4Y4"
     ;;
 supportapp)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Support"
     type="pkg"
     packageID="nl.root3.support"
@@ -1847,7 +1817,6 @@ teamviewerhost)
     #blockingProcessesMaxCPU="5" # Future feature
     ;;
 teamviewerqs)
-    # credit: Søren Theilgaard (@theilgaard)
     name="TeamViewerQS"
     type="dmg"
     downloadURL="https://download.teamviewer.com/download/TeamViewerQS.dmg"
@@ -1919,7 +1888,6 @@ toggltrack)
     expectedTeamID="B227VTMZ94"
     ;;
 torbrowser)
-    # credit: Søren Theilgaard (@theilgaard)
     name="Tor Browser"
     type="dmg"
     downloadURL=https://www.torproject.org$(curl -fs https://www.torproject.org/download/ | grep "downloadLink" | grep dmg | head -1 | cut -d '"' -f 4)
@@ -1927,7 +1895,6 @@ torbrowser)
     expectedTeamID="MADPSAYN6T"
     ;;
 trex)
-    # credit: Søren Theilgaard (@theilgaard)
     name="TRex"
     type="zip"
     downloadURL=$(downloadURLFromGit amebalabs TRex)
@@ -2076,7 +2043,6 @@ whatsapp)
     expectedTeamID="57T9237FN3"
     ;;
 wickrme)
-    # credit: Søren Theilgaard (@theilgaard)
     name="WickrMe"
     type="dmg"
     downloadURL=$( curl -fs https://me-download.wickr.com/api/download/me/download/mac | tr '"' '\n' | grep -e '^https://' )
@@ -2084,7 +2050,6 @@ wickrme)
     expectedTeamID="W8RC3R952A"
     ;;
 wickrpro)
-    # credit: Søren Theilgaard (@theilgaard)
     name="WickrPro"
     type="dmg"
     downloadURL=$( curl -fs https://me-download.wickr.com/api/download/pro/download/mac | tr '"' '\n' | grep -e '^https://' )
@@ -2099,7 +2064,6 @@ wireshark)
     expectedTeamID="7Z6EMTD2C6"
     ;;
 wwdc)
-    # credit: Søren Theilgaard (@theilgaard)
     name="WWDC"
     type="dmg"
     downloadURL=$(downloadURLFromGit insidegui WWDC)
@@ -2147,7 +2111,7 @@ zoom)
     name="Zoom.us"
     type="pkg"
     downloadURL="https://zoom.us/client/latest/ZoomInstallerIT.pkg"
-    appNewVersion=$(curl -fs -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" "https://zoom.us/download" | grep Version | head -n 1 | sed -E 's/.* ([0-9.]* \(.*\)).*/\1/') # credit: Søren Theilgaard (@theilgaard)
+    appNewVersion=$(curl -fs -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" "https://zoom.us/download" | grep Version | head -n 1 | sed -E 's/.* ([0-9.]* \(.*\)).*/\1/')
     expectedTeamID="BJ4HAAB9B3"
     blockingProcesses=( zoom.us )
     ;;
@@ -2206,35 +2170,6 @@ zulujdk15)
 
 # MARK: Add new labels above here
 
-#cdef)
-#    # cdef currently not signed
-#    # credit: Søren Theilgaard (@theilgaard)
-#    name="cdef"
-#    type="pkg"
-#    downloadURL=$(downloadURLFromGit Shufflepuck cdef)
-#    appNewVersion=$(versionFromGit Shufflepuck cdef)
-#    #expectedTeamID="EM3ER8T33A"
-#    ;;
-#fontforge)
-#    # FontForge Not signed
-#    # credit: Søren Theilgaard (@theilgaard)
-#    name="FontForge"
-#    type="dmg"
-#    downloadURL=$(downloadURLFromGit fontforge fontforge)
-#    appNewVersion=$(versionFromGit fontforge fontforge)
-#    expectedTeamID=""
-#    ;;
-#notifier)
-#    # not signed
-#    # credit: Søren Theilgaard (@theilgaard)
-#    name="dataJAR Notifier"
-#    type="pkg"
-#    #packageID="uk.co.dataJAR.Notifier" # Version 2.2.3 was actually "uk.co.dataJAR.Notifier-2.2.3" so unusable
-#    downloadURL=$(downloadURLFromGit dataJAR Notifier)
-#    appNewVersion=$(versionFromGit dataJAR Notifier)
-#    expectedTeamID=""
-#    blockingProcesses=( "Notifier" )
-#    ;;
 # packages)
 # NOTE: Packages is signed but _not_ notarized, so spctl will reject it
 #    name="Packages"
@@ -2270,18 +2205,6 @@ zulujdk15)
 #     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | sed -E 's/.*Fusion-([0-9.]*)-.*/\1/g' )
 #     expectedTeamID="EG7KH642X6"
 #     ;;
-#wordmat)
-#    # WordMat currently not signed
-#    # credit: Søren Theilgaard (@theilgaard)
-#    name="WordMat"
-#    type="pkg"
-#    packageID="com.eduap.pkg.WordMat"
-#    downloadURL=$(downloadURLFromGit Eduap-com WordMat)
-#    #downloadURL=$(curl -fs "https://api.github.com/repos/Eduap-com/WordMat/releases/latest" | awk -F '"' "/browser_download_url/ && /pkg/ && ! /sig/ && ! /CLI/ && ! /sha256/ { print \$4 }")
-#    appNewVersion=$(versionFromGit Eduap-com WordMat)
-#    #curl -fs "https://api.github.com/repos/Eduap-com/WordMat/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g'
-#    expectedTeamID=""
-#    ;;
 
 
 # MARK: Microsoft

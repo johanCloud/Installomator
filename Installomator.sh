@@ -18,7 +18,7 @@ label="" # if no label is sent to the script, this will be used
 #
 # https://github.com/Installomator/Installomator
 #
-# This branch by Søren Theilgaard (@theilgaard)
+# This fork by Søren Theilgaard (@theilgaard)
 # -  Mostly to implement version checking before demanding app to close,
 #    but also to separate the labels in a separate file,
 #    and have this script installed for MDM calls.
@@ -30,7 +30,7 @@ label="" # if no label is sent to the script, this will be used
 # set -o xtrace # outputting every command of the script
 # set -x # Debug
 
-VERSION='0.6.0' # This version branched by Søren Theilgaard
+VERSION='0.6.0' # This version forked by Søren Theilgaard
 VERSIONDATE='2021-07-18'
 VERSIONBRANCH='Søren Theilgaard'
 
@@ -322,7 +322,6 @@ downloadURLFromGit() { # $1 git user name, $2 git repo name
 }
 
 versionFromGit() {
-    # credit: Søren Theilgaard (@theilgaard)
     # $1 git user name, $2 git repo name
     gitusername=${1?:"no git user name"}
     gitreponame=${2?:"no git repo name"}
@@ -352,8 +351,6 @@ xpath() {
 
 
 getAppVersion() {
-    # modified by: Søren Theilgaard (@theilgaard) and Isaac Ordonez
-
     # If label contain function appCustomVersion, we use that and return
     if type 'appCustomVersion' 2>/dev/null | grep -q 'function'; then
         appversion=$(appCustomVersion)
@@ -506,7 +503,6 @@ checkRunningProcesses() {
 
 reopenClosedProcess() {
     # If Installomator closed any processes, let's get the app opened again
-    # credit: Søren Theilgaard (@theilgaard)
     
     # don't reopen if REOPEN is not "yes"
     if [[ $REOPEN != yes ]]; then
@@ -534,7 +530,6 @@ reopenClosedProcess() {
 }
 
 installAppWithPath() { # $1: path to app to install in $targetDir
-    # modified by: Søren Theilgaard (@theilgaard)
     appPath=${1?:"no path to app"}
 
     # check if app exists
@@ -555,7 +550,6 @@ installAppWithPath() { # $1: path to app to install in $targetDir
     fi
 
     # versioncheck
-    # credit: Søren Theilgaard (@theilgaard)
     appNewVersion=$(defaults read $appPath/Contents/Info.plist $versionKey)
     if [[ $appversion == $appNewVersion ]]; then
         printlog "Downloaded version of $name is $appNewVersion, same as installed."
@@ -997,7 +991,6 @@ getAppVersion
 printlog "appversion: $appversion"
 
 # MARK: Exit if new version is the same as installed version (appNewVersion specified)
-# credit: Søren Theilgaard (@theilgaard)
 if [[ -n $appNewVersion ]]; then
     printlog "Latest version of $name is $appNewVersion"
     if [[ $appversion == $appNewVersion ]]; then
