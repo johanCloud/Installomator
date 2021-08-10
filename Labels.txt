@@ -43,6 +43,7 @@ bitwarden
 blender
 bluejeans
 boxdrive
+boxsync
 brave
 cakebrew
 calibre
