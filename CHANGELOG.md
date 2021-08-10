@@ -2,7 +2,7 @@
 -  Labels added: boxsync, jetbrainstoolbox, muzzle
 -  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
 -  not to offend or belittle anyone, but credit-lines is in the process of being removed. The team behind this fork, as well as the original Installomator, is so thankful for all the contributions, but we would like to save som space in the script. There is now more than 300 title, if we can remove a credit line on each one, it is a pretty significant reduction. Our own comments in the code is being cleaned up as well.
--  `buildCaseStatement` improved a bit when naming the label (should still be edited manually, though)
+-  `buildCaseStatement.sh` improved a bit when naming the label (should still be edited manually, though)
 
 ## 0.6.0 - 2021-07-18
 -  Synchronized with original Installomator version 0.6
