@@ -1,7 +1,13 @@
+## 0.7.0 - 2021-0?-??
+This version will be in full sync with the original fork.
+I will maintain often new builds of Installomator PKGs, as well as the specific helping scripts for Mosyle/Addigy and other MDMs.
+I will build from the original fork, that will soon be based on files in fragments, so it will be much easier to maintain, and my fork here will not be adding anything to the original script.
+`Installoamtor.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
+
 ## 0.6.1 - 2021-0?-??
 -  Labels added: boxsync, craftmanager, insomnia, jetbrainstoolbox, muzzle
 -  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
--  not to offend or belittle anyone, but credit-lines is in the process of being removed. The team behind this fork, as well as the original Installomator, is so thankful for all the contributions, but we would like to save som space in the script. There is now more than 300 title, if we can remove a credit line on each one, it is a pretty significant reduction. Our own comments in the code is being cleaned up as well.
+-  not to offend or belittle anyone, but credit-lines is in the process of being removed. The team behind this fork, as well as the original Installomator, is so thankful for all the contributions, but we would like to save som space in the script. There is now more than 300 titles and if we can remove a credit line on each one, it is a pretty significant reduction. Our own comments in the code is being cleaned up as well.
 -  `buildCaseStatement.sh` improved a bit when naming the label (should still be edited manually, though)
 
 ## 0.6.0 - 2021-07-18
