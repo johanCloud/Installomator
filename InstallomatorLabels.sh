@@ -1719,6 +1719,13 @@ slack)
     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | tr -d '\r\n' | sed -E 's/.*macos\/([0-9.]*)\/.*/\1/g' )
     expectedTeamID="BQR82RBBHL"
     ;;
+smartgit)
+    name="SmartGit"
+    type="dmg"
+    downloadURL="https://www.syntevo.com$(curl -fs "https://www.syntevo.com/smartgit/download/" | grep -i -o -E "/downloads/.*/smartgit.*\.dmg")"
+    appNewVersion="$(curl -fs "https://www.syntevo.com/smartgit/changelog.txt" | grep -i -E "SmartGit *[0-9.]* *.*" | head -1 | awk '{print $2}')"
+    expectedTeamID="PHMY45PTNW"
+    ;;
 snagit|\
 snagit2021|\
 snagit2020)
