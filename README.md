@@ -1,5 +1,19 @@
 # Installomator (Theile fork)
 
+## Important Note for version 0.7.0
+
+I expect this version to change in the future, as the original version of Installomator now has everything this fork has.
+
+So I expect that my fork will have MDM-scripts and that I still provide a pkg.
+
+### The script `Installomator.sh` will move!
+
+It's currently in `/usr/local/bin`, and when I fully change to build the pkg from the original Installomator, it will be moved to `/usr/local/bin/Installomator.sh` and consist of only one script (all labels will be part of the script).
+
+_See [Installomator/Installomator](https://github.com/Installomator/Installomator) for what changes has happened, but a completely different build-method has been implemented and the script is now in fragments._
+
+## Original description
+
 _The one installer script to rule them all._
 
 ![](https://img.shields.io/github/v/release/Theile/Installomator)&nbsp;![](https://img.shields.io/github/downloads/Theile/Installomator/latest/total)&nbsp;![](https://img.shields.io/badge/macOS-10.14%2B-success)&nbsp;![](https://img.shields.io/github/license/Theile/Installomator)
@@ -16,7 +30,7 @@ Also this version should notify the user better, when they install apps themselv
 
 I also part of the team working on the original Installomator script.
 
-_See [scriptingosx/Installomator](https://github.com/scriptingosx/Installomator) for the original software and README._
+_See [Installomator/Installomator](https://github.com/Installomator/Installomator) for the original software and README._
 
 ### Extra variables in labels
 
