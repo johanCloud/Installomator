@@ -387,6 +387,14 @@ brave)
     appNewVersion=$(curl --location --fail --silent "https://updates.bravesoftware.com/sparkle/Brave-Browser/stable/appcast.xml" | xpath '//rss/channel/item[last()]/enclosure/@sparkle:shortVersionString' 2>/dev/null  | cut -d '"' -f 2)
     expectedTeamID="KL8N8XSYF4"
     ;;
+caffeine)
+    name="Caffeine"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit IntelliScape caffeine)
+    appNewVersion=$(versionFromGit IntelliScape caffeine)
+    expectedTeamID="YD6LEYT6WZ"
+    blockingProcesses=( Caffeine )
+    ;;
 cakebrew)
     name="Cakebrew"
     type="zip"
@@ -449,6 +457,14 @@ coderunner)
     type="zip"
     downloadURL="https://coderunnerapp.com/download"
     expectedTeamID="R4GD98AJF9"
+    ;;
+colourcontrastanalyser)
+    name="Colour Contrast Analyser (CCA)"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit ThePacielloGroup CCAe)
+    appNewVersion=$(versionFromGit ThePacielloGroup CCAe)
+    expectedTeamID="34RS4UC3M6"
+    blockingProcesses=( NONE )
     ;;
 cormorant)
     name="Cormorant"
@@ -1034,6 +1050,17 @@ jamfreenroller)
     #appNewVersion=$(versionFromGit jamf ReEnroller)
     expectedTeamID="PS2F6S478M"
     ;;
+jetbrainsdatagrip)
+    name="DataGrip"
+    type="dmg"
+    appNewVersion=$(curl -fs "https://data.services.jetbrains.com/products/releases?code=DG&latest=true&type=release" | grep -o 'version*.*,' | cut -d '"' -f3)
+    if [[ $(arch) == "arm64" ]]; then
+        downloadURL=$(curl -fs "https://data.services.jetbrains.com/products/releases?code=DG&latest=true&type=release" | grep -o 'macM1*.*,' | cut -d '"' -f5)
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL=$(curl -fs "https://data.services.jetbrains.com/products/releases?code=DG&latest=true&type=release" | grep -o 'mac*.*,' | cut -d '"' -f5)
+    fi
+    expectedTeamID="2ZEFAR8TH3"
+    ;;
 jetbrainsintellijidea)
     name="IntelliJ IDEA"
     type="dmg"
@@ -1462,6 +1489,13 @@ plantronicshub)
     expectedTeamID="SKWK2Q7JJV"
     appNewVersion=$(curl -fs "https://www.poly.com/in/en/support/knowledge-base/kb-article-page?lang=en_US&urlName=Hub-Release-Notes&type=Product_Information__kav" | grep -o "(*.*<span>)" | head -1 | cut -d "(" -f2 | sed 's/\<\/span\>//g' | cut -d "<" -f1)
     ;;
+platypus)
+    name="Platypus"
+    type="zip"
+    downloadURL=$(downloadURLFromGit sveinbjornt Platypus)
+    appNewVersion=$(versionFromGit sveinbjornt Platypus)
+    expectedTeamID="55GP2M789L"
+    ;;
 plisteditpro)
     name="PlistEdit Pro"
     type="zip"
@@ -1635,11 +1669,25 @@ santa)
     appNewVersion=$(versionFromGit google santa)
     expectedTeamID="EQHXZ8M8AV"
     ;;
+scaleft)
+    name="ScaleFT"
+    type="pkg"
+    downloadURL="https://dist.scaleft.com/client-tools/mac/latest/ScaleFT.pkg"
+    appNewVersion=$(curl -sf "https://dist.scaleft.com/client-tools/mac/" | awk '/dir/{i++}i==2' | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
+    expectedTeamID="HV2G9Z3RP5"
+    blockingProcesses=( ScaleFT )
+    ;;
 screamingfrogseospider)
     name="Screaming Frog SEO Spider"
     type="dmg"
     downloadURL="https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-14.3.dmg"
     expectedTeamID="CAHEVC3HZC"
+    ;;
+screencloudplayer)
+    name="ScreenCloud Player"
+    type="dmg"
+    downloadURL=$(curl -sL "https://screencloud.com/download" | sed -n 's/^.*"url":"\([^"]*\)".*$/\1/p')
+    expectedTeamID="3C4F953K6P"
     ;;
 screenflick)
     # credit: Gabe Marchan (gabemarchan.com - @darklink87)
@@ -2145,6 +2193,15 @@ zoomclient)
     blockingProcesses=( zoom.us )
     #blockingProcessesMaxCPU="5"
     ;;
+zoomrooms)
+    name="ZoomRooms"
+    type="pkg"
+    packageID="us.zoom.pkg.zp"
+    downloadURL="https://zoom.us/client/latest/ZoomRooms.pkg"
+    appNewVersion="$(curl -fsIL ${downloadURL} | grep -i location | cut -d "/" -f5)"
+    expectedTeamID="BJ4HAAB9B3"
+    blockingProcesses=( "ZoomPresence" )
+    ;;
 zulujdk11)
     name="Zulu JDK 11"
     type="pkgInDmg"
@@ -2182,6 +2239,19 @@ zulujdk15)
     fi
     expectedTeamID="TDTHCUPYFR"
     appCustomVersion(){ java -version 2>&1 | grep Runtime | awk '{print $4}' | sed -e "s/.*Zulu//" | cut -d '-' -f 1 | sed -e "s/+/\./" }
+    appNewVersion=$(echo "$downloadURL" | cut -d "-" -f 1 | sed -e "s/.*zulu//") # Cannot be compared to anything
+    ;;
+zulujdk8)
+    name="Zulu JDK 8"
+    type="pkgInDmg"
+    packageID="com.azulsystems.zulu.8"
+    if [[ $(arch) == i386 ]]; then
+        downloadURL=https://cdn.azul.com/zulu/bin/$(curl -fs "https://cdn.azul.com/zulu/bin/" | grep -Eio '">zulu8.*ca-jdk8.*x64.dmg(.*)' | cut -c3- | sed 's/<\/a>//' | sed -E 's/([0-9.]*)M//' | awk '{print $2 $1}' | sort | cut -c11- | tail -1)
+    elif [[ $(arch) == arm64 ]]; then
+        downloadURL=https://cdn.azul.com/zulu/bin/$(curl -fs "https://cdn.azul.com/zulu/bin/" | grep -Eio '">zulu8.*ca-jdk8.*aarch64.dmg(.*)' | cut -c3- | sed 's/<\/a>//' | sed -E 's/([0-9.]*)M//' | awk '{print $2 $1}' | sort | cut -c11- | tail -1)
+    fi
+    expectedTeamID="TDTHCUPYFR"
+    appCustomVersion(){ if [ -f "/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Info.plist" ]; then /usr/bin/defaults read "/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Info.plist" "CFBundleName" | sed 's/Zulu //'; fi }
     appNewVersion=$(echo "$downloadURL" | cut -d "-" -f 1 | sed -e "s/.*zulu//") # Cannot be compared to anything
     ;;
 
