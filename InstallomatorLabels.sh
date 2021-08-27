@@ -423,6 +423,13 @@ camtasia)
     downloadURL=https://download.techsmith.com/camtasiamac/releases/Camtasia.dmg
     expectedTeamID="7TQL462TU8"
     ;;
+cisdem-documentreader)
+    name="cisdem-documentreader"
+    type="dmg"
+    downloadURL="https://download.cisdem.com/cisdem-documentreader.dmg"
+    expectedTeamID="5HGV8EX6BQ"
+    appName="Cisdem Document Reader.app"
+    ;;
 citrixworkspace)
     #credit: Erik Stam (@erikstam) and #Philipp on MacAdmins Slack
     name="Citrix Workspace"
@@ -434,7 +441,7 @@ citrixworkspace)
 clevershare2)
     name="Clevershare"
     type="dmg"
-    downloadURL=$(curl -fs https://archive.clevertouch.com/clevershare2g | grep -i "_Mac" | tr '"' "\n" | grep "^http.*dmg")
+    downloadURL=$(curl -fs https://www.clevertouch.com/eu/clevershare2g | grep -i -o -E "https.*Mac.*\.dmg")
     appNewVersion=$( echo "${downloadURL}" | sed -E 's/.*\/[a-zA-Z-]*_Mac\.([0-9.]*)\.[0-9]*\.dmg$/\1/g' )
     expectedTeamID="P76M9BE8DQ"
     ;;
@@ -755,6 +762,14 @@ firefoxpkg)
     downloadURL="https://download.mozilla.org/?product=firefox-pkg-latest-ssl&os=osx&lang=en-US"
     expectedTeamID="43AQ936H96"
     blockingProcesses=( firefox )
+    ;;
+flowjo)
+    name="FlowJo-OSX64-10.8.0"
+    type="dmg"
+    downloadURL="$(curl -fs "https://www.flowjo.com/solutions/flowjo/downloads" | grep -i -o -E "https.*\.dmg")"
+    appNewVersion=$(echo "${downloadURL}" | tr "-" "\n" | grep dmg | sed -E 's/([0-9.]*)\.dmg/\1/g')
+    expectedTeamID="C79HU5AD9V"
+    appName="FlowJo.app"
     ;;
 front)
     name="Front"
@@ -1515,7 +1530,6 @@ prism9)
     type="dmg"
     downloadURL="https://cdn.graphpad.com/downloads/prism/9/InstallPrism9.dmg"
     expectedTeamID="YQ2D36NS9M"
-    Company="GraphPad Software"
     ;;
 privileges)
     # credit: Erik Stam (@erikstam)
@@ -1649,8 +1663,8 @@ rocketchat)
 royaltsx)
     name="Royal TSX"
     type="dmg"
-    downloadURL=$(curl -fs https://royaltsx-v4.royalapps.com/updates_stable | xpath '//rss/channel/item[1]/enclosure/@url'  2>/dev/null | cut -d '"' -f 2)
-    appNewVersion=$(curl -fs https://royaltsx-v4.royalapps.com/updates_stable | xpath '//rss/channel/item[1]/enclosure/@sparkle:shortVersionString'  2>/dev/null | cut -d '"' -f 2)
+    downloadURL=$(curl -fs https://royaltsx-v5.royalapps.com/updates_stable | xpath '//rss/channel/item[1]/enclosure/@url'  2>/dev/null | cut -d '"' -f 2)
+    appNewVersion=$(curl -fs https://royaltsx-v5.royalapps.com/updates_stable | xpath '//rss/channel/item[1]/enclosure/@sparkle:shortVersionString'  2>/dev/null | cut -d '"' -f 2)
     expectedTeamID="VXP8K9EDP6"
     ;;
 rstudio)
@@ -1942,12 +1956,6 @@ thunderbird)
     downloadURL="https://download.mozilla.org/?product=thunderbird-latest&os=osx&lang=en-US"
     expectedTeamID="43AQ936H96"
     blockingProcesses=( thunderbird )
-    ;;
-tigervnc)
-    name="TigerVNC Viewer"
-    type="dmg"
-    downloadURL=https://dl.bintray.com/tigervnc/stable/$(curl -s -l https://dl.bintray.com/tigervnc/stable/ | grep .dmg | sed 's/<pre><a onclick="navi(event)" href="://' | sed 's/".*//' | sort -V | tail -1)
-    expectedTeamID="S5LX88A9BW"
     ;;
 toggltrack)
     name="Toggl Track"
