@@ -8,7 +8,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 -  Labels added: boxsync, craftmanager, insomnia, jetbrainstoolbox, muzzle
 -  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
 -  not to offend or belittle anyone, but credit-lines is in the process of being removed. The team behind this fork, as well as the original Installomator, is so thankful for all the contributions, but we would like to save som space in the script. There is now more than 300 titles and if we can remove a credit line on each one, it is a pretty significant reduction. Our own comments in the code is being cleaned up as well.
--  `buildCaseStatement.sh` improved a bit when naming the label (should still be edited manually, though)
+-  `buildCaseStatement.sh` renamed to `buildLabel.sh` and improved a bit when naming the label (should still be verified manually, though)
 
 ## 0.6.0 - 2021-07-18
 -  Synchronized with original Installomator version 0.6
