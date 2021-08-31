@@ -53,7 +53,7 @@ NOTIFY=success
 
 
 # behavior when blocking processes are found
-BLOCKING_PROCESS_ACTION=tell_user
+BLOCKING_PROCESS_ACTION=prompt_user
 # options:
 #   - ignore       continue even when blocking processes are found
 #   - quit         app will be told to quit nicely, if running
@@ -71,7 +71,7 @@ BLOCKING_PROCESS_ACTION=tell_user
 #                  Like prompt-user, but clicking "Not Now", will just wait an hour,
 #                  and then it will ask again.
 #                  Please note! It might block the agent on the machine, as
-#                  the scripts gets stuct in waiting until the hour passed
+#                  the scripts gets stuct in waiting until the hour passed.
 #   - tell_user    User will be showed a notification about the important update,
 #                  but user is only allowed to quit and continue, and then we
 #                  ask the app to quit.

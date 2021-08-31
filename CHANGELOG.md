@@ -5,7 +5,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 `Installoamtor.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
 
 ## 0.6.1 - 2021-0?-??
--  The default `BLOCKING_PROCESS_ACTION` is now `tell_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem.
+-  The default `BLOCKING_PROCESS_ACTION` is now `prompt_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. I would recommend `tell_user` if you don't want the user to cancel this update, if the MDM cannot resent the command.
 -  Labels removed: tigervnc
 -  Labels added: airtame, boxsync, caffeine, cisdem-documentreader, colourcontrastanalyser, craftmanager, flowjo, insomnia, jetbrainsdatagrip, jetbrainstoolbox, muzzle, platypus, scaleft, screencloudplayer, smartgit, zoomrooms
 -  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
