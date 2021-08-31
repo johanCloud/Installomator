@@ -2,15 +2,21 @@
 
 ## Important Note for version 0.7.0
 
-I expect this version to change in the future, as the original version of Installomator now has everything this fork has.
+I expect this fork to change in the future, as the original version of Installomator now has everything this fork has.
 
-So I expect that my fork will have MDM-scripts and that I still provide a pkg.
+So I expect that my fork will have MDM-scripts and that I still provide a pkg, that I will update rather often.
 
 ### The script `Installomator.sh` will move!
 
 It's currently in `/usr/local/bin`, and when I fully change to build the pkg from the original Installomator, it will be moved to `/usr/local/bin/Installomator.sh` and consist of only one script (all labels will be part of the script).
 
-_See [Installomator/Installomator](https://github.com/Installomator/Installomator) for what changes has happened, but a completely different build-method has been implemented and the script is now in fragments._
+### Original version now has all my additions
+
+As I'm a member of the team developing the original installomator, all the special features of this fork has now been included in the original. What is missing is frequent updates to a pkg, and we still need those, as well as specific calling scripts for these MDMs.
+
+_See the original [Installomator/Installomator](https://github.com/Installomator/Installomator) for what changes has happened, as it’s a completely different build-method that has been implemented and the script is now in fragments, for much easier maintenance and easier handling of labels. And the build mechanism can also build a pkg that will be signed and notarized, so you can do all this yourself._
+
+Not everyone has a developer account to sign and notarize the pkg, and I think I should still provide that here.
 
 ## Original description
 
@@ -18,17 +24,17 @@ _The one installer script to rule them all._
 
 ![](https://img.shields.io/github/v/release/Theile/Installomator)&nbsp;![](https://img.shields.io/github/downloads/Theile/Installomator/latest/total)&nbsp;![](https://img.shields.io/badge/macOS-10.14%2B-success)&nbsp;![](https://img.shields.io/github/license/Theile/Installomator)
 
-This version of installomator is for people that would like Installomator to be installed permanently on the client Macs. Then we can execute the script at various times to get software installed and updated.
+This fork of installomator is for people that would like Installomator to be installed permanently on the client Macs. Then we can execute the script at various times to get software installed and updated.
 
-This version is not to be used like the original, that is built for Jamf Pro. 
+This fork is not to be used like the original, that is built for Jamf Pro. 
 
-This version is for MDMs, that can sent scripts, maybe at specific times. It has been testet a lot with Mosyle Business and Manager.
+This fork is for MDMs, that can sent only smaller scripts, maybe at specific times. It has been testet a lot with Mosyle Business and Manager, as well as with Addigy.
 
 The purpose is to add a version check before download, and/or before installation, so only if an update exist, will it install the software. In this way it can run at regular intervals and only bug the user with update notifications if a new version is available.
 
 Also this version should notify the user better, when they install apps themselves from the Self Service catalog (provided by some MDM providers).
 
-I also part of the team working on the original Installomator script.
+I am also part of the team working on the original Installomator script.
 
 _See [Installomator/Installomator](https://github.com/Installomator/Installomator) for the original software and README._
 
