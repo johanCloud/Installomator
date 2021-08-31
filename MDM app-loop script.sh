@@ -40,9 +40,12 @@ exit 0
 
 # behavior when blocking processes are found
 # Default is
-# BLOCKING_PROCESS_ACTION=prompt_user_loop
+# BLOCKING_PROCESS_ACTION=tell_user
 # options:
 #   - ignore       continue even when blocking processes are found
+#   - quit         app will be told to quit nicely, if running
+#   - quit_kill    told to quit twice, then it will be killed
+#                  Could be great for service apps, if they do not respawn
 #   - silent_fail  exit script without prompt or installation
 #   - prompt_user  show a user dialog for each blocking process found
 #                  abort after three attempts to quit
@@ -54,6 +57,8 @@ exit 0
 #   - prompt_user_loop
 #                  Like prompt-user, but clicking "Not Now", will just wait an hour,
 #                  and then it will ask again.
+#                  Please note! It might block the agent on the machine, as
+#                  the scripts gets stuct in waiting until the hour passed.
 #   - tell_user    User will be showed a notification about the important update,
 #                  but user is only allowed to quit and continue, and then we
 #                  ask the app to quit.
