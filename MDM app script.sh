@@ -17,7 +17,7 @@ if [ ! -e "${destFile}" ]; then
     exit 99
 fi
 
-${destFile} ${what} LOGO=mosyleb #NOTIFY=all #BLOCKING_PROCESS_ACTION=tell_user_then_kill #INSTALL=force
+${destFile} ${what} LOGO=mosyleb BLOCKING_PROCESS_ACTION=tell_user #NOTIFY=all #INSTALL=force
 if [ $? != 0 ]; then
 # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
     echo "Error installing ${what}. Exit code $?"

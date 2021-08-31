@@ -1,8 +1,9 @@
-## 0.7.0 - 2021-0?-??
+## 0.7.0 - 2021-0?-?? Expectations and thoughts
 This version will be in full sync with the original fork.
 I will maintain often new builds of Installomator PKGs, as well as the specific helping scripts for Mosyle/Addigy and other MDMs.
 I will build from the original fork, that will soon be based on files in fragments, so it will be much easier to maintain, and my fork here will not be adding anything to the original script.
-`Installoamtor.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
+`Installomator.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
+The default `BLOCKING_PROCESS_ACTION` will be `prompt_user`.
 
 ## 0.6.1 - 2021-0?-??
 -  The default `BLOCKING_PROCESS_ACTION` is now `prompt_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. I would recommend `tell_user` if you don't want the user to cancel this update, if the MDM cannot resent the command.

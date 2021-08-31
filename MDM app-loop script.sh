@@ -18,7 +18,7 @@ fi
 
 for item in $what; do
     #echo $item
-    ${destFile} ${item} LOGO=mosyleb #NOTIFY=all #BLOCKING_PROCESS_ACTION=tell_user_then_kill #INSTALL=force
+    ${destFile} ${item} LOGO=mosyleb BLOCKING_PROCESS_ACTION=tell_user #NOTIFY=all #INSTALL=force
     if [ $? != 0 ]; then
     # This is currently not working in Mosyle, that will ignore script errors. Please request support for this from Mosyle!
         echo "[$(DATE)] Error installing ${item}. Exit code $?"
