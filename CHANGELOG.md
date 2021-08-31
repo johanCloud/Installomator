@@ -6,7 +6,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 
 ## 0.6.1 - 2021-0?-??
 -  Labels removed: tigervnc
--  Labels added: boxsync, caffeine, cisdem-documentreader, colourcontrastanalyser, craftmanager, flowjo, insomnia, jetbrainsdatagrip, jetbrainstoolbox, muzzle, platypus, scaleft, screencloudplayer, smartgit, zoomrooms
+-  Labels added: airtame, boxsync, caffeine, cisdem-documentreader, colourcontrastanalyser, craftmanager, flowjo, insomnia, jetbrainsdatagrip, jetbrainstoolbox, muzzle, platypus, scaleft, screencloudplayer, smartgit, zoomrooms
 -  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`)
 -  not to offend or belittle anyone, but credit-lines is in the process of being removed. The team behind this fork, as well as the original Installomator, is so thankful for all the contributions, but we would like to save som space in the script. There is now more than 300 titles and if we can remove a credit line on each one, it is a pretty significant reduction. Our own comments in the code is being cleaned up as well.
 -  `buildCaseStatement.sh` renamed to `buildLabel.sh` and improved a bit when naming the label (should still be verified manually, though)
