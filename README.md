@@ -61,8 +61,8 @@ __Options:__
 - `silent_fail`: exit script without prompt or installation.
 - `prompt_user`: show a user dialog for each blocking process found abort after three attempts to quit (only if user accepts to quit the apps, otherwise the update is cancelled).
 - `prompt_user_then_kill`: show a user dialog for each blocking process found, attempt to quit two times, kill the process finally.
-- `prompt_user_loop`: Like prompt-user, but clicking "Not Now", will just wait an hour, and then it will ask again.
-- `tell_user`: User will be showed a notification about the important update, but user is only allowed to quit and continue, and then we ask the app to quit.
+- `prompt_user_loop`: Like prompt-user, but clicking "Not Now", will just wait an hour, and then it will ask again. _Please note!_  It might block the agent on the machine, as the scripts gets stuct in waiting until the hour passed.
+- `tell_user`: (Default) User will be showed a notification about the important update, but user is only allowed to quit and continue, and then we ask the app to quit.
 - `tell_user_then_kill`: Show dialog 2 times, and if the quitting fails, the blocking processes will be killed.
 - `kill`: kill process without prompting or giving the user a chance to save.
 
