@@ -301,6 +301,7 @@ xink
 xquartz
 yubikeymanagerqt
 zappy
+zohoworkdrive
 zoom
 zoomclient
 zulujdk11
