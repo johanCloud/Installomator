@@ -9,7 +9,7 @@ The default `BLOCKING_PROCESS_ACTION` will be `prompt_user`.
 -  The default `BLOCKING_PROCESS_ACTION` is now `prompt_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. I would recommend `tell_user` if you don't want the user to cancel this update, if the MDM cannot resent the command.
 -  Labels removed: tigervnc
 -  Labels added: airtame, boxsync, caffeine, cisdem-documentreader, colourcontrastanalyser, craftmanager, flowjo, insomnia, jetbrainsdatagrip, jetbrainstoolbox, muzzle, platypus, scaleft, screencloudplayer, smartgit, splashtopsos, zoomrooms
--  Labels changed: apparency (`appNewVersion`), suspiciouspackage (`appNewVersion`), lulu (app is on github)
+-  Labels changed: apparency (`appNewVersion`), lulu (app is on github), spotify (now for Apple Silicon), suspiciouspackage (`appNewVersion`)
 -  not to offend or belittle anyone, but credit-lines is in the process of being removed. The team behind this fork, as well as the original Installomator, is so thankful for all the contributions, but we would like to save som space in the script. There is now more than 300 titles and if we can remove a credit line on each one, it is a pretty significant reduction. Our own comments in the code is being cleaned up as well.
 -  `buildCaseStatement.sh` renamed to `buildLabel.sh` and improved a bit when naming the label (should still be verified manually, though)
 
