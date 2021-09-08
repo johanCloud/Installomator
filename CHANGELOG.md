@@ -6,7 +6,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 The default `BLOCKING_PROCESS_ACTION` will be `prompt_user`.
 
 ## 0.6.1 - 2021-0?-??
--  The default `BLOCKING_PROCESS_ACTION` is now `prompt_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. I would recommend `tell_user` if you don't want the user to cancel this update, if the MDM cannot resent the command automatically.
+-  (The default `BLOCKING_PROCESS_ACTION` is now `prompt_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. I would recommend `tell_user` if you don't want the user to cancel this update, if the MDM cannot resent the command automatically.)
 -  Implemented check for App Store apps. If the already installed app is from App Store, then we will exit, unless `INSTALL=force` is used.
 -  Labels removed: tigervnc
 -  Labels added: airtame, boxsync, caffeine, cisdem-documentreader, colourcontrastanalyser, craftmanager, flowjo, insomnia, jetbrainsdatagrip, jetbrainstoolbox, muzzle, parsec, platypus, scaleft, screencloudplayer, smartgit, splashtopsos, wallyezflash, zoomrooms
