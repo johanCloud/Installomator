@@ -203,6 +203,7 @@ openvpnconnect
 openvpnconnectv3
 opera
 pacifist
+parsec
 pdfsam
 pitch
 plantronicshub
@@ -287,6 +288,7 @@ viscosity
 visualstudiocode
 vivaldi
 vlc
+wallyezflash
 vmwarehorizonclient
 vscodium
 webex

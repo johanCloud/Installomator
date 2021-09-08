@@ -1493,6 +1493,12 @@ pacifist)
     downloadURL="https://charlessoft.com/cgi-bin/pacifist_download.cgi?type=dmg"
     expectedTeamID="HRLUCP7QP4"
     ;;
+parsec)
+    name="Parsec"
+    type="pkg"
+    downloadURL="https://builds.parsecgaming.com/package/parsec-macos.pkg"
+    expectedTeamID="Y9MY52XZDB"
+    ;;
 pdfsam)
     name="PDFsam Basic"
     type="dmg"
@@ -2109,6 +2115,14 @@ vscodium)
     expectedTeamID="C7S3ZQ2B8V"
     appName="VSCodium.app"
     blockingProcesses=( Electron )
+    ;;
+wallyezflash)
+    name="Wally"
+    type="dmg"
+    downloadURL="https://configure.zsa.io/wally/osx"
+    #appNewVersion=$(curl -fsIL "${downloadURL}" | grep -i ^location | head -1 | sed -E 's/.*\/[a-zA-Z\-]*-([0-9.]*)\..*/\1/g')
+    expectedTeamID="V32BWKSNYH"
+    #versionKey="CFBundleVersion"
     ;;
 webexmeetings)
     # credit: Erik Stam (@erikstam)
