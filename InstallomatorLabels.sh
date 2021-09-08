@@ -1831,6 +1831,12 @@ sourcetree)
     appNewVersion=$(echo "${downloadURL}" | sed -E 's/.*\/Sourcetree_([0-9.]*)_[0-9]*\.zip/\1/g')
     expectedTeamID="UPXU4CQZ5P"
     ;;
+splashtopsos)
+    name="Splashtop SOS"
+    type="dmg"
+    downloadURL="https://download.splashtop.com/sos/SplashtopSOS.dmg"
+    expectedTeamID="CPQQ3AW49Y"
+    ;;
 spotify)
     name="Spotify"
     type="dmg"
