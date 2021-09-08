@@ -28,12 +28,13 @@ echo
 archLabels=( bluejeans boxdrive brave docker githubdesktop googlechrome jetbrainspycharm jetbrainspycharmce pycharmce jetbrainstoolbox keepassxc mattermost notion vlc webex webexteams zulujdk11 zulujdk13 zulujdk15 )
 
 # MARK: check minimal macOS requirement
-autoload is-at-least
-
-if ! is-at-least 10.14 $(sw_vers -productVersion); then
+if [[ $(sw_vers -buildVersion ) < "18" ]]; then
     printlog "Installomator requires at least macOS 10.14 Mojave."
     exit 98
 fi
+
+currentUser=$(stat -f "%Su" /dev/console)
+
 
 # MARK: Functions
 

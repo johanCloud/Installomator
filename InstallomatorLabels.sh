@@ -1788,12 +1788,7 @@ slack)
     name="Slack"
     type="dmg"
     downloadURL="https://slack.com/ssb/download-osx-universal" # Universal
-#    if [[ $(arch) == "arm64" ]]; then
-#        downloadURL="https://slack.com/ssb/download-osx-silicon"
-#    elif [[ $(arch) == "i386" ]]; then
-#        downloadURL="https://slack.com/ssb/download-osx"
-#    fi
-    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | awk '{print $2}' | tr -d '\r\n' | sed -E 's/.*macos\/([0-9.]*)\/.*/\1/g' )
+    appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | cut -d "/" -f6 )
     expectedTeamID="BQR82RBBHL"
     ;;
 smartgit)
@@ -2220,12 +2215,11 @@ zohoworkdrive)
 # Using this label expects you to agree to these:
 # License Areemant: https://www.zoho.com/workdrive/zohoworkdrive-license-agreement.html
 # Privacy policy: https://www.zoho.com/privacy.html
-    name="ZohoWorkDrive"
+    name="Zoho WorkDrive"
     type="dmg"
     lines=$(curl -fs https://www.zohowebstatic.com/sites/all/themes/zoho/scripts/workdrive.js | grep files-accl.zohopublic.com | tr '"' "\n")
     downloadURL=$(echo "$lines" | grep -i "files-accl.zohopublic.com")$(echo "$lines" | grep -i -A17 "files-accl.zohopublic.com" | grep -i -A2 macintosh | tail -1)
     expectedTeamID="TZ824L8Y37"
-    appName="Zoho WorkDrive.app"
     ;;
 zoom)
     name="Zoom.us"

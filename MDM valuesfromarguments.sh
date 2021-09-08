@@ -14,12 +14,12 @@ if [ ! -e "${destFile}" ]; then
 fi
 
 ${destFile} valuesfromarguments \
-            name=CraftManager \
-            type=zip \
-            downloadURL=https://craft-assets.invisionapp.com/CraftManager/production/CraftManager.zip \
-            appNewVersion=1.0.114 \
-            expectedTeamID=VRXQSNCL5W \
-            BLOCKING_PROCESS_ACTION=prompt_user_loop \
+            name=\"Zoho\ WorkDrive\" \
+            type=dmg \
+            downloadURL=https://files-accl.zohopublic.com/public/wdbin/download/46f971e4fc4a32b68ad5d7dade38a7d2 \
+            appNewVersion=2.6.25 \
+            expectedTeamID=TZ824L8Y37 \
+            BLOCKING_PROCESS_ACTION=quit \
             NOTIFY=all
 
 # ${destFile} ${what} BLOCKING_PROCESS_ACTION=ignore NOTIFY=silent
