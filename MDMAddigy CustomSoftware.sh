@@ -8,7 +8,7 @@
 
 # Conditions
 # Remember to fill out the correct “TARGET_VERSION” and click "Install on succes".
-TARGET_VERSION="0.6.0"
+TARGET_VERSION="0.6.1"
 
 APP="/usr/local/bin/Installomator.sh"
 if [ ! -f ${APP} ]; then

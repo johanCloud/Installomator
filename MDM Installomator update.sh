@@ -17,8 +17,8 @@ ${destFile} valuesfromarguments\
             name=Installomator \
             type=pkg \
             packageID=dk.theilgaard.pkg.Installomator \
-            downloadURL=https://github.com/Theile/Installomator/releases/download/v0.6.0/Installomator_Theile-0.6.0.pkg \
-            appNewVersion=0.6.0 \
+            downloadURL=https://github.com/Theile/Installomator/releases/download/v0.6.0/Installomator_Theile-0.6.1.pkg \
+            appNewVersion=0.6.1 \
             expectedTeamID=FXW6QXBFW5 \
             BLOCKING_PROCESS_ACTION=ignore \
             NOTIFY=silent
