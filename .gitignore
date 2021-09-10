@@ -9,3 +9,4 @@ scratch/
 *.app
 *.tbz
 buildInstallomatorPkg.sh
+postinstall
