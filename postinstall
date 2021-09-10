@@ -1,8 +1,0 @@
-#!/bin/zsh
-
-# Postinstall script for installomator, to ease the transition to a new place for version 0.7
-
-# Symbolic link from new loaction to old location
-ln -s
-
-# Future removal of old location
