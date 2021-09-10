@@ -28,6 +28,7 @@ aquaskk
 arq7
 atext
 atom
+authydesktop
 audacity
 autodmg
 autopkgr
