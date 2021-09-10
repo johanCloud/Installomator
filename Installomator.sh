@@ -31,7 +31,7 @@ label="" # if no label is sent to the script, this will be used
 # set -x # Debug
 
 VERSION='0.6.1' # This version forked by Søren Theilgaard
-VERSIONDATE='2021-0?-??'
+VERSIONDATE='2021-09-10'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -212,6 +212,9 @@ REOPEN="yes"
 # MARK: Load the labels
 SELF=$(basename $0)
 SELFLOCATION=$(dirname $0)
+if [[ "${SELFLOCATION}" == "/usr/local/Installomator" ]]; then
+    SELFLOCATION="/usr/local/bin"
+fi
 labelFile="${SELFLOCATION}/InstallomatorLabels.sh"
 source "${labelFile}"
 if [ $? != 0 ]; then; echo "Label-file is missing, expected here: ${labelFile}"; exit $?; fi

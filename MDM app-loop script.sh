@@ -8,7 +8,7 @@ what="microsoftteams microsoftyammer firefox bravebrowser cyberduck vlc signal" 
 ######################################################################
 
 # Verify that Installomator has been installed
-destFile="/usr/local/bin/Installomator.sh"
+destFile="/usr/local/Installomator/Installomator.sh"
 if [ ! -e "${destFile}" ]; then
     echo "Installomator not found here:"
     echo "${destFile}"

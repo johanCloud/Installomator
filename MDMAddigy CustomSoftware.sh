@@ -10,19 +10,13 @@
 # Remember to fill out the correct “TARGET_VERSION” and click "Install on succes".
 TARGET_VERSION="0.6.1"
 
-APP="/usr/local/bin/Installomator.sh"
+APP="/usr/local/Installomator/Installomator.sh"
 if [ ! -f ${APP} ]; then
     echo "Does not exist: ${APP}"
     exit 0
 fi
 
-INSTALLED_VERSION="$(/usr/local/bin/Installomator.sh version | tail -1 | awk '{print $4}')"
-#if [[ "$TARGET_VERSION" != "$INSTALLED_VERSION" ]]; then
-#    echo "Version mismatch"
-#    echo "Found: $INSTALLED_VERSION"
-#    echo "Expected: $TARGET_VERSION"
-#    exit 0
-#fi
+INSTALLED_VERSION="$(${APP} version | tail -1 | awk '{print $4}')"
 
 vercomp () {
     if [[ $1 == $2 ]]
@@ -74,3 +68,4 @@ fi
 pkgutil --forget "dk.theilgaard.pkg.Installomator"
 rm /usr/local/bin/Installomator.sh
 rm /usr/local/bin/InstallomatorLabels.sh
+rm /usr/local/Installomator/Installomator.sh
