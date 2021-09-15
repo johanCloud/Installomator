@@ -5,6 +5,9 @@ I will build from the original fork, that will soon be based on files in fragmen
 -  `Installomator.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
 -  The default `BLOCKING_PROCESS_ACTION` will be `tell_user` (I expect). `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. If users should be notified of updates, use the MDM solution to present a dialog.
 
+## 0.6.2 - 2021-??-??
+-  Labels added: 
+-  Labels changed: figma (now both Intel and ARM versions)
 
 ## 0.6.1 - 2021-09-10
 -  Preparing move of `Installomator.sh` to `/usr/local/Installomator/Installomator.sh`. Version 0.7 will be on this new location, so that will be prepared here. It's still installed in the current location `/usr/local/bin/Installomator.sh`, but links are made to the new location, and MDM scripts has been updated to use the new location. When version 0.7 is coming out, it will not link back to the old location, but will remove the old version.
