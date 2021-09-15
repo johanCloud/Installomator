@@ -15,7 +15,6 @@ tmpDir="$(pwd)/$(date "+%Y-%m-%d-%H-%M-%S")"
 # Create a n almost unique folder name
 mkdir $tmpDir
 
-
 # change directory to temporary working directory
 echo "Changing directory to $tmpDir"
 if ! cd "$tmpDir"; then
