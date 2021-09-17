@@ -231,6 +231,7 @@ ringcentralmeetings
 ringcentralphone
 rocket
 rocketchat
+rodeconnect
 royaltsx
 rstudio
 santa

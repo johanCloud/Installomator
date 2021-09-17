@@ -6,7 +6,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 -  The default `BLOCKING_PROCESS_ACTION` will be `tell_user` (I expect). `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. If users should be notified of updates, use the MDM solution to present a dialog.
 
 ## 0.6.2 - 2021-??-??
--  Labels added: montereyblocker
+-  Labels added: montereyblocker, rodeconnect
 -  Labels changed: figma (now both Intel and ARM versions)
 
 ## 0.6.1 - 2021-09-10
