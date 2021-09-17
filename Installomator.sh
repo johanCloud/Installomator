@@ -90,7 +90,20 @@ LOGO=appstore
 #   - mosyleb       Mosyle Business
 #   - mosylem       Mosyle Manager (Education)
 #   - addigy        Addigy
-# path can also be set in the command call, and if file exists, it will be used, like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"' (spaces are escaped).
+# path can also be set in the command call, and if file exists, it will be used.
+# Like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"'
+# (spaces have to be escaped).
+
+
+# App Store apps handling
+IGNORE_APP_STORE_APPS=no
+# options:
+#  - no            If installed app is from App Store (which include VPP installed apps)
+#                  it will not be touched, no matter it's version (default)
+#  - yes           Replace App Store (and VPP) version of app and handle future
+#                  updates using Installomator, even if latest version.
+#                  Shouldn’t give any problems for the user in most cases.
+#                  Known bad example: Slack will loose all settings.
 
 
 # install behavior
@@ -396,13 +409,12 @@ getAppVersion() {
             printlog "found app at $installedAppPath, version $appversion"
             # Is current app from App Store
             if [[ -d "$installedAppPath"/Contents/_MASReceipt ]];then
-                printlog "Installed $appName is from App Store, use INSTALL=force to replace."
-                # INSTALL="force"
-                # Maybe we should exit instead
-                if [[ $INSTALL == "force" ]]; then
-                    printlog "Force is used so continuing"
+                printlog "Installed $appName is from App Store, use “IGNORE_APP_STORE_APPS=yes” to replace."
+                if [[ $IGNORE_APP_STORE_APPS == "yes" ]]; then
+                    printlog "Replacing App Store apps, no matter the version"
+                    appversion=0
                 else
-                    cleanupAndExit 1 "App previously installed from App Store"
+                    cleanupAndExit 1 "App previously installed from App Store, and we respect that"
                 fi
             fi
         else
