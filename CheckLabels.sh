@@ -167,7 +167,7 @@ for label in $allLabels; do
                     else
                         URLextension=$( echo "${URLfilename}" | tail -1 | sed -E 's/.*\.([a-zA-Z]*)\s*/\1/g' | tr -d '\r\n' )
                     fi
-                    URLextension=${URLextension:l}
+                    URLextension=${${URLextension:l}%%\?*}
                     if [[ "${URLextension}" == "${expectedExtension}" ]]; then
                         echo "${GREEN}OK: download extension MATCH on ${URLextension}${NC}"
                     else

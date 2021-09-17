@@ -307,6 +307,7 @@ xink
 xquartz
 yubikeymanagerqt
 zappy
+zeplin
 zohoworkdrive
 zoom
 zoomclient
