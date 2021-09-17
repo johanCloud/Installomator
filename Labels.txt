@@ -179,6 +179,7 @@ microsoftvisualstudiocode
 microsoftword
 microsoftyammer
 miro
+montereyblocker
 musescore
 muzzle
 netnewswire

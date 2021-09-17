@@ -4,7 +4,7 @@
 # Implemented by Søren Theilgaard (@theilgaard)
 # Keep the name of this file, and put it next to Installomator
 
-labelsVERSION="0.6.1"
+labelsVERSION="0.6.2"
 
 caseLabel () {
 # MARK: labels in case statement
@@ -1308,6 +1308,14 @@ menumeters)
     downloadURL=$(downloadURLFromGit yujitach MenuMeters )
     appNewVersion=$(versionFromGit yujitach MenuMeters )
     expectedTeamID="95AQ7YKR5A"
+    ;;
+montereyblocker)
+    name="montereyblocker"
+    type="pkg"
+    packageID="dk.envo-it.montereyblocker"
+    downloadURL=$(downloadURLFromGit Theile montereyblocker )
+    appNewVersion=$(versionFromGit Theile montereyblocker )
+    expectedTeamID="FXW6QXBFW5"
     ;;
 miro)
     # credit: @matins
