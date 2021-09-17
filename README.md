@@ -81,6 +81,12 @@ __Options:__
 
 A path can also be set in the command call, and if file exists, it will be used, like `LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"` (spaces are escaped).
 
+### App Store apps handling
+Default is `IGNORE_APP_STORE_APPS=no`
+__options:__
+- `no`: If installed app is from App Store (which include VPP installed apps) it will not be touched, no matter it's version (default)
+- `yes`: Replace App Store (and VPP) version of app and handle future updates using Installomator, even if latest version. Shouldn’t give any problems for the user in most cases. Known bad example: Slack will loose all settings.
+
 ### Notification
 
 Added a `NOTIFY` option `all`, so notifications can be shown to the user even if no upgrade is available, or if there is a failure in download. This is usable if the user click install in Self Service, then we want them to know, when we are done, no matter what happened. `success` is still default so `NOTIFY=all` needs to be added to the command to get all the notifications.

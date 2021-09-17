@@ -6,6 +6,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 -  The default `BLOCKING_PROCESS_ACTION` will be `tell_user` (I expect). `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. If users should be notified of updates, use the MDM solution to present a dialog.
 
 ## 0.6.2 - 2021-??-??
+-  Changed check for App Store apps. Use `IGNORE_APP_STORE_APPS=yes` to replace App Store apps (as well as VPP apps) no matter what version they have. Default is `no`, so no matter what version of the App Store app is installed, it will not be replaced. `INSTALL=force` is not used for this part anymore, and will not change behavior.
 -  Labels added: montereyblocker, rodeconnect, zeplin
 -  Labels changed: figma (now both Intel and ARM versions)
 
