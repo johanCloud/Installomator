@@ -300,6 +300,14 @@ awsvpnclient)
     appNewVersion=$(curl -is "https://beta2.communitypatch.com/jamf/v1/ba1efae22ae74a9eb4e915c31fef5dd2/patch/AWSVPNClient" | grep currentVersion | tr ',' '\n' | grep currentVersion | cut -d '"' -f 4)
     #Company=Amazon
     ;;
+azurestorageexplorer)
+    name="Microsoft Azure Storage Explorer"
+    type="zip"
+    downloadURL=$(downloadURLFromGit microsoft AzureStorageExplorer )
+    appNewVersion=$(versionFromGit microsoft AzureStorageExplorer )
+    expectedTeamID="UBF8T346G9"
+    archiveName="Mac_StorageExplorer.zip"
+    ;;
 balenaetcher)
     # credit: Adrian Bühler (@midni9ht)
     name="balenaEtcher"

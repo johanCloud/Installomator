@@ -35,6 +35,7 @@ autopkgr
 aviatrix
 awscli2
 awsvpnclient
+azurestorageexplorer
 balenaetcher
 balsamiqwireframes
 bartender
