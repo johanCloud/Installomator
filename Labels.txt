@@ -35,7 +35,6 @@ autopkgr
 aviatrix
 awscli2
 awsvpnclient
-azurestorageexplorer
 balenaetcher
 balsamiqwireframes
 bartender
@@ -159,6 +158,7 @@ malwarebytes
 mattermost
 menumeters
 microsoftautoupdate
+microsoftazurestorageexplorer
 microsoftcompanyportal
 microsoftdefenderatp
 microsoftedge
