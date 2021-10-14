@@ -7,7 +7,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 
 ## 0.6.2 - 2021-??-??
 -  Changed check for App Store apps. Use `IGNORE_APP_STORE_APPS=yes` to replace App Store apps (as well as VPP apps) no matter what version they have. Default is `no`, so no matter what version of the App Store app is installed, it will not be replaced. `INSTALL=force` is not used for this part anymore, and will not change behavior.
--  Labels added: microsoftazurestorageexplorer, montereyblocker, rodeconnect, zeplin
+-  Labels added: microsoftazurestorageexplorer, montereyblocker, rodeconnect, zeplin, zoomgov
 -  Labels changed: figma (now both Intel and ARM versions)
 
 ## 0.6.1 - 2021-09-10

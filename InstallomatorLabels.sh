@@ -2224,6 +2224,14 @@ xquartz)
     appNewVersion=$(versionFromGit XQuartz XQuartz)
     expectedTeamID="NA574AWV7E"
     ;;
+yed)
+    # This label assumes accept of these T&C’s: https://www.yworks.com/resources/yed/license.html
+    name="yEd"
+    type="dmg"
+    downloadURL="https://www.yworks.com"$(curl -fs "https://www.yworks.com/products/yed/download" | grep -o -e "/resources/.*\.dmg" | tr " " '\n' | grep -o -e "/resources/.*\.dmg")
+    appNewVersion=$(echo $downloadURL | sed -E 's/.*-([0-9.]*)_.*\.dmg/\1/')
+    expectedTeamID="JD89S887M2"
+    ;;
 yubikeymanagerqt)
     # credit: Tadayuki Onishi (@kenchan0130)
     name="YubiKey Manager GUI"
@@ -2263,12 +2271,11 @@ zohoworkdrive)
     expectedTeamID="TZ824L8Y37"
     ;;
 zoom)
-    name="Zoom.us"
+    name="zoom.us"
     type="pkg"
     downloadURL="https://zoom.us/client/latest/ZoomInstallerIT.pkg"
-    appNewVersion=$(curl -fs -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)" "https://zoom.us/download" | grep Version | head -n 1 | sed -E 's/.* ([0-9.]* \(.*\)).*/\1/')
+    appNewVersion="$(curl -fsIL ${downloadURL} | grep -i ^location | cut -d "/" -f5)"
     expectedTeamID="BJ4HAAB9B3"
-    blockingProcesses=( zoom.us )
     ;;
 zoomclient)
     name="zoom.us"
@@ -2279,6 +2286,13 @@ zoomclient)
     #appNewVersion=$(curl -is "https://beta2.communitypatch.com/jamf/v1/ba1efae22ae74a9eb4e915c31fef5dd2/patch/zoom.us" | grep currentVersion | tr ',' '\n' | grep currentVersion | cut -d '"' -f 4) # Does not match packageID
     blockingProcesses=( zoom.us )
     #blockingProcessesMaxCPU="5"
+    ;;
+zoomgov)
+    name="zoom.us"
+    type="pkg"
+    downloadURL="https://www.zoomgov.com/client/latest/ZoomInstallerIT.pkg"
+    appNewVersion="$(curl -fsIL ${downloadURL} | grep -i ^location | cut -d "/" -f5)"
+    expectedTeamID="BJ4HAAB9B3"
     ;;
 zoomrooms)
     name="ZoomRooms"

@@ -312,6 +312,8 @@ zeplin
 zohoworkdrive
 zoom
 zoomclient
+zoomgov
+zoomrooms
 zulujdk11
 zulujdk13
 zulujdk15
