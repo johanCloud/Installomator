@@ -3,7 +3,7 @@ This version will be in full sync with the original fork.
 I will maintain often new builds of Installomator PKGs, as well as the specific helping scripts for Mosyle/Addigy and other MDMs.
 I will build from the original fork, that will soon be based on files in fragments, so it will be much easier to maintain, and my fork here will not be adding anything to the original script.
 -  `Installomator.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
--  The default `BLOCKING_PROCESS_ACTION` will be `tell_user` (I expect). `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. If users should be notified of updates, use the MDM solution to present a dialog.
+-  The default `BLOCKING_PROCESS_ACTION` is now `tell_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. If users should be notified of updates and abort them, use the MDM solution to present a dialog before running the script.
 
 ## 0.6.2 - 2021-??-??
 -  Changed check for App Store apps. Use `IGNORE_APP_STORE_APPS=yes` to replace App Store apps (as well as VPP apps) no matter what version they have. Default is `no`, so no matter what version of the App Store app is installed, it will not be replaced. `INSTALL=force` is not used for this part anymore, and will not change behavior.

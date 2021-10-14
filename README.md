@@ -18,6 +18,14 @@ _See the original [Installomator/Installomator](https://github.com/Installomator
 
 Not everyone has a developer account to sign and notarize the pkg, and I think I should still provide that here.
 
+## Support and Contributing
+
+Discussion, support and advice around Installomator happens in the `#installomator` channel in the [MacAdmins.org Slack](https://macadmins.org). Go there for support questions.
+
+Do not create an issue just when you have a questions, but do file an issue or pull request (PR) for bugs or wrong behavior. When in doubt, ask in the above Slack channel.
+
+Please see [CONTRIBUTING.md](https://github.com/Installomator/Installomator/blob/dev/CONTRIBUTING.md) for how to contribute to the original version, or see [CONTRIBUTING.md](https://github.com/Theile/Installomator/blob/dev/CONTRIBUTING.md) for filing bug reports on this project.
+
 ## Original description
 
 _The one installer script to rule them all._
