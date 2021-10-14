@@ -8,7 +8,7 @@ I will build from the original fork, that will soon be based on files in fragmen
 ## 0.6.2 - 2021-??-??
 -  Changed check for App Store apps. Use `IGNORE_APP_STORE_APPS=yes` to replace App Store apps (as well as VPP apps) no matter what version they have. Default is `no`, so no matter what version of the App Store app is installed, it will not be replaced. `INSTALL=force` is not used for this part anymore, and will not change behavior.
 -  Labels added: microsoftazurestorageexplorer, montereyblocker, rodeconnect, zeplin, zoomgov
--  Labels changed: figma (now both Intel and ARM versions)
+-  Labels changed: blender (returned more than one url), figma (now both Intel and ARM versions)
 
 ## 0.6.1 - 2021-09-10
 -  Preparing move of `Installomator.sh` to `/usr/local/Installomator/Installomator.sh`. Version 0.7 will be on this new location, so that will be prepared here. It's still installed in the current location `/usr/local/bin/Installomator.sh`, but links are made to the new location, and MDM scripts has been updated to use the new location. When version 0.7 is coming out, it will not link back to the old location, but will remove the old version.
