@@ -30,8 +30,8 @@ label="" # if no label is sent to the script, this will be used
 # set -o xtrace # outputting every command of the script
 # set -x # Debug
 
-VERSION='0.6.2' # This version forked by Søren Theilgaard
-VERSIONDATE='2021-??-??'
+VERSION='0.7.0' # This version forked by Søren Theilgaard
+VERSIONDATE='2021-10-19'
 VERSIONBRANCH='Søren Theilgaard'
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin

@@ -2,21 +2,27 @@
 
 ## Important Note for version 0.7.0
 
-I expect this fork to change in the future, as the original version of Installomator now has everything this fork has.
+**This release is identical to the original fork. I will not maintain this any further.**
 
-So I expect that my fork will have MDM-scripts and that I still provide a pkg, that I will update rather often.
+MDM scripts has moved to the original fork as well.
 
-### The script `Installomator.sh` will move!
+If you update Installomator by calling the label `installomator` or `installomator_theile` you will now get the original fork of this.
 
-It's currently in `/usr/local/bin`, and when I fully change to build the pkg from the original Installomator, it will be moved to `/usr/local/bin/Installomator.sh` and consist of only one script (all labels will be part of the script).
+### The script `Installomator.sh` has moved!
 
-### Original version now has all my additions
+It was in `/usr/local/bin`, but is now in `/usr/local/Installomator/Installomator.sh` and consist of only one script (all labels will be part of the script).
 
-As I'm a member of the team developing the original installomator, all the special features of this fork has now been included in the original. What is missing is frequent updates to a pkg, and we still need those, as well as specific calling scripts for these MDMs.
+### Original fork now has all my additions
+
+As I'm a member of the team developing the original installomator, all the special features of this fork has now been included in the original.
 
 _See the original [Installomator/Installomator](https://github.com/Installomator/Installomator) for what changes has happened, as it’s a completely different build-method that has been implemented and the script is now in fragments, for much easier maintenance and easier handling of labels. And the build mechanism can also build a pkg that will be signed and notarized, so you can do all this yourself._
 
-Not everyone has a developer account to sign and notarize the pkg, and I think I should still provide that here.
+### Thanks
+
+I'm proud to have maintained this fork, and maybe even more proud to have my additions included in the original fork, so it will now be even better.
+
+**Thanks to everybody in the Mac community!**
 
 ## Support and Contributing
 

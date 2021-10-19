@@ -1,12 +1,11 @@
-## 0.7.0 - 2021-10-??
-This version will be in full sync with the original fork.
-I will maintain often new builds of Installomator PKGs, as well as the specific helping scripts for Mosyle/Addigy and other MDMs.
-I will build from the original fork, that will soon be based on files in fragments, so it will be much easier to maintain, and my fork here will not be adding anything to the original script.
--  `Installomator.sh` will be moved to `/usr/local/Installomator` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
+## 0.7.0 - 2021-10-19
+This version is identical to the original branch, and **will be the last version from this fork.**
+Plans are to post updates more frequently from the riginal fork, so my fork is not needed anymore.
+-  `Installomator.sh` has moved to `/usr/local/Installomator/Installomator.sh` so from this version we need to change the call in our MDM-scripts or we should add a link. Maybe I put this into the PKG, as we also need to remove the whereabouts of the original version.
 -  The default `BLOCKING_PROCESS_ACTION` is now `tell_user`. `prompt_user_loop` can make the MDM agent get stuck for that waiting period if the users says no. If no other action is coming through for an hour, it can be a problem. If users should be notified of updates and abort them, use the MDM solution to present a dialog before running the script.
 -  Changed check for App Store apps. Use `IGNORE_APP_STORE_APPS=yes` to replace App Store apps (as well as VPP apps) no matter what version they have. Default is `no`, so no matter what version of the App Store app is installed, it will not be replaced. `INSTALL=force` is not used for this part anymore, and will not change behavior.
--  Labels added: microsoftazurestorageexplorer, montereyblocker, rodeconnect, zeplin, zoomgov
--  Labels changed: blender (returned more than one url), figma (now both Intel and ARM versions)
+-  Labels added: asana, boxtools, cloudya, dialog, jamfconnectconfiguration, keybase, microsoftazurestorageexplorer, montereyblocker, perimeter81, rodeconnect, sync, tageditor, tom4aconverter, utm, zeplin, zoomgov
+-  Labels changed: blender (returned more than one url), figma (now both Intel and ARM versions as well as `appNewVersion`)
 
 ## 0.6.1 - 2021-09-10
 -  Preparing move of `Installomator.sh` to `/usr/local/Installomator/Installomator.sh`. Version 0.7 will be on this new location, so that will be prepared here. It's still installed in the current location `/usr/local/bin/Installomator.sh`, but links are made to the new location, and MDM scripts has been updated to use the new location. When version 0.7 is coming out, it will not link back to the old location, but will remove the old version.
