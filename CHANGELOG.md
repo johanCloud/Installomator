@@ -1,3 +1,6 @@
+## 0.7.1 - 2021-11-02
+Forgot to add the `postscript` script in the pkg, so this will fix that. The `postscript` script makes sure that Installomator is located at `/usr/local/Installomator/Installomator.sh`.
+
 ## 0.7.0 - 2021-10-19
 This version is identical to the original branch, and **will be the last version from this fork.**
 Plans are to post updates more frequently from the riginal fork, so my fork is not needed anymore.

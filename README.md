@@ -1,6 +1,6 @@
 # Installomator (Theile fork)
 
-## Important Note for version 0.7.0
+## Important Note for version 0.7.0 and 0.7.1
 
 **This release is identical to the original fork. I will not maintain this any further.**
 
