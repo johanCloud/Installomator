@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Installation using Installomator
 what="microsoftteams microsoftyammer firefox bravebrowser cyberduck vlc signal" # enter the software to install separated with spaces
 
@@ -31,15 +31,14 @@ echo "[$(DATE)][LOG-END]"
 exit 0
 
 # notify behavior
-# Default is
 # NOTIFY=success
 # options:
 #   - success      notify the user on success
 #   - silent       no notifications
 #   - all          all notifications (great for Self Service installation)
 
+
 # behavior when blocking processes are found
-# Default is
 # BLOCKING_PROCESS_ACTION=tell_user
 # options:
 #   - ignore       continue even when blocking processes are found
@@ -57,8 +56,9 @@ exit 0
 #   - prompt_user_loop
 #                  Like prompt-user, but clicking "Not Now", will just wait an hour,
 #                  and then it will ask again.
-#                  Please note! It might block the agent on the machine, as
-#                  the scripts gets stuct in waiting until the hour passed.
+#                  WARNING! It might block the MDM agent on the machine, as
+#                  the scripts gets stuct in waiting until the hour has passed,
+#                  possibly blocking for other management actions in this time.
 #   - tell_user    User will be showed a notification about the important update,
 #                  but user is only allowed to quit and continue, and then we
 #                  ask the app to quit.
@@ -66,6 +66,7 @@ exit 0
 #                  Show dialog 2 times, and if the quitting fails, the
 #                  blocking processes will be killed.
 #   - kill         kill process without prompting or giving the user a chance to save
+
 
 # logo-icon used in dialog boxes if app is blocking
 # LOGO=appstore
@@ -75,15 +76,36 @@ exit 0
 #   - mosyleb       Mosyle Business
 #   - mosylem       Mosyle Manager (Education)
 #   - addigy        Addigy
-# path can also be set in the command call, and if file exists, it will be used, like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"' (spaces are escaped).
+# path can also be set in the command call, and if file exists, it will be used.
+# Like 'LOGO="/System/Applications/App\ Store.app/Contents/Resources/AppIcon.icns"'
+# (spaces have to be escaped).
+
+
+# App Store apps handling
+# IGNORE_APP_STORE_APPS=no
+# options:
+#  - no            If installed app is from App Store (which include VPP installed apps)
+#                  it will not be touched, no matter it's version (default)
+#  - yes           Replace App Store (and VPP) version of app and handle future
+#                  updates using Installomator, even if latest version.
+#                  Shouldn’t give any problems for the user in most cases.
+#                  Known bad example: Slack will loose all settings.
+
 
 # install behavior
-# Default is
 # INSTALL=""
 # options:
 #  -               When not set, software will only be installed
 #                  if it is newer/different in version
 #  - force         Install even if it’s the same version
+
+
+# Re-opening of closed app
+# REOPEN="yes"
+# options:
+#  - yes           App wil be reopened if it was closed
+#  - no            App not reopened
+
 
 ########################
 # Often used labels:
