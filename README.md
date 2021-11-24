@@ -1,5 +1,18 @@
 # Installomator (Theile fork)
 
+## This fork is obsolete
+
+I will not be updating this fork of Installomator any more. It does not make sence.
+
+I recommend using the original [Installomator/Installomator](https://github.com/Installomator/Installomator) version 8.0 and forward.
+
+Remember to remove this fork, when you start using the original:
+```
+pkgutil --forget "dk.theilgaard.pkg.Installomator"
+rm /usr/local/bin/Installomator.sh
+rm /usr/local/bin/InstallomatorLabels.sh
+```
+
 ## Important Note for version 0.7.0 and 0.7.1
 
 **This release is identical to the original fork. I will not maintain this any further.**
